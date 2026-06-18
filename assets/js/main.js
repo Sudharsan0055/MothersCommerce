@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initScrollEffects();
   initInquiryDrawer();
+  initParallax();
+  initMagneticButtons();
 });
 
 /* --- Navigation Header logic --- */
@@ -16,14 +18,19 @@ function initNavigation() {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 30) {
       header.classList.add('scrolled');
+      header.classList.remove('header-transparent');
     } else {
       header.classList.remove('scrolled');
+      header.classList.add('header-transparent');
     }
   });
 
   // Check initial scroll position
   if (window.scrollY > 30) {
     header.classList.add('scrolled');
+    header.classList.remove('header-transparent');
+  } else {
+    header.classList.add('header-transparent');
   }
 
   // Mobile menu toggle
@@ -69,26 +76,78 @@ function initNavigation() {
 /* --- Scroll Reveal Animations --- */
 function initScrollEffects() {
   const reveals = document.querySelectorAll('.reveal');
+  const textReveals = document.querySelectorAll('.text-reveal-line');
+
+  // Wrap words for text reveal
+  textReveals.forEach(el => {
+    // Save original HTML in case there are nested tags, but for simple headings split by words
+    const text = el.innerText;
+    el.innerHTML = '';
+    const words = text.split(' ');
+    words.forEach((word, i) => {
+      const span = document.createElement('span');
+      span.className = 'reveal-word';
+      span.innerHTML = word + '&nbsp;';
+      span.style.transitionDelay = `${i * 0.08}s`;
+      el.appendChild(span);
+    });
+  });
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
-          // Once animated, we don't need to observe it anymore
           observer.unobserve(entry.target);
         }
       });
     }, {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px' // Trigger slightly before it enters viewport completely
+      rootMargin: '0px 0px -50px 0px'
     });
 
     reveals.forEach(el => observer.observe(el));
+    textReveals.forEach(el => observer.observe(el));
   } else {
-    // Fallback if IntersectionObserver is not supported
     reveals.forEach(el => el.classList.add('revealed'));
+    textReveals.forEach(el => el.classList.add('revealed'));
   }
+}
+
+/* --- Parallax Effects --- */
+function initParallax() {
+  const parallaxElements = document.querySelectorAll('.parallax-img');
+  window.addEventListener('scroll', () => {
+    parallaxElements.forEach(el => {
+      const speed = el.getAttribute('data-speed') || 0.15;
+      const rect = el.parentElement.getBoundingClientRect();
+      const elementCenter = rect.top + (rect.height / 2);
+      const viewportCenter = window.innerHeight / 2;
+      const distance = elementCenter - viewportCenter;
+      
+      const yPos = -(distance * speed);
+      el.style.transform = `translate3d(0, ${yPos}px, 0) scale(1.1)`;
+    });
+  }, { passive: true });
+}
+
+/* --- Magnetic Buttons --- */
+function initMagneticButtons() {
+  const magnetics = document.querySelectorAll('.magnetic');
+  
+  magnetics.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = `translate(0px, 0px)`;
+    });
+  });
 }
 
 /* --- Global Inquiry Drawer Management --- */
