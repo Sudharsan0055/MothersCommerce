@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botanical Incense Collections | Mothers Commerce</title>
+  <meta name="description" content="Browse our wholesale incense collections: Masala, Flora, Essential Oils, and Dhoop. 100% natural, charcoal-free incense sticks hand-rolled in Pondicherry.">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Products catalog specific styles */
+    .filter-wrapper {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: var(--space-lg);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-2xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .filter-row:last-child {
+      margin-bottom: 0;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-md);
+    }
+
+    .filter-label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      min-width: 100px;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .search-input-wrapper i {
+      position: absolute;
+      left: var(--space-md);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem var(--space-md) 0.75rem var(--space-xl);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-round);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      background-color: var(--color-bg);
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .search-input:focus {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-sm);
+      background-color: var(--color-surface);
+    }
+
+    .filter-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .filter-pill {
+      background: none;
+      border: 1px solid var(--color-border);
+      padding: 0.4rem 1.2rem;
+      border-radius: var(--radius-round);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .filter-pill:hover,
+    .filter-pill.active {
+      background-color: var(--color-primary);
+      color: var(--color-bg);
+      border-color: var(--color-primary);
+    }
+
+    .filter-pill.filter-frag-btn.active {
+      background-color: var(--color-terracotta);
+      border-color: var(--color-terracotta);
+    }
+
+    /* Product Cards */
+    .product-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: var(--transition-smooth);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(30, 58, 43, 0.15);
+    }
+
+    .product-image-container {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-category-tag {
+      position: absolute;
+      top: var(--space-sm);
+      left: var(--space-sm);
+      background-color: var(--color-primary);
+      color: var(--color-bg);
+      padding: var(--space-xxs) var(--space-xs);
+      border-radius: var(--radius-xs);
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .product-details {
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      flex: 1;
+    }
+
+    .product-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    .product-fragrance-tag {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: var(--space-xxs) var(--space-xs);
+      border-radius: var(--radius-round);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .fragrance-woody { background-color: #E6DFD3; color: #5D503C; }
+    .fragrance-floral { background-color: #F3DFE3; color: #8F4F5E; }
+    .fragrance-resinous { background-color: #E2DFE9; color: #5B4E7A; }
+    .fragrance-spicy { background-color: #FBEBD9; color: #A06429; }
+    .fragrance-herbaceous { background-color: #DFECE4; color: #3B724E; }
+
+    .product-description {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .product-ingredients {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      border-top: 1px dashed var(--color-border);
+      padding-top: var(--space-xs);
+    }
+
+    .product-specs {
+      display: flex;
+      gap: var(--space-md);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: auto;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-sm);
+    }
+
+    .product-specs i {
+      color: var(--color-terracotta);
+    }
+
+    .product-actions {
+      padding-top: var(--space-xs);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header-container">
+      <a href="index.html" class="logo-wrapper" id="headerLogo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          Mothers Commerce
+          <span>Export Division</span>
+        </div>
+      </a>
+      
+      <nav class="nav" id="desktopNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="products.html" class="nav-link">Collections</a>
+        <a href="ingredients.html" class="nav-link">Ingredients</a>
+        <a href="contact.html" class="nav-link">Export & Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-outline" id="navCta">Enquire Now</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenuOverlay">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">Our Story</a>
+    <a href="products.html" class="nav-link">Collections</a>
+    <a href="ingredients.html" class="nav-link">Ingredients</a>
+    <a href="contact.html" class="nav-link">Export & Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="margin-top: var(--space-md);">Enquire Now</a>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="reveal">Botanical Incense Collections</h1>
+        <p class="reveal reveal-delay-1">Select premium fragrance lines hand-rolled in Pondicherry, packed for worldwide shipping compliance.</p>
+      </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="section">
+      <div class="container">
+        
+        <!-- Filters Bar -->
+        <div class="filter-wrapper reveal">
+          <div class="filter-row">
+            <div class="filter-label">Search</div>
+            <div class="search-input-wrapper">
+              <i class="fas fa-search"></i>
+              <input type="text" id="productSearch" placeholder="Search by name, key ingredients..." class="search-input">
+            </div>
+          </div>
+          
+          <div class="filter-row">
+            <div class="filter-label">Category</div>
+            <div class="filter-btn-group">
+              <button class="filter-pill filter-cat-btn active" data-cat="all">All</button>
+              <button class="filter-pill filter-cat-btn" data-cat="masala">Masala Line</button>
+              <button class="filter-pill filter-cat-btn" data-cat="flora">Flora Line</button>
+              <button class="filter-pill filter-cat-btn" data-cat="resin">Resin Line</button>
+              <button class="filter-pill filter-cat-btn" data-cat="oil">Essential Oils</button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <div class="filter-label">Aroma Family</div>
+            <div class="filter-btn-group">
+              <button class="filter-pill filter-frag-btn active" data-frag="all">All Profiles</button>
+              <button class="filter-pill filter-frag-btn" data-frag="woody">Woody</button>
+              <button class="filter-pill filter-frag-btn" data-frag="floral">Floral</button>
+              <button class="filter-pill filter-frag-btn" data-frag="resinous">Resinous</button>
+              <button class="filter-pill filter-frag-btn" data-frag="spicy">Spicy</button>
+              <button class="filter-pill filter-frag-btn" data-frag="herbaceous">Herbaceous</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid-3" id="productsGrid">
+          <!-- Dynamically populated via products.js -->
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo-wrapper">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">Mothers Commerce</div>
+          </a>
+          <p style="margin-top: var(--space-sm);">Manufacturers and global exporters of 100% botanical, chemical-free incense sticks. Sourced from nature, rolled by hand, exported globally since 1986.</p>
+        </div>
+        
+        <div>
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">Our Story</a>
+            <a href="products.html">Collections</a>
+            <a href="ingredients.html">Ingredients</a>
+            <a href="contact.html">Export & Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Global Markets</h4>
+          <div class="footer-links">
+            <a href="contact.html">United States (USA)</a>
+            <a href="contact.html">United Kingdom (UK)</a>
+            <a href="contact.html">Australia</a>
+            <a href="contact.html">European Union (EU)</a>
+            <a href="contact.html">Customs & Shipping Compliance</a>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Export Inquiries</h4>
+          <p>Subscribe to our seasonal catalog releases and harvest updates.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+            <input type="email" placeholder="Your corporate email..." class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mothers Commerce. All rights reserved. Made in Pondicherry, India.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/products.js"></script>
+</body>
+</html>

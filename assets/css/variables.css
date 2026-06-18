@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  /* Color Palette - Premium Luxury Organic */
+  --color-bg: #FAF8F5;              /* Warm Cream / Alabaster */
+  --color-bg-dark: #121413;         /* Luxury Dark Charcoal */
+  --color-surface: #FFFFFF;         /* Card Background Light */
+  --color-surface-dark: #1A1D1B;    /* Card Background Dark */
+  
+  --color-primary: #1E3A2B;         /* Deep Forest Green */
+  --color-primary-light: #2A4F3B;   /* Mid Forest Green */
+  --color-primary-rgb: 30, 58, 43;
+  
+  --color-charcoal: #151716;        /* Rich Ebony Charcoal */
+  --color-charcoal-light: #222624;  /* Muted Charcoal */
+  
+  --color-terracotta: #C27D56;      /* Clay / Terracotta */
+  --color-terracotta-light: #D49673;/* Soft Terracotta */
+  --color-terracotta-rgb: 194, 125, 86;
+  
+  --color-gold: #D4AF37;            /* Sandalwood Gold */
+  --color-gold-light: #E5C354;      /* Bright Gold */
+  
+  --color-text-main: #1C221E;       /* Near Black Green */
+  --color-text-muted: #5C6460;      /* Muted Slate Grey */
+  --color-border: #E5E1DA;          /* Clean organic divider */
+  --color-border-dark: #2A2F2C;     /* Dark organic divider */
+
+  /* Spacing Scale (Rem-based) */
+  --space-xxs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-xxl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  /* Border Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-round: 9999px;
+
+  /* Shadows - Organic & Premium */
+  --shadow-sm: 0 2px 8px rgba(30, 58, 43, 0.04);
+  --shadow-md: 0 8px 24px rgba(30, 58, 43, 0.06);
+  --shadow-lg: 0 16px 48px rgba(30, 58, 43, 0.08);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  
+  /* Animations & Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-slow: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  
+  /* Layout constraints */
+  --max-width: 1280px;
+  --max-width-narrow: 800px;
+  
+  /* Header Height */
+  --header-height: 80px;
+}
+
+/* Base resets & variables bindings */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}

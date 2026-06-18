@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mothers Commerce | Premium Natural Incense Exporter Pondicherry</title>
+  <meta name="description" content="Mothers Commerce manufactures and exports 100% natural, hand-rolled incense sticks from Pondicherry to the UK, USA, Australia, and worldwide. Over 40 years of artisanal purity.">
+  <meta name="keywords" content="incense exporter, natural incense, wholesale incense, Pondicherry incense, organic incense sticks, export UK USA Australia">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Home page specific styles */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background-color: var(--color-primary);
+      color: var(--color-bg);
+      padding-top: var(--header-height);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 60% 40%, rgba(194, 125, 86, 0.25) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: var(--space-3xl);
+      z-index: 2;
+      position: relative;
+      width: 90%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .hero-badge {
+      align-self: flex-start;
+      background-color: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--color-gold);
+      color: var(--color-gold-light);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-round);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      color: var(--color-bg);
+      font-size: 4.2rem;
+      line-height: 1.1;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 span {
+      color: var(--color-gold);
+      font-style: italic;
+    }
+
+    .hero p {
+      color: rgba(250, 248, 245, 0.8);
+      font-size: 1.15rem;
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-shape {
+      position: absolute;
+      border: 2px solid var(--color-gold);
+      opacity: 0.3;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      height: 100%;
+      top: 20px;
+      left: 20px;
+      z-index: -1;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: var(--space-xl) 0;
+      }
+      .hero-badge {
+        align-self: center;
+      }
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+      .hero p {
+        margin: 0 auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-image-wrapper {
+        height: 400px;
+        max-width: 500px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
+    /* Pillars */
+    .pillar-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--color-primary);
+      transition: var(--transition-smooth);
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(30, 58, 43, 0.15);
+    }
+
+    .pillar-card:hover::before {
+      background-color: var(--color-terracotta);
+      width: 8px;
+    }
+
+    .pillar-icon {
+      font-size: 2.2rem;
+      color: var(--color-terracotta);
+    }
+
+    .pillar-card h3 {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+    }
+
+    /* Split Section */
+    .split-section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      gap: var(--space-4xl);
+    }
+
+    .split-image-wrapper {
+      position: relative;
+      height: 500px;
+    }
+
+    .split-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (max-width: 768px) {
+      .split-section {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      .split-image-wrapper {
+        height: 300px;
+      }
+    }
+
+    /* Product Cards Teaser */
+    .product-teaser-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .product-teaser-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-teaser-img-wrapper {
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .product-teaser-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .product-teaser-card:hover .product-teaser-img {
+      transform: scale(1.05);
+    }
+
+    .product-teaser-content {
+      padding: var(--space-lg);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .product-tag {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-terracotta);
+      letter-spacing: 0.05em;
+    }
+
+    .product-teaser-content h3 {
+      font-size: 1.4rem;
+      color: var(--color-primary);
+    }
+
+    .product-teaser-actions {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* Counters section */
+    .counters-section {
+      background-color: var(--color-primary);
+      color: var(--color-bg);
+      text-align: center;
+    }
+
+    .counter-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .counter-num {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      font-weight: bold;
+      color: var(--color-gold);
+      line-height: 1;
+    }
+
+    .counter-title {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(250, 248, 245, 0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header-container">
+      <a href="index.html" class="logo-wrapper" id="headerLogo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          Mothers Commerce
+          <span>Export Division</span>
+        </div>
+      </a>
+      
+      <nav class="nav" id="desktopNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="products.html" class="nav-link">Collections</a>
+        <a href="ingredients.html" class="nav-link">Ingredients</a>
+        <a href="contact.html" class="nav-link">Export & Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-outline" id="navCta">Enquire Now</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenuOverlay">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">Our Story</a>
+    <a href="products.html" class="nav-link">Collections</a>
+    <a href="ingredients.html" class="nav-link">Ingredients</a>
+    <a href="contact.html" class="nav-link">Export & Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="margin-top: var(--space-md);">Enquire Now</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content reveal">
+          <div class="hero-badge">Established 1986 &bull; Pondicherry</div>
+          <h1>Pure Aroma.<br>Pure Heritage.<br><span>Hand-Rolled.</span></h1>
+          <p>For over 40 years, Mothers Commerce has roll-crafted 100% natural, chemical-free botanical incense. Sourced in India, burn-trusted worldwide from the UK to the USA & Australia.</p>
+          <div class="hero-actions">
+            <a href="products.html" class="btn btn-terracotta">Browse Collections</a>
+            <a href="about.html" class="btn btn-outline" style="color: var(--color-bg); border-color: rgba(250, 248, 245, 0.4);">Our Story</a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper reveal reveal-delay-2">
+          <img src="./assets/images/hero-banner.png" alt="Burning luxury natural incense sticks with incense smoke and aromatic botanicals" class="hero-image">
+          <div class="hero-shape"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legacy / Introduction Section -->
+    <section class="section">
+      <div class="container">
+        <div class="split-section">
+          <div class="split-image-wrapper reveal">
+            <img src="./assets/images/pondicherry.png" alt="Incense maker rolling incense manually in a warm lit Pondicherry workshop" class="split-image">
+          </div>
+          <div class="split-content reveal reveal-delay-2">
+            <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Our Craftsmanship</h2>
+            <h2 style="font-size: 2.8rem; margin-bottom: var(--space-md); font-weight: 500;">40+ Years of Indian Artisanal Preservation</h2>
+            <p style="font-size: 1.05rem; margin-bottom: var(--space-md); line-height: 1.8;">
+              Based in the coastal town of Pondicherry, a historic hub of trade and spirituality, Mothers Commerce preserves the ancient tradition of natural incense-making. We reject synthetic chemicals, toxic charcoal cores, and chemical fragrance binders. 
+            </p>
+            <p style="font-size: 1.05rem; margin-bottom: var(--space-lg); line-height: 1.8;">
+              Our incense starts with pure sandalwood powder, raw resins, essential oils, and sun-dried flower petals. They are hand-kneaded into dough and rolled onto single bamboo splints by skilled local artisans who have carried this trade for generations.
+            </p>
+            <a href="about.html" class="btn btn-outline">Explore Our Process</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Pillars Section -->
+    <section class="section" style="background-color: rgba(30, 58, 43, 0.02); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+      <div class="container">
+        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto var(--space-3xl) auto;" class="reveal">
+          <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Why Mothers Commerce</h2>
+          <h2 style="font-size: 2.5rem;">Silicon Valley Grade Export Quality</h2>
+          <p style="margin-top: var(--space-xs);">We maintain strict compliance and quality metrics for seamless import operations into Western markets.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="pillar-card reveal">
+            <div class="pillar-icon"><i class="fa-solid fa-leaf"></i></div>
+            <h3>100% Clean Botanical Ingredients</h3>
+            <p>Zero synthetic charcoal, zero toxic chemical binders, and zero synthetic fragrances. We burn only pure resins, gums, oils, and woods.</p>
+          </div>
+
+          <div class="pillar-card reveal reveal-delay-1">
+            <div class="pillar-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            <h3>40+ Years Heritage</h3>
+            <p>Since 1986, we have perfected consistency, aroma profiles, and slow-burn technology, establishing a global standard for natural incense.</p>
+          </div>
+
+          <div class="pillar-card reveal reveal-delay-2">
+            <div class="pillar-icon"><i class="fa-solid fa-earth-americas"></i></div>
+            <h3>Global Logistics & Compliance</h3>
+            <p>Tailored wholesale export packaging, customs compliance documentation, and rapid port lead times for UK, USA, and Australia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Collections Teaser -->
+    <section class="section">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-3xl); flex-wrap: wrap; gap: var(--space-md);" class="reveal">
+          <div>
+            <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Featured Collections</h2>
+            <h2 style="font-size: 2.5rem;">Crafted Aroma Families</h2>
+          </div>
+          <a href="products.html" class="btn btn-outline">View Catalog</a>
+        </div>
+
+        <div class="grid-3">
+          <!-- Card 1 -->
+          <div class="product-teaser-card reveal">
+            <div class="product-teaser-img-wrapper">
+              <img src="./assets/images/product-pkg.png" alt="Minimalist incense packaging boxes with gold foil logos" class="product-teaser-img">
+            </div>
+            <div class="product-teaser-content">
+              <div class="product-tag">MASALA LINE</div>
+              <h3>Traditional Oudh & Sandalwood</h3>
+              <p>Rich, woody, and resinous. Built on ground Indian sandalwood and pure Aquilaria wood resin, giving a deep calming scent.</p>
+              <div class="product-teaser-actions">
+                <span style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-primary); font-weight: 500;">Premium Export</span>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;" onclick="window.addToInquiryBasket('p_oudh_sandal', 'Traditional Oudh & Sandalwood', 'Masala Line - Rich resinous Oudh combined with pure Indian Sandalwood.')">
+                  Add to Inquiry
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="product-teaser-card reveal reveal-delay-1">
+            <div class="product-teaser-img-wrapper">
+              <img src="./assets/images/ingredients-bg.png" alt="Aesthetic flatlay of dried botanicals like rose, jasmine, and essential oils" class="product-teaser-img">
+            </div>
+            <div class="product-teaser-content">
+              <div class="product-tag">FLORAL LINE</div>
+              <h3>Pondicherry Jasmine & Vetiver</h3>
+              <p>Clean, floral, and cooling. Blended with handpicked local Jasmine blossoms and cooling roots of organic Vetiver grass.</p>
+              <div class="product-teaser-actions">
+                <span style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-primary); font-weight: 500;">Premium Export</span>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;" onclick="window.addToInquiryBasket('p_jasmine_vetiver', 'Pondicherry Jasmine & Vetiver', 'Floral Line - Fragrant jasmine petals with cooling vetiver roots.')">
+                  Add to Inquiry
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="product-teaser-card reveal reveal-delay-2">
+            <div class="product-teaser-img-wrapper">
+              <img src="./assets/images/global-shipping.png" alt="Wooden shipping boxes packed ready for international export cargo" class="product-teaser-img">
+            </div>
+            <div class="product-teaser-content">
+              <div class="product-tag">RESIN LINE</div>
+              <h3>Sacred Amber & Frankincense</h3>
+              <p>Warm, sweet, and comforting. Contains wild-harvested Boswellia resin chunks blended with fossilized amber oil.</p>
+              <div class="product-teaser-actions">
+                <span style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-primary); font-weight: 500;">Premium Export</span>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;" onclick="window.addToInquiryBasket('p_amber_frank', 'Sacred Amber & Frankincense', 'Resin Line - Premium amber oil combined with pure frankincense gums.')">
+                  Add to Inquiry
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Counters Section -->
+    <section class="section counters-section">
+      <div class="container">
+        <div class="grid-4">
+          <div class="counter-item reveal">
+            <div class="counter-num">40+</div>
+            <div class="counter-title">Years of Craft Heritage</div>
+          </div>
+          <div class="counter-item reveal reveal-delay-1">
+            <div class="counter-num">100%</div>
+            <div class="counter-title">Pure Natural Ingredients</div>
+          </div>
+          <div class="counter-item reveal reveal-delay-2">
+            <div class="counter-num">30+</div>
+            <div class="counter-title">Global Export Ports</div>
+          </div>
+          <div class="counter-item reveal reveal-delay-3">
+            <div class="counter-num">200+</div>
+            <div class="counter-title">Artisan Women Supported</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo-wrapper">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">Mothers Commerce</div>
+          </a>
+          <p style="margin-top: var(--space-sm);">Manufacturers and global exporters of 100% botanical, chemical-free incense sticks. Sourced from nature, rolled by hand, exported globally since 1986.</p>
+        </div>
+        
+        <div>
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">Our Story</a>
+            <a href="products.html">Collections</a>
+            <a href="ingredients.html">Ingredients</a>
+            <a href="contact.html">Export & Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Global Markets</h4>
+          <div class="footer-links">
+            <a href="contact.html">United States (USA)</a>
+            <a href="contact.html">United Kingdom (UK)</a>
+            <a href="contact.html">Australia</a>
+            <a href="contact.html">European Union (EU)</a>
+            <a href="contact.html">Customs & Shipping Compliance</a>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Export Inquiries</h4>
+          <p>Subscribe to our seasonal catalog releases and harvest updates.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+            <input type="email" placeholder="Your corporate email..." class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mothers Commerce. All rights reserved. Made in Pondicherry, India.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>

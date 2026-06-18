@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Export & Contact - Wholesale Inquiry | Mothers Commerce</title>
+  <meta name="description" content="Inquire about wholesale incense exporting to UK, USA, Australia, and EU. Custom specifications, secure maritime logistics, and compliant packaging.">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Contact page specific styles */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+      }
+    }
+
+    /* Map Graphic */
+    .map-container {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .map-svg-wrapper {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      background-color: #F0EDE8;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    /* Simple Map Nodes */
+    .map-node {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      transition: var(--transition-smooth);
+    }
+
+    .map-node::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      border: 1px solid inherit;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulseMap 2s infinite ease-out;
+      pointer-events: none;
+    }
+
+    .node-hub {
+      top: 60%;
+      left: 62%;
+      background-color: var(--color-terracotta);
+      border: 2px solid var(--color-bg);
+    }
+
+    .node-hub::before {
+      border-color: var(--color-terracotta);
+    }
+
+    .map-region-node {
+      background-color: var(--color-primary);
+      border: 2px solid var(--color-bg);
+    }
+
+    .map-region-node::before {
+      border-color: var(--color-primary);
+    }
+
+    .map-region-node.active {
+      background-color: var(--color-gold);
+      transform: scale(1.3);
+    }
+
+    .map-region-node.active::before {
+      border-color: var(--color-gold);
+    }
+
+    .node-usa { top: 38%; left: 20%; }
+    .node-uk { top: 30%; left: 45%; }
+    .node-eu { top: 32%; left: 49%; }
+    .node-australia { top: 78%; left: 85%; }
+
+    @keyframes pulseMap {
+      0% {
+        width: 14px;
+        height: 14px;
+        opacity: 1;
+      }
+      100% {
+        width: 45px;
+        height: 45px;
+        opacity: 0;
+      }
+    }
+
+    /* Map connection line indicators */
+    .map-line-label {
+      position: absolute;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: bold;
+      background-color: var(--color-primary);
+      color: var(--color-bg);
+      padding: 2px 6px;
+      border-radius: var(--radius-xs);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Specs card */
+    .map-details-card {
+      background-color: rgba(30, 58, 43, 0.03);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .map-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+      font-size: 0.85rem;
+      margin-top: var(--space-sm);
+    }
+
+    .map-details-grid strong {
+      color: var(--color-primary);
+    }
+
+    /* Logistics Specs Table */
+    .logistics-table-wrapper {
+      margin-top: var(--space-xl);
+    }
+
+    .logistics-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    .logistics-table th, .logistics-table td {
+      padding: var(--space-sm);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .logistics-table th {
+      color: var(--color-primary);
+      font-weight: 600;
+      background-color: rgba(30, 58, 43, 0.02);
+    }
+
+    /* Form Container */
+    .form-container {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xxs);
+      margin-bottom: var(--space-md);
+    }
+
+    .form-group label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-control {
+      padding: 0.75rem var(--space-md);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      background-color: var(--color-bg);
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .form-control:focus {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Selected Basket inside form */
+    .form-basket-box {
+      border: 1px dashed var(--color-terracotta);
+      border-radius: var(--radius-sm);
+      padding: var(--space-md);
+      background-color: rgba(194, 125, 86, 0.03);
+      margin-bottom: var(--space-md);
+    }
+
+    .form-basket-box h4 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--color-terracotta);
+      margin-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(194, 125, 86, 0.15);
+      padding-bottom: 4px;
+    }
+
+    .form-basket-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .form-basket-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-xs);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xs);
+      font-size: 0.85rem;
+    }
+
+    .form-basket-remove {
+      background: none;
+      border: none;
+      color: var(--color-terracotta);
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 0 4px;
+    }
+
+    .form-basket-remove:hover {
+      color: var(--color-primary);
+    }
+
+    /* Success Overlay and Modal */
+    .success-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-modal {
+      background-color: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xxl) var(--space-xl);
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .success-icon {
+      font-size: 3.5rem;
+      color: var(--color-primary);
+    }
+
+    .success-modal h3 {
+      font-size: 1.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header-container">
+      <a href="index.html" class="logo-wrapper" id="headerLogo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          Mothers Commerce
+          <span>Export Division</span>
+        </div>
+      </a>
+      
+      <nav class="nav" id="desktopNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="products.html" class="nav-link">Collections</a>
+        <a href="ingredients.html" class="nav-link">Ingredients</a>
+        <a href="contact.html" class="nav-link">Export & Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-outline" id="navCta">Enquire Now</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenuOverlay">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">Our Story</a>
+    <a href="products.html" class="nav-link">Collections</a>
+    <a href="ingredients.html" class="nav-link">Ingredients</a>
+    <a href="contact.html" class="nav-link">Export & Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="margin-top: var(--space-md);">Enquire Now</a>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero" style="background-image: linear-gradient(rgba(30, 58, 43, 0.85), rgba(30, 58, 43, 0.85)), url('./assets/images/global-shipping.png'); background-size: cover; background-position: center;">
+      <div class="container">
+        <h1 class="reveal">Global Export & Contact</h1>
+        <p class="reveal reveal-delay-1">Wholesale distribution and sample package logistics. Fully compliant with UK, US, and Australian biosecurity standards.</p>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="section">
+      <div class="container">
+        
+        <div class="contact-grid">
+          
+          <!-- Left side: Map and specifications -->
+          <div class="reveal">
+            
+            <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Maritime Logistics</h2>
+            <h2 style="font-size: 2.5rem; margin-bottom: var(--space-md);">Export Regions Map</h2>
+            
+            <!-- Interactive Map Graphic -->
+            <div class="map-container">
+              <div class="map-svg-wrapper">
+                
+                <!-- Simplified World Outline Background (visual styling only) -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.06; background-image: radial-gradient(circle at 50% 50%, var(--color-primary) 2px, transparent 2px); background-size: 12px 12px;"></div>
+                
+                <!-- lines representation -->
+                <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: 1;">
+                  <!-- Pondicherry to UK -->
+                  <path d="M 405,180 Q 340,110 292,90" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="4" opacity="0.6"/>
+                  <!-- Pondicherry to USA -->
+                  <path d="M 405,180 Q 220,130 130,114" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="4" opacity="0.6"/>
+                  <!-- Pondicherry to Australia -->
+                  <path d="M 405,180 Q 480,210 552,234" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="4" opacity="0.6"/>
+                </svg>
+
+                <!-- Map node buttons representing target destinations -->
+                <div class="map-node node-hub" title="Pondicherry Hub (Loading Port: Chennai)"></div>
+                
+                <button class="map-node map-region-node node-usa active" data-dest="usa" aria-label="USA Export Spec"></button>
+                <button class="map-node map-region-node node-uk" data-dest="uk" aria-label="UK Export Spec"></button>
+                <button class="map-node map-region-node node-eu" data-dest="eu" aria-label="Europe Export Spec"></button>
+                <button class="map-node map-region-node node-australia" data-dest="australia" aria-label="Australia Export Spec"></button>
+                
+                <span class="map-line-label" style="top: 55%; left: 62%;">PONDICHERRY</span>
+                <span class="map-line-label" style="top: 33%; left: 20%;">USA</span>
+                <span class="map-line-label" style="top: 25%; left: 45%;">UK</span>
+                <span class="map-line-label" style="top: 73%; left: 85%;">AUSTRALIA</span>
+              </div>
+              
+              <!-- Map Detail Container -->
+              <div class="map-details-card" id="mapDetailsCard">
+                <h3 id="mapSpecTitle" style="font-size: 1.25rem; font-weight: 600; color: var(--color-primary); border-bottom: 1px solid var(--color-border); padding-bottom: 4px;">United States (USA) Port Operations</h3>
+                <div class="map-details-grid">
+                  <div>
+                    <strong>Discharge Ports:</strong><br>
+                    <span id="mapSpecPorts">NY/NJ (New York), LA/Long Beach (California), Savannah (Georgia)</span>
+                  </div>
+                  <div>
+                    <strong>Sea Freight Transit:</strong><br>
+                    <span id="mapSpecTransit">28 - 35 days Sea Cargo</span>
+                  </div>
+                </div>
+                <div style="font-size: 0.85rem; margin-top: var(--space-sm);">
+                  <strong>Biosecurity Compliance:</strong><br>
+                  <span id="mapSpecCompliance">FDA organic packaging standards, Lacey Act wood import declaration compliant, pallet fumigation (ISPM-15) pre-certified.</span>
+                </div>
+                <div style="font-size: 0.85rem; margin-top: var(--space-sm);">
+                  <strong>Wholesale MOQ:</strong> <span id="mapSpecMoq">Min 1,000 boxes</span>
+                </div>
+              </div>
+              
+              <div style="text-align: center; font-size: 0.75rem; color: var(--color-text-muted);">
+                <i class="fas fa-info-circle"></i> Click the map nodes (USA, UK, Europe, Australia) to swap operations info.
+              </div>
+            </div>
+
+            <!-- Logistics Specs Table -->
+            <div class="logistics-table-wrapper">
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-sm);">Wholesale Freight Specifications</h3>
+              <table class="logistics-table">
+                <thead>
+                  <tr>
+                    <th>Specification</th>
+                    <th>Standard Standard</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Port of Loading</strong></td>
+                    <td>Chennai Sea Port (MAA) or Tuticorin Sea Port (TUT), India.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Customs H.S. Code</strong></td>
+                    <td>33074100 (Agarbatti and other odoriferous preparations).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fumigation certification</strong></td>
+                    <td>ISPM-15 standard fumigation certificate issued for wood pallets. Methyl bromide standard for bamboo splints.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Packaging Options</strong></td>
+                    <td>Recycled FSC paperboard retail cartons, heavy-duty double-walled sea cartons. Custom private labeling available.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+          
+          <!-- Right side: Wholesale inquiry form -->
+          <div class="reveal reveal-delay-2">
+            <div class="form-container">
+              <h2 class="form-title">Wholesale Inquiry</h2>
+              <p style="font-size: 0.9rem; margin-bottom: var(--space-md);">Connect with our export desk. Request product samples or submit bulk order specs.</p>
+              
+              <form id="wholesaleContactForm">
+                <input type="hidden" id="requestedSamplesInput" name="samples">
+                
+                <div class="form-group">
+                  <label for="company">Company / Organization *</label>
+                  <input type="text" id="company" class="form-control" placeholder="Acme Import Ltd" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="name">Contact Person Name *</label>
+                  <input type="text" id="name" class="form-control" placeholder="Jane Doe" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Corporate Email *</label>
+                  <input type="email" id="email" class="form-control" placeholder="jane@acmeimports.com" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="country">Target Market / Destination *</label>
+                  <select id="country" class="form-control" required>
+                    <option value="" disabled selected>Select destination country...</option>
+                    <option value="usa">United States (USA)</option>
+                    <option value="uk">United Kingdom (UK)</option>
+                    <option value="australia">Australia</option>
+                    <option value="eu">European Union (EU)</option>
+                    <option value="others">Other International</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="volume">Est. Annual Order Volume</label>
+                  <select id="volume" class="form-control">
+                    <option value="small">&lt; 5,000 packs per year</option>
+                    <option value="medium">5,000 - 20,000 packs per year</option>
+                    <option value="large">20,000 - 50,000 packs per year</option>
+                    <option value="enterprise">50,000+ packs per year</option>
+                  </select>
+                </div>
+
+                <!-- Selected Samples Basket Section -->
+                <div class="form-basket-box" id="formBasketContainer" style="display: none;">
+                  <h4>Selected Sample Requests</h4>
+                  <div class="form-basket-items" id="formBasketList">
+                    <!-- Javascript populates -->
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="notes">Special Requirements / Custom Branding</label>
+                  <textarea id="notes" class="form-control" rows="4" placeholder="Let us know if you require private labeling, specific stick sizes (e.g. 10-inch), or maritime logistics details."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.9rem; margin-top: var(--space-xs);">
+                  Submit Wholesale Inquiry
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo-wrapper">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">Mothers Commerce</div>
+          </a>
+          <p style="margin-top: var(--space-sm);">Manufacturers and global exporters of 100% botanical, chemical-free incense sticks. Sourced from nature, rolled by hand, exported globally since 1986.</p>
+        </div>
+        
+        <div>
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">Our Story</a>
+            <a href="products.html">Collections</a>
+            <a href="ingredients.html">Ingredients</a>
+            <a href="contact.html">Export & Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Global Markets</h4>
+          <div class="footer-links">
+            <a href="contact.html">United States (USA)</a>
+            <a href="contact.html">United Kingdom (UK)</a>
+            <a href="contact.html">Australia</a>
+            <a href="contact.html">European Union (EU)</a>
+            <a href="contact.html">Customs & Shipping Compliance</a>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Export Inquiries</h4>
+          <p>Subscribe to our seasonal catalog releases and harvest updates.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+            <input type="email" placeholder="Your corporate email..." class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mothers Commerce. All rights reserved. Made in Pondicherry, India.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/contact.js"></script>
+</body>
+</html>

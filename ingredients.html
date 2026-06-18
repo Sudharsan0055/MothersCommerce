@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>100% Natural Ingredients & Sustainability | Mothers Commerce</title>
+  <meta name="description" content="Explore our interactive botanical library. Sourced from nature, free of synthetic chemical binders, charcoal, or petroleum. Pure sandalwood, jasmines, resins, and organic honey.">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Ingredients page specific styles */
+    .pledge-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl);
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .pledge-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+    }
+
+    .pledge-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(194, 125, 86, 0.2);
+    }
+
+    .pledge-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: rgba(30, 58, 43, 0.05);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      border: 1px solid var(--color-border);
+    }
+
+    .pledge-card h3 {
+      font-size: 1.25rem;
+      color: var(--color-primary);
+    }
+
+    .pledge-card p {
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .pledge-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .pledge-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cabinet Cards */
+    .cabinet-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .ingredient-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-xl);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      position: relative;
+      transition: var(--transition-smooth);
+      min-height: 220px;
+    }
+
+    .ingredient-card::after {
+      content: 'EXPLORE \2192';
+      position: absolute;
+      bottom: var(--space-md);
+      right: var(--space-md);
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--color-terracotta);
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: var(--transition-smooth);
+    }
+
+    .ingredient-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-primary);
+    }
+
+    .ingredient-card:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .ingredient-card-icon {
+      font-size: 2rem;
+      color: var(--color-terracotta);
+    }
+
+    .ingredient-card h3 {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+    }
+
+    .ingredient-card .role {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-gold);
+    }
+
+    .ingredient-card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: var(--space-md);
+    }
+
+    @media (max-width: 900px) {
+      .cabinet-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cabinet-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Botanical Cabinet Detail Modal */
+    .ingredient-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+
+    .ingredient-modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ingredient-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -45%);
+      width: 90%;
+      max-width: 550px;
+      background-color: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      z-index: 1001;
+      padding: var(--space-xxl) var(--space-xl) var(--space-xl) var(--space-xl);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+
+    .ingredient-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      line-height: 1;
+      transition: var(--transition-fast);
+    }
+
+    .modal-close-btn:hover {
+      color: var(--color-terracotta);
+    }
+
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .modal-role {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-terracotta);
+      letter-spacing: 0.1em;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .modal-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-sm) 0;
+      margin-bottom: var(--space-xs);
+    }
+
+    .modal-meta-grid strong {
+      color: var(--color-primary);
+    }
+
+    .modal-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .modal-benefit-box {
+      margin-top: var(--space-md);
+      background-color: rgba(30, 58, 43, 0.04);
+      border-left: 3px solid var(--color-primary);
+      padding: var(--space-md);
+      font-size: 0.9rem;
+      color: var(--color-primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header-container">
+      <a href="index.html" class="logo-wrapper" id="headerLogo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          Mothers Commerce
+          <span>Export Division</span>
+        </div>
+      </a>
+      
+      <nav class="nav" id="desktopNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="products.html" class="nav-link">Collections</a>
+        <a href="ingredients.html" class="nav-link">Ingredients</a>
+        <a href="contact.html" class="nav-link">Export & Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-outline" id="navCta">Enquire Now</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenuOverlay">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">Our Story</a>
+    <a href="products.html" class="nav-link">Collections</a>
+    <a href="ingredients.html" class="nav-link">Ingredients</a>
+    <a href="contact.html" class="nav-link">Export & Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="margin-top: var(--space-md);">Enquire Now</a>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero" style="background-image: linear-gradient(rgba(30, 58, 43, 0.8), rgba(30, 58, 43, 0.8)), url('./assets/images/ingredients-bg.png'); background-size: cover; background-position: center;">
+      <div class="container">
+        <h1 class="reveal">Botanical Library & Purity</h1>
+        <p class="reveal reveal-delay-1">Deep dive into the pure woods, resins, and blossoms that make our products. 100% natural, certified clean.</p>
+      </div>
+    </section>
+
+    <!-- Purity Pledge Grid -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto var(--space-3xl) auto;" class="reveal">
+          <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Our Pledge</h2>
+          <h2 style="font-size: 2.5rem;">Pure Ingredients, Pure Practice</h2>
+          <p style="margin-top: var(--space-xs);">Every package stamped with the Mothers Commerce seal contains only botanical elements. We respect the respiratory health of our clients.</p>
+        </div>
+
+        <div class="pledge-grid">
+          <!-- Pledge 1 -->
+          <div class="pledge-card reveal">
+            <div class="pledge-icon"><i class="fas fa-ban"></i></div>
+            <h3>0% Charcoal Paste</h3>
+            <p>Commercial incense uses petroleum charcoal dust as an easy burn core. We burn only pure sawdust and resin pulp.</p>
+          </div>
+          <!-- Pledge 2 -->
+          <div class="pledge-card reveal reveal-delay-1">
+            <div class="pledge-icon"><i class="fas fa-tint-slash"></i></div>
+            <h3>0% Chemical Binders</h3>
+            <p>We reject synthetic glues (DEP/phthalates) that off-gas toxins. We bind our masala dough with wild honey and tree gums.</p>
+          </div>
+          <!-- Pledge 3 -->
+          <div class="pledge-card reveal reveal-delay-2">
+            <div class="pledge-icon"><i class="fas fa-tree"></i></div>
+            <h3>Sustainable Sandalwood</h3>
+            <p>We source only government-supervised Santalum album, funding state replanting projects with every kilogram purchased.</p>
+          </div>
+          <!-- Pledge 4 -->
+          <div class="pledge-card reveal reveal-delay-3">
+            <div class="pledge-icon"><i class="fas fa-venus"></i></div>
+            <h3>Women Artisans Fair Trade</h3>
+            <p>Our incense is rolled exclusively by local women, ensuring safe working conditions, healthcare, and fair living wages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ingredients Cabinet Section -->
+    <section class="section" style="background-color: rgba(30, 58, 43, 0.01); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+      <div class="container">
+        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto var(--space-3xl) auto;" class="reveal">
+          <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Interactive Library</h2>
+          <h2 style="font-size: 2.5rem;">The Botanical Cabinet</h2>
+          <p style="margin-top: var(--space-xs);">Click on any botanical element below to explore its origin, harvest methods, and aromatherapy profile.</p>
+        </div>
+
+        <div class="cabinet-grid">
+          <!-- Sandalwood -->
+          <div class="ingredient-card reveal" data-id="sandalwood">
+            <div class="ingredient-card-icon"><i class="fas fa-seedling"></i></div>
+            <span class="role">Wood Base</span>
+            <h3>Mysore Sandalwood</h3>
+            <p>Creamy, sweet, and grounding woody core powder. The foundation of masala lines.</p>
+          </div>
+
+          <!-- Jasmine -->
+          <div class="ingredient-card reveal reveal-delay-1" data-id="jasmine">
+            <div class="ingredient-card-icon"><i class="fas fa-spa"></i></div>
+            <span class="role">Floral Top Note</span>
+            <h3>Mogra Jasmine</h3>
+            <p>Uplifting, sweet, and calming fresh flower petals harvested in local farmlands.</p>
+          </div>
+
+          <!-- Halmaddi -->
+          <div class="ingredient-card reveal reveal-delay-2" data-id="halmaddi">
+            <div class="ingredient-card-icon"><i class="fas fa-tint"></i></div>
+            <span class="role">Tree Resin Binder</span>
+            <h3>Halmaddi Resin</h3>
+            <p>Balsamic, soft tree gum used to bind masala incense dough and lock in essential oils.</p>
+          </div>
+
+          <!-- Frankincense -->
+          <div class="ingredient-card reveal" data-id="frankincense">
+            <div class="ingredient-card-icon"><i class="fas fa-fire"></i></div>
+            <span class="role">Purifying Resin</span>
+            <h3>Sacred Frankincense</h3>
+            <p>Crisp, lemony, and purifying amber gum tears tapped from Boswellia forests.</p>
+          </div>
+
+          <!-- Honey -->
+          <div class="ingredient-card reveal reveal-delay-1" data-id="honey">
+            <div class="ingredient-card-icon"><i class="fas fa-apple-alt"></i></div>
+            <span class="role">Natural Binder</span>
+            <h3>Wild Forest Honey</h3>
+            <p>Caramel warmth. Used as an organic binder to replace toxic chemical adhesives.</p>
+          </div>
+
+          <!-- Vetiver -->
+          <div class="ingredient-card reveal reveal-delay-2" data-id="vetiver">
+            <div class="ingredient-card-icon"><i class="fas fa-wind"></i></div>
+            <span class="role">Earthy Base</span>
+            <h3>Organic Vetiver</h3>
+            <p>Grounding damp-earth, cooling roots harvested from Pondicherry coastal soils.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo-wrapper">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">Mothers Commerce</div>
+          </a>
+          <p style="margin-top: var(--space-sm);">Manufacturers and global exporters of 100% botanical, chemical-free incense sticks. Sourced from nature, rolled by hand, exported globally since 1986.</p>
+        </div>
+        
+        <div>
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">Our Story</a>
+            <a href="products.html">Collections</a>
+            <a href="ingredients.html">Ingredients</a>
+            <a href="contact.html">Export & Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Global Markets</h4>
+          <div class="footer-links">
+            <a href="contact.html">United States (USA)</a>
+            <a href="contact.html">United Kingdom (UK)</a>
+            <a href="contact.html">Australia</a>
+            <a href="contact.html">European Union (EU)</a>
+            <a href="contact.html">Customs & Shipping Compliance</a>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Export Inquiries</h4>
+          <p>Subscribe to our seasonal catalog releases and harvest updates.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+            <input type="email" placeholder="Your corporate email..." class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mothers Commerce. All rights reserved. Made in Pondicherry, India.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/ingredients.js"></script>
+</body>
+</html>

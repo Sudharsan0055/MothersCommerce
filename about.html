@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story - Heritage of Purity | Mothers Commerce</title>
+  <meta name="description" content="Discover the 40-year legacy of Mothers Commerce in Pondicherry. Learn about our traditional hand-rolled natural incense crafting, local women artisans, and botanical ingredients.">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* About page specific styles */
+    .timeline-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: var(--space-xl) 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background-color: var(--color-border);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-3xl);
+      position: relative;
+      width: 100%;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: bold;
+      font-size: 1.1rem;
+      border: 4px solid var(--color-bg);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .timeline-content {
+      width: 44%;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: var(--space-xl);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(30, 58, 43, 0.1);
+    }
+
+    .timeline-content h3 {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .timeline-year {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-terracotta);
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-xs);
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-line {
+        left: 20px;
+      }
+      .timeline-item {
+        flex-direction: row !important;
+        margin-bottom: var(--space-xl);
+      }
+      .timeline-badge {
+        left: 20px;
+        transform: translateX(-50%);
+      }
+      .timeline-content {
+        width: calc(100% - 50px);
+        margin-left: 40px;
+      }
+    }
+
+    /* Process steps styles */
+    .process-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      transition: var(--transition-smooth);
+    }
+
+    .process-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(30, 58, 43, 0.1);
+    }
+
+    .process-num {
+      background-color: var(--color-primary);
+      color: var(--color-gold);
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: bold;
+      width: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .process-body {
+      padding: var(--space-lg);
+    }
+
+    .process-body h3 {
+      font-size: 1.4rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    @media (max-width: 576px) {
+      .process-card {
+        flex-direction: column;
+      }
+      .process-num {
+        width: 100%;
+        height: 60px;
+        font-size: 2rem;
+      }
+    }
+
+    /* Quote Block */
+    .quote-section {
+      background-color: rgba(194, 125, 86, 0.05);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .quote-content h2 {
+      font-size: 2.4rem;
+      max-width: 900px;
+      margin: 0 auto var(--space-md) auto;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    .quote-author {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header-container">
+      <a href="index.html" class="logo-wrapper" id="headerLogo">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          Mothers Commerce
+          <span>Export Division</span>
+        </div>
+      </a>
+      
+      <nav class="nav" id="desktopNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="products.html" class="nav-link">Collections</a>
+        <a href="ingredients.html" class="nav-link">Ingredients</a>
+        <a href="contact.html" class="nav-link">Export & Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-outline" id="navCta">Enquire Now</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenuOverlay">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">Our Story</a>
+    <a href="products.html" class="nav-link">Collections</a>
+    <a href="ingredients.html" class="nav-link">Ingredients</a>
+    <a href="contact.html" class="nav-link">Export & Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="margin-top: var(--space-md);">Enquire Now</a>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="reveal">Our Story & Heritage</h1>
+        <p class="reveal reveal-delay-1">Deep roots in Pondicherry, crafting therapeutic aromas for the global stage since 1986.</p>
+      </div>
+    </section>
+
+    <!-- Narrative Section -->
+    <section class="section">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: var(--space-3xl); align-items: center;">
+          <div class="reveal">
+            <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Spirit of Place</h2>
+            <h2 style="font-size: 2.8rem; margin-bottom: var(--space-md);">Pondicherry: Scent, Silence, & Art</h2>
+            <p style="font-size: 1.05rem; margin-bottom: var(--space-md); line-height: 1.8;">
+              Pondicherry (Puducherry), on India's southern coast, is a unique blend of French colonial elegance, Tamil heritage, and deep spiritual exploration. It is a town where quiet cobblestone streets meet the crashing waves of the Bay of Bengal, and where silence is practiced as an art.
+            </p>
+            <p style="font-size: 1.05rem; margin-bottom: var(--space-md); line-height: 1.8;">
+              It was in this atmosphere of reflection and artisanal purity that Mothers Commerce was founded. Inspired by the local traditions of botanical healing and meditation, we sought to create an incense that reflects this peace—clean-burning, honest, and completely natural.
+            </p>
+            <p style="font-size: 1.05rem; line-height: 1.8;">
+              Over four decades, our workshop has grown, but our location and philosophy remain unchanged. Every stick of incense we ship to London, New York, or Sydney carries a breath of Pondicherry's coastal calm.
+            </p>
+          </div>
+          <div class="reveal reveal-delay-2" style="position: relative;">
+            <img src="./assets/images/pondicherry.png" alt="Traditional houses in Pondicherry's French quarter" style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+            <div style="position: absolute; bottom: -20px; right: -20px; background-color: var(--color-primary); color: var(--color-bg); padding: var(--space-md) var(--space-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-md);" class="text-sans">
+              <span style="font-size: 1.5rem; font-weight: bold; color: var(--color-gold); display: block; line-height: 1.2;">1986</span>
+              <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(250, 248, 245, 0.7);">Handcrafting Began</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section" style="background-color: rgba(30, 58, 43, 0.01); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+      <div class="container">
+        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto var(--space-3xl) auto;" class="reveal">
+          <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Our Journey</h2>
+          <h2 style="font-size: 2.5rem;">40 Years of Natural Devotion</h2>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          
+          <!-- Item 1 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-badge">1</div>
+            <div class="timeline-content">
+              <span class="timeline-year">1986</span>
+              <h3>The Humble Start</h3>
+              <p>Mothers Commerce is registered in Pondicherry. We start with 5 local women artisans roll-kneading traditional masala dough under a thatched roof, supplying local ashrams.</p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-badge">2</div>
+            <div class="timeline-content">
+              <span class="timeline-year">1996</span>
+              <h3>First International Shipments</h3>
+              <p>Recognizing the growing desire for synthetic-free aromatherapy abroad, we export our first container of raw flora incense to boutique shops in the United Kingdom.</p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-badge">3</div>
+            <div class="timeline-content">
+              <span class="timeline-year">2008</span>
+              <h3>Sandalwood Sustainability</h3>
+              <p>We commit to direct sourcing contracts with state-regulated forests and seed-planting programs, ensuring all Mysore sandalwood used in our sticks is fully sustainable.</p>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-badge">4</div>
+            <div class="timeline-content">
+              <span class="timeline-year">Today</span>
+              <h3>Silicon Valley Grade Export</h3>
+              <p>Now supporting a community of 200+ artisan women, we export premium compliant incense lines to key clients across the UK, USA, Australia, and 20 other countries.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Block -->
+    <section class="section quote-section">
+      <div class="container quote-content reveal">
+        <h2>"We do not make incense to fill spaces with smoke, but to invite clarity into minds. When there is no synthetic chemical, there is only nature's calm."</h2>
+        <div class="quote-author">&mdash; Mothers Commerce, Artisanal Director</div>
+      </div>
+    </section>
+
+    <!-- Artisanal Process Steps -->
+    <section class="section">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-3xl); align-items: start;">
+          <div class="reveal" style="position: sticky; top: 120px;">
+            <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">How it is made</h2>
+            <h2 style="font-size: 2.8rem; margin-bottom: var(--space-md);">The Hand-Rolled Artisanal Standard</h2>
+            <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: var(--space-md);">
+              Most commercial incense brands use machine-extruded charcoal paste loaded with chemical binders and dipped in synthetic perfumes. It is cheap, fast, and generates highly toxic smoke.
+            </p>
+            <p style="font-size: 1.05rem; line-height: 1.8;">
+              At Mothers Commerce, we stick to the slow, ancient way. Each step respects the raw botany and the hands that shape it.
+            </p>
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: var(--space-xl);">
+            <!-- Step 1 -->
+            <div class="process-card reveal">
+              <div class="process-num">01</div>
+              <div class="process-body">
+                <h3>Botanical Sourcing</h3>
+                <p>We source sandalwood logs, dried flowers, botanical gums, and pure steam-distilled essential oils. Sourcing is fair-trade certified and organic.</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="process-card reveal reveal-delay-1">
+              <div class="process-num">02</div>
+              <div class="process-body">
+                <h3>Masala Dough Kneading</h3>
+                <p>Instead of toxic binders, we combine the powder with natural tree gums and pure wild honey, hand-kneading them into a rich aromatic dough.</p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="process-card reveal reveal-delay-2">
+              <div class="process-num">03</div>
+              <div class="process-body">
+                <h3>Precision Hand-Rolling</h3>
+                <p>Our women artisans take small portions of dough and roll it onto clean bamboo sticks on flat wooden boards. A high-skill task requiring uniform density.</p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="process-card reveal reveal-delay-3">
+              <div class="process-num">04</div>
+              <div class="process-body">
+                <h3>Shade-Curing & Inspection</h3>
+                <p>The rolled sticks are dried slowly in aerated, sun-protected rooms to lock in volatile essential oils. Every single stick is visually and aroma-inspected before packaging.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo-wrapper">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">Mothers Commerce</div>
+          </a>
+          <p style="margin-top: var(--space-sm);">Manufacturers and global exporters of 100% botanical, chemical-free incense sticks. Sourced from nature, rolled by hand, exported globally since 1986.</p>
+        </div>
+        
+        <div>
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">Our Story</a>
+            <a href="products.html">Collections</a>
+            <a href="ingredients.html">Ingredients</a>
+            <a href="contact.html">Export & Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Global Markets</h4>
+          <div class="footer-links">
+            <a href="contact.html">United States (USA)</a>
+            <a href="contact.html">United Kingdom (UK)</a>
+            <a href="contact.html">Australia</a>
+            <a href="contact.html">European Union (EU)</a>
+            <a href="contact.html">Customs & Shipping Compliance</a>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Export Inquiries</h4>
+          <p>Subscribe to our seasonal catalog releases and harvest updates.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+            <input type="email" placeholder="Your corporate email..." class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mothers Commerce. All rights reserved. Made in Pondicherry, India.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>
