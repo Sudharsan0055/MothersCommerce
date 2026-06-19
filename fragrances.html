@@ -520,7 +520,7 @@
       <nav class="nav" id="desktopNav">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about-us.html" class="nav-link">About Us</a>
-        <a href="fragances.html" class="nav-link">Fragrances</a>
+        <a href="fragrances.html" class="nav-link">Fragrances</a>
         <a href="products.html" class="nav-link">Products</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
@@ -536,18 +536,81 @@
     </div>
   </header>
   <main>
-    <section class="page-hero">
+    <section class="page-hero" style="background: linear-gradient(rgba(30, 58, 43, 0.8), rgba(30, 58, 43, 0.8)), url('./assets/images/essential_oils_bottles_1781801723388.png') no-repeat center/cover; color: var(--color-bg);">
       <div class="container flex-center" style="flex-direction: column; text-align: center;">
-        <h1 class="text-reveal-line">Our Fragrances</h1>
-        <p class="reveal reveal-delay-1">Explore the art of pure scents.</p>
+        <h1 class="text-reveal-line" style="color: var(--color-gold);">The Scent Library</h1>
+        <p class="reveal reveal-delay-1" style="max-width: 600px; margin: 0 auto; color: var(--color-bg);">Discover our signature botanical fragrances, extracted purely from nature.</p>
       </div>
     </section>
     
-    <section class="section" style="min-height: 40vh; display: flex; align-items: center; justify-content: center;">
-      <div class="container text-center">
-        <h2>Coming Soon</h2>
-        <p style="margin-top: 1rem;">We are currently crafting this page. Please check back later.</p>
-        <a href="index.html" class="btn btn-primary" style="margin-top: 2rem;">Back to Home</a>
+    <section class="section">
+      <div class="container">
+        <div class="text-center" style="max-width: 700px; margin: 0 auto 4rem auto;">
+          <h2 style="color: var(--color-primary); margin-bottom: 1rem;">Nature's Palette</h2>
+          <p>We blend the finest natural resins, floral extracts, and pure essential oils to craft scents that elevate your mood and space. Browse our most beloved fragrance profiles below.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-3xl);">
+          
+          <!-- Fragrance 1 -->
+          <div class="split-section" style="align-items: center;">
+            <div class="split-image-wrapper reveal" style="height: 400px;">
+              <img src="./assets/images/incense_cones_aesthetic_1781801710438.png" alt="Sandalwood" class="split-image">
+            </div>
+            <div class="split-content reveal reveal-delay-1">
+              <span class="product-tag">Woody & Grounding</span>
+              <h2 style="color: var(--color-primary); margin: 0.5rem 0 1.5rem 0;">Mysore Sandalwood</h2>
+              <p style="font-size: 1.1rem; line-height: 1.8; color: var(--color-text);">
+                A deep, rich, and creamy aroma that instantly grounds the spirit. Our Sandalwood is sourced ethically and blended with traditional resins to create a scent that lingers long after the incense has finished burning.
+              </p>
+              <ul style="margin-top: 1.5rem; list-style-type: none; padding: 0;">
+                <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--color-gold); margin-right: 10px;"></i> Ideal for meditation and yoga</li>
+                <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--color-gold); margin-right: 10px;"></i> Promotes relaxation and mental clarity</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Fragrance 2 -->
+          <div class="split-section" style="align-items: center; direction: rtl;">
+            <div class="split-image-wrapper reveal" style="height: 400px; direction: ltr;">
+              <img src="./assets/images/process_sourcing.png" alt="Patchouli" class="split-image">
+            </div>
+            <div class="split-content reveal reveal-delay-1" style="direction: ltr;">
+              <span class="product-tag">Earthy & Exotic</span>
+              <h2 style="color: var(--color-primary); margin: 0.5rem 0 1.5rem 0;">Pure Patchouli</h2>
+              <p style="font-size: 1.1rem; line-height: 1.8; color: var(--color-text);">
+                Sweet, earthy, and highly aromatic. Patchouli has been a staple in Indian perfumery for centuries. Our blend captures the raw, herbaceous quality of the leaves, offering a scent that is both calming and uplifting.
+              </p>
+              <ul style="margin-top: 1.5rem; list-style-type: none; padding: 0;">
+                <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--color-gold); margin-right: 10px;"></i> Acts as a natural mood elevator</li>
+                <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--color-gold); margin-right: 10px;"></i> Distinctively sweet, musky undertones</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Fragrance 3 -->
+          <div class="split-section" style="align-items: center;">
+            <div class="split-image-wrapper reveal" style="height: 400px;">
+              <img src="./assets/images/hero_incense_mood_1781801686159.png" alt="Jasmine" class="split-image">
+            </div>
+            <div class="split-content reveal reveal-delay-1">
+              <span class="product-tag">Floral & Sweet</span>
+              <h2 style="color: var(--color-primary); margin: 0.5rem 0 1.5rem 0;">Night-Blooming Jasmine</h2>
+              <p style="font-size: 1.1rem; line-height: 1.8; color: var(--color-text);">
+                Known as the "Queen of the Night", our Jasmine fragrance is incredibly potent, floral, and romantic. We use real floral extracts to mimic the exact scent of a blooming jasmine vine at dusk.
+              </p>
+              <ul style="margin-top: 1.5rem; list-style-type: none; padding: 0;">
+                <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--color-gold); margin-right: 10px;"></i> Sweet, intensely floral aroma</li>
+                <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--color-gold); margin-right: 10px;"></i> Elicits feelings of joy and romance</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center" style="margin-top: 4rem;">
+          <a href="products.html" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Shop All Fragrances</a>
+        </div>
       </div>
     </section>
   </main>
@@ -567,7 +630,7 @@
           <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="about-us.html">About Us</a>
-            <a href="fragances.html">Fragrances</a>
+            <a href="fragrances.html">Fragrances</a>
             <a href="products.html">Products</a>
             <a href="contact.html">Contact</a>
           </div>
