@@ -446,11 +446,23 @@ function initWhySlider() {
   const totalSlides = 3;
   let currentIndex = 0;
   let slideInterval;
+  const bgSlides = document.querySelectorAll('.why-bg-slide');
 
   function updateWhySlider(index) {
     currentIndex = index;
     const slideWidth = 100;
     whySlider.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+    
+    // Sync background image slider
+    if (bgSlides.length > 0) {
+      bgSlides.forEach((slide, idx) => {
+        if (idx === currentIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+    }
   }
 
   function nextSlide() {
