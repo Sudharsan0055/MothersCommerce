@@ -600,10 +600,119 @@ function initCounters() {
   });
 }
 
+/* --- Footer Smoke Animation --- */
+function initFooterSmoke() {
+  const canvas = document.getElementById('footer-smoke-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let animationFrameId;
+
+  function resize() {
+    const parent = canvas.parentElement;
+    if (parent) {
+      canvas.width = parent.clientWidth || window.innerWidth;
+      canvas.height = parent.clientHeight || 450;
+    } else {
+      canvas.width = window.innerWidth;
+      canvas.height = 450;
+    }
+  }
+  window.addEventListener('resize', resize);
+  window.addEventListener('load', resize);
+  resize();
+  setTimeout(resize, 500);
+  setTimeout(resize, 2000);
+
+  const particles = [];
+  const sources = [
+    { x: 0.25, nextSpawn: 0 },
+    { x: 0.5, nextSpawn: 0 },
+    { x: 0.75, nextSpawn: 0 }
+  ];
+
+  class SmokeParticle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.vx = (Math.random() - 0.5) * 0.45;
+      this.vy = -0.4 - Math.random() * 0.5;
+      this.baseSize = 35 + Math.random() * 35;
+      this.size = this.baseSize;
+      this.alpha = 0.14 + Math.random() * 0.12; // visible but delicate wisps
+      this.decay = 0.0006 + Math.random() * 0.0006; // dissipates organically
+      this.growth = 0.25 + Math.random() * 0.2; // billows out gently
+      this.wobbleSpeed = 0.004 + Math.random() * 0.008;
+      this.wobbleAngle = Math.random() * Math.PI * 2;
+      this.wobbleRange = 0.25 + Math.random() * 0.25;
+      const palette = ['212, 175, 55', '235, 225, 210', '180, 140, 90'];
+      this.color = palette[Math.floor(Math.random() * palette.length)];
+    }
+
+    update() {
+      this.x += this.vx + Math.sin(this.wobbleAngle) * this.wobbleRange;
+      this.y += this.vy;
+      this.wobbleAngle += this.wobbleSpeed;
+      this.size += this.growth;
+      this.alpha -= this.decay;
+    }
+
+    draw() {
+      if (this.alpha <= 0) return;
+      ctx.save();
+      ctx.globalAlpha = this.alpha;
+      
+      const grad = ctx.createRadialGradient(this.x, this.y, this.size * 0.05, this.x, this.y, this.size);
+      grad.addColorStop(0, `rgba(${this.color}, 0.3)`);
+      grad.addColorStop(0.35, `rgba(${this.color}, 0.12)`);
+      grad.addColorStop(0.7, `rgba(${this.color}, 0.03)`);
+      grad.addColorStop(1, `rgba(${this.color}, 0)`);
+      
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function animate(time) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const rect = canvas.getBoundingClientRect();
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (inViewport) {
+      sources.forEach(source => {
+        if (time > source.nextSpawn) {
+          const spawnX = source.x * canvas.width + (Math.random() - 0.5) * 50;
+          const spawnY = canvas.height + 30;
+          particles.push(new SmokeParticle(spawnX, spawnY));
+          source.nextSpawn = time + 350 + Math.random() * 500; // pacing spawn rate
+        }
+      });
+    }
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.update();
+      p.draw();
+      if (p.alpha <= 0 || p.y < -p.size) {
+        particles.splice(i, 1);
+      }
+    }
+
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  animationFrameId = requestAnimationFrame(animate);
+}
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initCounters();
+    initFooterSmoke();
   });
 } else {
   initCounters();
+  initFooterSmoke();
 }
