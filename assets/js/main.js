@@ -715,8 +715,134 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initCounters();
     initFooterSmoke();
+    initHeritageSmokeBubbles();
   });
 } else {
   initCounters();
   initFooterSmoke();
+  initHeritageSmokeBubbles();
+}
+
+/* --- Heritage Section Smoky Bubble Effects --- */
+function initHeritageSmokeBubbles() {
+  const canvas = document.getElementById('heritage-bubble-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let animationFrameId;
+  let particles = [];
+  
+  const resize = () => {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+  };
+  resize();
+  window.addEventListener('resize', resize);
+  
+  let isVisible = false;
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !animationFrameId) {
+          animate();
+        } else if (!isVisible && animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+      });
+    }, { threshold: 0.01 });
+    observer.observe(canvas.parentElement);
+  } else {
+    isVisible = true;
+  }
+  
+  class SmokeBubble {
+    constructor() {
+      this.reset(true);
+    }
+    
+    reset(initial = false) {
+      this.x = Math.random() * canvas.width;
+      this.y = initial ? Math.random() * canvas.height : canvas.height + 50;
+      this.size = 15 + Math.random() * 30;
+      this.speedY = 0.2 + Math.random() * 0.4;
+      this.wobble = Math.random() * Math.PI * 2;
+      this.wobbleSpeed = 0.01 + Math.random() * 0.015;
+      this.wobbleRange = 0.2 + Math.random() * 0.4;
+      this.alpha = 0.01;
+      this.maxAlpha = 0.06 + Math.random() * 0.08;
+      this.fadeState = 'in';
+      this.floatHeight = canvas.height * (0.15 + Math.random() * 0.65);
+      
+      const r = Math.random();
+      if (r < 0.65) {
+        this.color = '212, 175, 55'; // Sandalwood Gold
+      } else if (r < 0.85) {
+        this.color = '194, 125, 86'; // Terracotta
+      } else {
+        this.color = '250, 248, 245'; // Cream
+      }
+    }
+    
+    update() {
+      this.y -= this.speedY;
+      this.wobble += this.wobbleSpeed;
+      this.x += Math.sin(this.wobble) * this.wobbleRange;
+      
+      if (this.fadeState === 'in') {
+        this.alpha += 0.002;
+        if (this.alpha >= this.maxAlpha) {
+          this.alpha = this.maxAlpha;
+          this.fadeState = 'float';
+        }
+      } else if (this.y < this.floatHeight || this.y < 40) {
+        this.fadeState = 'out';
+      }
+      
+      if (this.fadeState === 'out') {
+        this.alpha -= 0.002;
+        if (this.alpha <= 0) {
+          this.reset();
+        }
+      }
+    }
+    
+    draw() {
+      ctx.beginPath();
+      const gradient = ctx.createRadialGradient(
+        this.x, this.y, this.size * 0.1,
+        this.x, this.y, this.size
+      );
+      gradient.addColorStop(0, `rgba(${this.color}, ${this.alpha * 1.6})`);
+      gradient.addColorStop(0.5, `rgba(${this.color}, ${this.alpha * 0.6})`);
+      gradient.addColorStop(1, 'rgba(250, 248, 245, 0)');
+      
+      ctx.fillStyle = gradient;
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  
+  const particleCount = 20;
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new SmokeBubble());
+  }
+  
+  const animate = () => {
+    if (!isVisible) {
+      animationFrameId = null;
+      return;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    animationFrameId = requestAnimationFrame(animate);
+  };
+  
+  if (isVisible) {
+    animate();
+  }
 }
