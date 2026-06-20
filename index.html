@@ -10,7 +10,7 @@
   
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="./assets/css/variables.css?v=10">
-  <link rel="stylesheet" href="./assets/css/styles.css?v=14">
+  <link rel="stylesheet" href="./assets/css/styles.css?v=16">
   
   <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -595,37 +595,118 @@
     /* Ingredients Grid */
     .ingredients-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--space-md);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
       margin-top: var(--space-xl);
     }
     .ingredient-card {
+      display: block;
       position: relative;
-      height: 300px;
-      border-radius: var(--radius-md);
+      height: 380px;
+      border-radius: var(--radius-lg);
       overflow: hidden;
       cursor: pointer;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .ingredient-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
+      filter: brightness(0.85);
     }
     .ingredient-card:hover .ingredient-img {
-      transform: scale(1.08);
+      transform: scale(1.1);
+      filter: brightness(0.7) blur(1px);
     }
     .ingredient-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(30, 58, 43, 0.9), transparent);
+      background: linear-gradient(to top, rgba(18, 30, 23, 0.95) 0%, rgba(18, 30, 23, 0.4) 50%, transparent 100%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: var(--space-lg);
+      padding: var(--space-xl);
       color: var(--color-bg);
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 2;
     }
-    .ingredient-overlay h3 { color: var(--color-gold); font-size: 1.5rem; margin-bottom: 5px; }
+    .ingredient-card-header {
+      transform: translateY(25px);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ingredient-card:hover .ingredient-card-header {
+      transform: translateY(0);
+    }
+    .ingredient-overlay h3 {
+      color: var(--color-bg);
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin: 0;
+      transition: color 0.4s ease;
+    }
+    .ingredient-card:hover .ingredient-overlay h3 {
+      color: var(--color-gold);
+    }
+    .ingredient-overlay .decorative-line {
+      width: 40px;
+      height: 1px;
+      background-color: var(--color-gold);
+      margin: var(--space-xs) 0;
+      transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ingredient-card:hover .decorative-line {
+      width: 100%;
+    }
+    .ingredient-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(250, 248, 245, 0.8);
+      opacity: 0;
+      transform: translateY(15px);
+      margin: var(--space-xs) 0 0 0;
+      transition: opacity 0.4s, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ingredient-card:hover .ingredient-desc {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+    .ingredient-action {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-gold);
+      margin-top: var(--space-md);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ingredient-card:hover .ingredient-action {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
+    .ingredient-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-gold);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(212, 175, 55, 0.25);
+    }
+    .ingredient-card:hover .ingredient-overlay {
+      background: rgba(18, 30, 23, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
 
     /* Testimonials */
     .testimonial-grid {
@@ -1835,27 +1916,39 @@
           <a href="ingredients.html" class="btn btn-outline">Explore Ingredients</a>
         </div>
         <div class="ingredients-grid reveal reveal-delay-1">
-          <div class="ingredient-card">
+          <a href="ingredients.html#sandalwood" class="ingredient-card">
             <img src="./assets/images/ingredients-bg.png" alt="Pure Sandalwood" class="ingredient-img">
             <div class="ingredient-overlay">
-              <h3>Pure Sandalwood</h3>
-              <p>The golden foundation of Indian incense, providing a creamy, woody base.</p>
+              <div class="ingredient-card-header">
+                <h3>Pure Sandalwood</h3>
+                <div class="decorative-line"></div>
+              </div>
+              <p class="ingredient-desc">The golden foundation of Indian incense, providing a creamy, woody base.</p>
+              <div class="ingredient-action">Explore Scent <i class="fa-solid fa-arrow-right-long"></i></div>
             </div>
-          </div>
-          <div class="ingredient-card">
+          </a>
+          <a href="ingredients.html#frankincense" class="ingredient-card">
             <img src="./assets/images/global-shipping.png" alt="Fossilized Amber" class="ingredient-img">
             <div class="ingredient-overlay">
-              <h3>Fossilized Amber</h3>
-              <p>Warm and deeply sweet resin used in our premium luxury collections.</p>
+              <div class="ingredient-card-header">
+                <h3>Fossilized Amber</h3>
+                <div class="decorative-line"></div>
+              </div>
+              <p class="ingredient-desc">Warm and deeply sweet resin used in our premium luxury collections.</p>
+              <div class="ingredient-action">Explore Scent <i class="fa-solid fa-arrow-right-long"></i></div>
             </div>
-          </div>
-          <div class="ingredient-card">
+          </a>
+          <a href="ingredients.html" class="ingredient-card">
             <img src="./assets/images/hero-banner.png" alt="Himalayan Spices" class="ingredient-img">
             <div class="ingredient-overlay">
-              <h3>Himalayan Spices</h3>
-              <p>Cardamom, clove, and cinnamon that add a vibrant, spicy top note.</p>
+              <div class="ingredient-card-header">
+                <h3>Himalayan Spices</h3>
+                <div class="decorative-line"></div>
+              </div>
+              <p class="ingredient-desc">Cardamom, clove, and cinnamon that add a vibrant, spicy top note.</p>
+              <div class="ingredient-action">Explore Scent <i class="fa-solid fa-arrow-right-long"></i></div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -2016,7 +2109,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="./assets/js/main.js?v=14"></script>
+  <script src="./assets/js/main.js?v=16"></script>
   <script>
     // ===== CINEMATIC PARTICLE SYSTEM =====
     (function() {

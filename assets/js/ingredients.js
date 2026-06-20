@@ -98,6 +98,18 @@ function initIngredientsCabinet() {
       }
     });
   });
+
+  // Check URL hash to auto-open corresponding modal for deep-linking
+  const checkHash = () => {
+    const hash = window.location.hash.substring(1);
+    if (hash && INGREDIENTS_DB[hash]) {
+      setTimeout(() => {
+        openIngredientModal(INGREDIENTS_DB[hash]);
+      }, 300);
+    }
+  };
+  checkHash();
+  window.addEventListener('hashchange', checkHash);
 }
 
 function openIngredientModal(data) {
