@@ -1,0 +1,300 @@
+commit 187c538195d821dc6499708d7e1eaf2ad75c0aac
+Author: Kamaraj VS <kamarajvbgd@gmail.com>
+Date:   Sat Jun 20 09:08:58 2026 +0530
+
+    changes done
+
+diff --git a/assets/js/main.js b/assets/js/main.js
+index 303b9c8..2792ce5 100644
+--- a/assets/js/main.js
++++ b/assets/js/main.js
+@@ -16,6 +16,7 @@ function initNavigation() {
+ 
+   // Add scroll class to header
+   window.addEventListener('scroll', () => {
++    if (!header) return;
+     if (window.scrollY > 30) {
+       header.classList.add('scrolled');
+       header.classList.remove('header-transparent');
+@@ -26,11 +27,13 @@ function initNavigation() {
+   });
+ 
+   // Check initial scroll position
+-  if (window.scrollY > 30) {
+-    header.classList.add('scrolled');
+-    header.classList.remove('header-transparent');
+-  } else {
+-    header.classList.add('header-transparent');
++  if (header) {
++    if (window.scrollY > 30) {
++      header.classList.add('scrolled');
++      header.classList.remove('header-transparent');
++    } else {
++      header.classList.add('header-transparent');
++    }
+   }
+ 
+   // Mobile menu toggle
+@@ -80,7 +83,6 @@ function initScrollEffects() {
+ 
+   // Wrap words for text reveal
+   textReveals.forEach(el => {
+-    // Save original HTML in case there are nested tags, but for simple headings split by words
+     const text = el.innerText;
+     el.innerHTML = '';
+     const words = text.split(' ');
+@@ -93,6 +95,12 @@ function initScrollEffects() {
+     });
+   });
+ 
++  // Helper to check if element is in viewport
++  function isInViewport(el) {
++    const rect = el.getBoundingClientRect();
++    return rect.top < window.innerHeight && rect.bottom > 0;
++  }
++
+   if ('IntersectionObserver' in window) {
+     const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+@@ -102,12 +110,22 @@ function initScrollEffects() {
+         }
+       });
+     }, {
+-      threshold: 0.1,
+-      rootMargin: '0px 0px -50px 0px'
++      threshold: 0.05,
++      rootMargin: '0px 0px 0px 0px'
+     });
+ 
+     reveals.forEach(el => observer.observe(el));
+     textReveals.forEach(el => observer.observe(el));
++
++    // Immediately reveal elements already in viewport (some browsers miss initial fire)
++    setTimeout(() => {
++      reveals.forEach(el => {
++        if (isInViewport(el)) el.classList.add('revealed');
++      });
++      textReveals.forEach(el => {
++        if (isInViewport(el)) el.classList.add('revealed');
++      });
++    }, 100);
+   } else {
+     reveals.forEach(el => el.classList.add('revealed'));
+     textReveals.forEach(el => el.classList.add('revealed'));
+@@ -335,6 +353,7 @@ window.updateInquiryUI();
+ /* --- Hero Slider Logic --- */
+ function initHeroSlider() {
+   const slides = document.querySelectorAll('.hero-slide');
++  const textSlides = document.querySelectorAll('.hero-text-slide');
+   const dots = document.querySelectorAll('.slider-dot');
+   if (slides.length === 0) return;
+ 
+@@ -343,12 +362,14 @@ function initHeroSlider() {
+ 
+   function goToSlide(index) {
+     slides[currentSlide].classList.remove('active');
+-    dots[currentSlide].classList.remove('active');
++    if (dots.length > 0) dots[currentSlide].classList.remove('active');
++    if (textSlides.length > 0) textSlides[currentSlide].classList.remove('active');
+     
+     currentSlide = index;
+     
+     slides[currentSlide].classList.add('active');
+-    dots[currentSlide].classList.add('active');
++    if (dots.length > 0) dots[currentSlide].classList.add('active');
++    if (textSlides.length > 0) textSlides[currentSlide].classList.add('active');
+   }
+ 
+   function nextSlide() {
+@@ -369,31 +390,122 @@ function initHeroSlider() {
+   });
+ }
+ 
++/* --- Our Story Slider Logic --- */
++function initStorySlider() {
++  const slides = document.querySelectorAll('.story-slide');
++  const dots = document.querySelectorAll('.story-dot');
++  if (slides.length === 0) return;
++
++  let currentSlide = 0;
++  let slideInterval;
++
++  function goToSlide(index) {
++    slides[currentSlide].classList.remove('active');
++    if (dots.length > 0) dots[currentSlide].classList.remove('active');
++    
++    currentSlide = index;
++    
++    slides[currentSlide].classList.add('active');
++    if (dots.length > 0) dots[currentSlide].classList.add('active');
++  }
++
++  function nextSlide() {
++    let next = (currentSlide + 1) % slides.length;
++    goToSlide(next);
++  }
++
++  // Set interval
++  slideInterval = setInterval(nextSlide, 4500); // 4.5 seconds per slide
++
++  // Dot clicks
++  dots.forEach((dot, index) => {
++    dot.addEventListener('click', () => {
++      clearInterval(slideInterval);
++      goToSlide(index);
++      slideInterval = setInterval(nextSlide, 4500);
++    });
++  });
++}
++
++document.addEventListener('DOMContentLoaded', initStorySlider);
++
++/* --- Why Choose Us Slider Logic --- */
++function initWhySlider() {
++  const whySlider = document.getElementById('whySlider');
++  
++  if (!whySlider) return;
++
++  const totalSlides = 3; // We know there are 3 pillars
++  let currentIndex = 0;
++
++  function updateWhySlider() {
++    const slideWidth = 100; // Since min-width is 100%
++    whySlider.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
++  }
++
++  setInterval(() => {
++    currentIndex = (currentIndex + 1) % totalSlides;
++    updateWhySlider();
++  }, 4000); // Auto move every 4 seconds
++}
++
++document.addEventListener('DOMContentLoaded', initWhySlider);
++
++/* --- Featured Collections Slider Logic --- */
++function initCollectionSlider() {
++  const slider = document.getElementById('collectionSlider');
++  const dots = document.querySelectorAll('.collection-dot');
++  if (!slider || dots.length === 0) return;
++
++  const totalSlides = 4;
++  let currentIndex = 0;
++  let slideInterval;
++
++  function updateCollectionSlider(index) {
++    currentIndex = index;
++    // Remove active class from all dots
++    dots.forEach(d => d.classList.remove('active'));
++    // Add active class to current dot
++    dots[currentIndex].classList.add('active');
++    // Move slider
++    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
++  }
++
++  function nextSlide() {
++    let next = (currentIndex + 1) % totalSlides;
++    updateCollectionSlider(next);
++  }
++
++  // Set auto-play
++  slideInterval = setInterval(nextSlide, 5000); // 5 seconds
++
++  // Clickable dots
++  dots.forEach((dot, index) => {
++    dot.addEventListener('click', () => {
++      clearInterval(slideInterval);
++      updateCollectionSlider(index);
++      slideInterval = setInterval(nextSlide, 5000);
++    });
++  });
++}
++
++document.addEventListener('DOMContentLoaded', initCollectionSlider);
+ /* --- Video Player Logic --- */
+ function initVideoPlayer() {
+-  const video = document.getElementById('processVideo');
++  const overlay = document.getElementById('videoOverlay');
+   const playBtn = document.getElementById('playVideoBtn');
+-  const videoContainer = document.querySelector('.video-container');
+-
+-  if (!video || !playBtn) return;
++  const ytWrapper = document.getElementById('youtubeWrapper');
+ 
+-  playBtn.addEventListener('click', () => {
+-    if (video.paused) {
+-      video.play();
+-      videoContainer.classList.add('playing');
+-      video.muted = false; // unmute on explicit play if desired, or keep muted
+-    } else {
+-      video.pause();
+-      videoContainer.classList.remove('playing');
+-    }
+-  });
++  if (!overlay || !playBtn || !ytWrapper) return;
+ 
+-  // Optional: Pause video if clicked directly
+-  video.addEventListener('click', () => {
+-    if (!video.paused) {
+-      video.pause();
+-      videoContainer.classList.remove('playing');
+-    }
++  // When play is clicked, hide overlay and inject iframe
++  overlay.addEventListener('click', () => {
++    overlay.style.opacity = '0';
++    setTimeout(() => {
++      overlay.style.display = 'none';
++      // Inject YouTube embed with autoplay enabled
++      ytWrapper.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/ku4JxldtkI0?autoplay=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>`;
++    }, 500); // match CSS transition duration
+   });
+ }
+ 
+@@ -403,3 +515,48 @@ document.addEventListener('DOMContentLoaded', () => {
+   initVideoPlayer();
+ });
+ 
++/* --- Counters Animation --- */
++function initCounters() {
++  const counters = document.querySelectorAll('.count-up');
++  if (counters.length === 0) return;
++
++  const observer = new IntersectionObserver((entries) => {
++    entries.forEach(entry => {
++      if (entry.isIntersecting) {
++        const target = entry.target;
++        const targetValue = parseInt(target.getAttribute('data-target'), 10);
++        const duration = 2000; // ms
++        const frameDuration = 1000 / 60;
++        const totalFrames = Math.round(duration / frameDuration);
++        let frame = 0;
++
++        const counterInterval = setInterval(() => {
++          frame++;
++          const progress = frame / totalFrames;
++          const currentCount = Math.round(targetValue * progress);
++
++          target.innerText = currentCount;
++
++          if (frame >= totalFrames) {
++            target.innerText = targetValue;
++            clearInterval(counterInterval);
++          }
++        }, frameDuration);
++
++        observer.unobserve(target);
++      }
++    });
++  }, { threshold: 0.1 });
++
++  counters.forEach(counter => {
++    observer.observe(counter);
++  });
++}
++
++if (document.readyState === 'loading') {
++  document.addEventListener('DOMContentLoaded', () => {
++    initCounters();
++  });
++} else {
++  initCounters();
++}

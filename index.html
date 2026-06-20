@@ -9,8 +9,8 @@
   <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
   
   <!-- CSS Stylesheets -->
-  <link rel="stylesheet" href="./assets/css/variables.css?v=6">
-  <link rel="stylesheet" href="./assets/css/styles.css?v=6">
+  <link rel="stylesheet" href="./assets/css/variables.css?v=10">
+  <link rel="stylesheet" href="./assets/css/styles.css?v=10">
   
   <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -734,6 +734,78 @@
       opacity: 1;
     }
 
+    /* Our Story Slider Styling */
+    .story-slider-wrapper {
+      position: relative;
+      height: 500px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .story-slider {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .story-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out, transform 6s ease-out;
+      transform: scale(1);
+    }
+
+    .story-slide.active {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .story-slider-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 10, 7, 0.4) 0%, transparent 60%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .story-slider-controls {
+      position: absolute;
+      bottom: var(--space-md);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+      background: rgba(18, 30, 23, 0.6);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-round);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .story-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(250, 248, 245, 0.4);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    .story-dot.active, .story-dot:hover {
+      background-color: var(--color-gold);
+      transform: scale(1.2);
+    }
+
     /* Premium Header CTA (Enquire Now) Styling */
     #navCta {
       position: relative;
@@ -796,6 +868,222 @@
       border-color: var(--color-primary);
       box-shadow: 0 4px 12px rgba(30, 58, 43, 0.15);
       transform: translateY(-2px);
+    }
+
+    /* Premium Scrolling Header Enhancements */
+    .header {
+      transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
+    }
+    
+    .header.scrolled {
+      height: 68px !important; /* Compress height slightly on scroll */
+      background-color: rgba(250, 248, 245, 0.88) !important;
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      box-shadow: 0 10px 30px rgba(30, 58, 43, 0.04), 0 1px 0 rgba(212, 175, 55, 0.12) !important;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+    }
+
+    /* Subtle golden shimmer line under scrolled header */
+    .header.scrolled::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.35), transparent);
+      z-index: 10;
+    }
+
+    .header.scrolled .nav-link {
+      color: var(--color-primary) !important;
+      font-weight: 600 !important;
+    }
+
+    .header.scrolled .nav-link:hover,
+    .header.scrolled .nav-link.active {
+      color: var(--color-terracotta) !important;
+    }
+
+    .header.scrolled .logo-text {
+      color: var(--color-primary) !important;
+    }
+    
+    .header.scrolled .logo-text span {
+      color: var(--color-terracotta) !important;
+    }
+
+    /* Transparent header state links styling */
+    .header.header-transparent .nav-link {
+      color: rgba(250, 248, 245, 0.95) !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.06em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+    
+    .header.header-transparent .nav-link:hover {
+      color: var(--color-gold-light) !important;
+    }
+
+    /* Why Choose Us Section & Slider Styling */
+    .why-choose-us-section {
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(20, 83, 45, 0.65) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 100%, rgba(14, 68, 38, 0.7) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(5, 30, 15, 0.85) 0%, transparent 80%),
+        linear-gradient(160deg, #041a09 0%, #071e0c 35%, #042010 65%, #061208 100%) !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: 1;
+      pointer-events: none;
+      animation: orbFloat 10s ease-in-out infinite;
+    }
+    .why-orb-1 {
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(22, 101, 52, 0.35) 0%, rgba(6, 70, 30, 0.15) 50%, transparent 70%);
+      top: -20%; left: -8%;
+      animation-delay: 0s;
+    }
+    .why-orb-2 {
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(16, 85, 42, 0.30) 0%, rgba(10, 60, 25, 0.10) 50%, transparent 70%);
+      bottom: -20%; right: -5%;
+      animation-delay: -4s;
+    }
+
+    .why-slider-wrapper {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+
+    .why-slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(18, 30, 23, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .why-slider-arrow:hover {
+      background: var(--color-gold);
+      color: var(--color-primary);
+      border-color: var(--color-gold);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.45);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .why-prev {
+      left: 10px;
+    }
+
+    .why-next {
+      right: 10px;
+    }
+
+    .why-slider {
+      display: flex;
+      width: 100%;
+      transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .pillar-card-wrapper {
+      width: 100%;
+      flex: 0 0 100%;
+      padding: var(--space-md);
+      box-sizing: border-box;
+    }
+
+    .why-slider .pillar-card {
+      background: rgba(255, 255, 255, 0.03) !important;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(212, 175, 55, 0.2) !important;
+      border-radius: 24px;
+      padding: var(--space-3xl) var(--space-xl) !important;
+      text-align: center;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-slider .pillar-card h3 {
+      color: var(--color-bg) !important;
+      font-size: 1.65rem;
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 500;
+    }
+
+    .why-slider .pillar-card p {
+      color: rgba(250, 248, 245, 0.75) !important;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 480px;
+    }
+
+    /* 3D Modernised Golden Icons styling */
+    .why-slider .pillar-icon {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e5c354 0%, #d4af37 35%, #967515 70%, #54410a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.3rem;
+      color: #fff !important;
+      box-shadow: 
+        0 12px 24px rgba(212, 175, 55, 0.35), 
+        inset 0 -4px 10px rgba(0,0,0,0.5), 
+        inset 0 4px 10px rgba(255,255,255,0.45);
+      transform: perspective(600px) translateZ(10px);
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      margin-bottom: var(--space-sm);
+    }
+
+    .why-slider .pillar-card:hover {
+      border-color: rgba(212, 175, 55, 0.45) !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      transform: translateY(-4px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    }
+
+    .why-slider .pillar-card:hover .pillar-icon {
+      transform: perspective(600px) translateZ(25px) scale(1.08);
+      box-shadow: 
+        0 16px 32px rgba(212, 175, 55, 0.5), 
+        inset 0 -2px 8px rgba(0,0,0,0.4), 
+        inset 0 6px 14px rgba(255,255,255,0.6);
     }
 
   </style>
@@ -883,8 +1171,22 @@
     <section class="section">
       <div class="container">
         <div class="split-section">
-          <div class="split-image-wrapper reveal-left parallax-wrapper">
-            <img src="./assets/images/pondicherry.png" alt="Incense maker rolling incense manually in a warm lit Pondicherry workshop" class="split-image parallax-img" data-speed="0.15">
+          <div class="split-image-wrapper reveal-left">
+            <div class="story-slider-wrapper">
+              <div class="story-slider" id="storySlider">
+                <img src="./assets/images/pondicherry.png" alt="Incense maker rolling incense manually in a warm lit Pondicherry workshop" class="story-slide active">
+                <img src="./assets/images/process_sourcing.png" alt="Sourcing natural botanical ingredients" class="story-slide">
+                <img src="./assets/images/process_rolling.png" alt="Artisans rolling incense paste by hand" class="story-slide">
+              </div>
+              <div class="story-slider-overlay"></div>
+              
+              <!-- Story Slider Controls -->
+              <div class="story-slider-controls">
+                <button class="story-dot active" data-index="0" aria-label="Story Slide 1"></button>
+                <button class="story-dot" data-index="1" aria-label="Story Slide 2"></button>
+                <button class="story-dot" data-index="2" aria-label="Story Slide 3"></button>
+              </div>
+            </div>
           </div>
           <div class="split-content reveal-right reveal-delay-2">
             <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Our Story</h2>
@@ -901,32 +1203,53 @@
       </div>
     </section>
 
-    <!-- Core Pillars Section -->
-    <section class="section" style="background-color: rgba(30, 58, 43, 0.02); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
-      <div class="container">
+    <!-- Core Pillars Section (Why Choose Us) -->
+    <section class="section why-choose-us-section">
+      <!-- Background incense stick smoke canvas -->
+      <canvas id="whySmokeCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.6; display: block;"></canvas>
+      <!-- Glowing animated background orbs -->
+      <div class="why-orb why-orb-1"></div>
+      <div class="why-orb why-orb-2"></div>
+      
+      <div class="container" style="position: relative; z-index: 2;">
         <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto var(--space-3xl) auto;" class="reveal">
-          <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Why Choose Us</h2>
-          <h2 style="font-size: 2.5rem;">The Mothers Fragrances Difference</h2>
-          <p style="margin-top: var(--space-xs);">We ensure the highest quality in every incense stick, cone, and drop of oil we produce.</p>
+          <h2 class="italic text-serif" style="color: var(--color-gold); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Why Choose Us</h2>
+          <h2 style="font-size: 2.5rem; color: var(--color-bg);">The Mothers Fragrances Difference</h2>
+          <p style="margin-top: var(--space-xs); color: rgba(250, 248, 245, 0.7);">We ensure the highest quality in every incense stick, cone, and drop of oil we produce.</p>
         </div>
 
-        <div class="grid-3">
-          <div class="pillar-card reveal">
-            <div class="pillar-icon"><i class="fa-solid fa-leaf"></i></div>
-            <h3>100% Natural Ingredients</h3>
-            <p>Zero synthetic charcoal, zero toxic chemical binders, and zero synthetic fragrances. Pure botanical elements.</p>
-          </div>
+        <div class="why-slider-wrapper reveal">
+          <!-- Slide Arrows -->
+          <button class="why-slider-arrow why-prev" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="why-slider-arrow why-next" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+          
+          <div class="why-slider" id="whySlider">
+            <!-- Card 1 -->
+            <div class="pillar-card-wrapper">
+              <div class="pillar-card">
+                <div class="pillar-icon"><i class="fa-solid fa-leaf"></i></div>
+                <h3>100% Natural Ingredients</h3>
+                <p>Zero synthetic charcoal, zero toxic chemical binders, and zero synthetic fragrances. Pure botanical elements.</p>
+              </div>
+            </div>
 
-          <div class="pillar-card reveal reveal-delay-1">
-            <div class="pillar-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
-            <h3>Handcrafted Perfection</h3>
-            <p>Each product is carefully handcrafted by artisans, maintaining a tradition that guarantees premium scent profiles.</p>
-          </div>
+            <!-- Card 2 -->
+            <div class="pillar-card-wrapper">
+              <div class="pillar-card">
+                <div class="pillar-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                <h3>Handcrafted Perfection</h3>
+                <p>Each product is carefully handcrafted by artisans, maintaining a tradition that guarantees premium scent profiles.</p>
+              </div>
+            </div>
 
-          <div class="pillar-card reveal reveal-delay-2">
-            <div class="pillar-icon"><i class="fa-solid fa-peace"></i></div>
-            <h3>Holistic Lifestyle</h3>
-            <p>From meditation incense to beautiful tapestries, our catalog is designed to enrich your holistic lifestyle.</p>
+            <!-- Card 3 -->
+            <div class="pillar-card-wrapper">
+              <div class="pillar-card">
+                <div class="pillar-icon"><i class="fa-solid fa-spa"></i></div>
+                <h3>Holistic Lifestyle</h3>
+                <p>From meditation incense to beautiful tapestries, our catalog is designed to enrich your holistic lifestyle.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1058,8 +1381,8 @@
           </button>
         </div>
         <video id="processVideo" class="background-video" loop muted playsinline poster="./assets/images/process_sourcing.png">
-          <!-- Placeholder nature/smoke video link -->
-          <source src="https://cdn.pixabay.com/video/2021/08/25/86278-592864626_large.mp4" type="video/mp4">
+          <!-- Mixkit incense smoke video link -->
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-smoke-rising-slowly-from-an-incense-stick-34282-large.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -1225,7 +1548,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="./assets/js/main.js?v=6"></script>
+  <script src="./assets/js/main.js?v=9"></script>
   <script>
     // ===== CINEMATIC PARTICLE SYSTEM =====
     (function() {
@@ -1297,6 +1620,110 @@
         glow.style.left = e.clientX + 'px';
         glow.style.top = e.clientY + 'px';
       });
+    })();
+
+    // ===== WHY CHOOSE US INCENSE SMOKE CANVASES SYSTEM =====
+    (function() {
+      const canvas = document.getElementById('whySmokeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+
+      function resize() {
+        const parent = canvas.parentElement;
+        if (parent) {
+          canvas.width = parent.clientWidth || window.innerWidth;
+          canvas.height = parent.clientHeight || 800;
+        } else {
+          canvas.width = canvas.offsetWidth || window.innerWidth;
+          canvas.height = canvas.offsetHeight || 800;
+        }
+      }
+
+      class SmokeParticle {
+        constructor(side) {
+          // Spawn from bottom-left or bottom-right bands only
+          const bandWidth = canvas.width * 0.18; // 18% on each side
+          if (side === 'left') {
+            this.x = Math.random() * bandWidth;
+            this.vx = (Math.random() * 0.4 + 0.1); // drift inward (right)
+          } else {
+            this.x = canvas.width - Math.random() * bandWidth;
+            this.vx = -(Math.random() * 0.4 + 0.1); // drift inward (left)
+          }
+          this.y = canvas.height + 20;
+          this.vy = -(Math.random() * 0.55 + 0.25); // slow rise
+          this.baseSize = 40 + Math.random() * 50;
+          this.size = this.baseSize;
+          // Very low alpha — smoke should be an atmospheric hint, not a fill
+          this.alpha = 0.08 + Math.random() * 0.10;
+          this.decay = 0.00015 + Math.random() * 0.0002;
+          this.growth = 0.30 + Math.random() * 0.25;
+          this.wobbleSpeed = 0.004 + Math.random() * 0.008;
+          this.wobbleAngle = Math.random() * Math.PI * 2;
+          this.wobbleRange = 0.3 + Math.random() * 0.4;
+          // Dark muted green-grey that blends with the background (NOT bright/white)
+          const r = Math.random();
+          if (r < 0.5) {
+            this.color = '50, 90, 60';    // dark muted green
+          } else if (r < 0.8) {
+            this.color = '40, 75, 50';    // deeper green-grey
+          } else {
+            this.color = '70, 110, 80';   // slightly lighter green
+          }
+        }
+
+        update() {
+          this.x += this.vx + Math.sin(this.wobbleAngle) * this.wobbleRange;
+          this.y += this.vy;
+          this.wobbleAngle += this.wobbleSpeed;
+          this.size += this.growth;
+          this.alpha -= this.decay;
+        }
+
+        draw() {
+          if (this.alpha <= 0) return;
+          ctx.save();
+          ctx.globalAlpha = this.alpha;
+          const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+          grad.addColorStop(0,    `rgba(${this.color}, 0.45)`);
+          grad.addColorStop(0.40, `rgba(${this.color}, 0.12)`);
+          grad.addColorStop(0.75, `rgba(${this.color}, 0.03)`);
+          grad.addColorStop(1,    `rgba(${this.color}, 0)`);
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Spawn only from left or right sides, low density (max 40 particles)
+        if (particles.length < 40 && Math.random() > 0.72) {
+          const side = Math.random() < 0.5 ? 'left' : 'right';
+          particles.push(new SmokeParticle(side));
+        }
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.update();
+          p.draw();
+          if (p.alpha <= 0 || p.y < -p.size) {
+            particles.splice(i, 1);
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+
+      resize();
+      animate();
+      window.addEventListener('resize', resize);
+      window.addEventListener('load', resize);
+      setTimeout(resize, 500);
+      setTimeout(resize, 2000);
     })();
 
     // ===== EXTEND REVEAL TO INCLUDE reveal-left + reveal-right =====

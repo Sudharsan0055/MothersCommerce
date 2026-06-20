@@ -432,21 +432,54 @@ document.addEventListener('DOMContentLoaded', initStorySlider);
 /* --- Why Choose Us Slider Logic --- */
 function initWhySlider() {
   const whySlider = document.getElementById('whySlider');
+  const prevBtn = document.querySelector('.why-prev');
+  const nextBtn = document.querySelector('.why-next');
   
   if (!whySlider) return;
+  if (whySlider.dataset.initialized) return;
+  whySlider.dataset.initialized = 'true';
 
-  const totalSlides = 3; // We know there are 3 pillars
+  const totalSlides = 3;
   let currentIndex = 0;
+  let slideInterval;
 
-  function updateWhySlider() {
-    const slideWidth = 100; // Since min-width is 100%
+  function updateWhySlider(index) {
+    currentIndex = index;
+    const slideWidth = 100;
     whySlider.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
   }
 
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateWhySlider();
-  }, 4000); // Auto move every 4 seconds
+  function nextSlide() {
+    let next = (currentIndex + 1) % totalSlides;
+    updateWhySlider(next);
+  }
+
+  function prevSlide() {
+    let prev = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateWhySlider(prev);
+  }
+
+  function startInterval() {
+    slideInterval = setInterval(nextSlide, 30000); // 30 seconds
+  }
+
+  startInterval();
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      clearInterval(slideInterval);
+      prevSlide();
+      startInterval();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      clearInterval(slideInterval);
+      nextSlide();
+      startInterval();
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initWhySlider);
@@ -494,17 +527,17 @@ document.addEventListener('DOMContentLoaded', initCollectionSlider);
 function initVideoPlayer() {
   const overlay = document.getElementById('videoOverlay');
   const playBtn = document.getElementById('playVideoBtn');
-  const ytWrapper = document.getElementById('youtubeWrapper');
+  const video = document.getElementById('processVideo');
 
-  if (!overlay || !playBtn || !ytWrapper) return;
+  if (!overlay || !video) return;
 
-  // When play is clicked, hide overlay and inject iframe
+  // When play is clicked, hide overlay and play the video
   overlay.addEventListener('click', () => {
     overlay.style.opacity = '0';
     setTimeout(() => {
       overlay.style.display = 'none';
-      // Inject YouTube embed with autoplay enabled
-      ytWrapper.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/ku4JxldtkI0?autoplay=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>`;
+      video.muted = false; // Unmute for user to hear the audio
+      video.play().catch(err => console.log("Video play failed:", err));
     }, 500); // match CSS transition duration
   });
 }
