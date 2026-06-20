@@ -1252,6 +1252,208 @@
       .feat-slide-title { font-size: 1.7rem; }
     }
 
+    /* ===== OUR HERITAGE — 4 STEPS OF PURITY (DARK SLIDER) ===== */
+    .heritage-section {
+      position: relative;
+      padding: 0;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(212, 175, 55, 0.55) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 80%, rgba(180, 130, 20, 0.50) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(100, 70, 5, 0.60) 0%, transparent 65%),
+        linear-gradient(145deg, #1a1200 0%, #2e1e00 25%, #1c1400 50%, #2a1a00 75%, #0f0a00 100%);
+      overflow: hidden;
+      min-height: 600px;
+    }
+
+    /* Animated aurora orbs */
+    .heritage-aurora {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;
+    }
+    .h-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: hOrbFloat 12s ease-in-out infinite;
+    }
+    .h-orb-1 {
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(212,175,55,0.45) 0%, rgba(180,130,20,0.20) 50%, transparent 70%);
+      top: -20%; left: 0%;
+      animation-delay: 0s;
+    }
+    .h-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(240,200,80,0.25) 0%, rgba(200,150,30,0.10) 50%, transparent 70%);
+      bottom: -15%; right: 5%;
+      animation-delay: -5s;
+    }
+    .h-orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255,215,80,0.18) 0%, transparent 70%);
+      top: 35%; right: 18%;
+      animation-delay: -9s;
+    }
+    @keyframes hOrbFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-35px) scale(1.08); }
+    }
+
+    /* Slider container */
+    .heritage-slider-wrap {
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      width: 100%;
+    }
+    .heritage-slides {
+      display: flex;
+      transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+      width: 100%;
+    }
+    .heritage-slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+
+    /* Left text panel */
+    .h-slide-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3.5rem 4rem 6%;
+      gap: 1.5rem;
+    }
+    .h-slide-step-num {
+      font-family: var(--font-serif);
+      font-size: 7rem;
+      font-weight: 700;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(212,175,55,0.30);
+      margin-bottom: -2rem;
+    }
+    .h-slide-tag {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+    }
+    .h-slide-title {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 500;
+      color: #faf8f5;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .h-slide-desc {
+      font-size: 1rem;
+      color: rgba(250,248,245,0.72);
+      line-height: 1.75;
+      max-width: 420px;
+      margin: 0;
+    }
+    .h-slide-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06));
+      border: 1px solid rgba(212,175,55,0.35);
+      color: var(--color-gold);
+      font-size: 1.35rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Right image panel */
+    .h-slide-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .h-slide-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.06);
+      transition: transform 7s ease-out;
+      filter: brightness(0.8) saturate(1.1);
+    }
+    .heritage-slide.active .h-slide-img img {
+      transform: scale(1);
+    }
+    .h-slide-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(3,14,6,0.7) 0%, rgba(3,14,6,0.1) 40%, transparent 100%);
+      z-index: 1;
+    }
+
+    /* Step dots at bottom */
+    .heritage-dots {
+      position: absolute;
+      bottom: 24px;
+      left: 6%;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .h-dot {
+      width: 28px; height: 3px;
+      border-radius: 2px;
+      background: rgba(212,175,55,0.25);
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .h-dot.active {
+      background: var(--color-gold);
+      width: 48px;
+    }
+
+    /* Section header above slider */
+    .heritage-hdr {
+      text-align: center;
+      padding: var(--space-3xl) 0 var(--space-2xl) 0;
+      position: relative;
+      z-index: 2;
+    }
+    .heritage-hdr-eye {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: var(--space-sm);
+    }
+    .heritage-hdr h2 {
+      font-size: 2.8rem;
+      color: #faf8f5;
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .heritage-hdr p {
+      color: rgba(250,248,245,0.6);
+      max-width: 540px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .heritage-slide { grid-template-columns: 1fr; min-height: auto; }
+      .h-slide-text { padding: 2.5rem 5%; }
+      .h-slide-img { height: 280px; }
+      .h-slide-img img { height: 280px; }
+      .h-slide-title { font-size: 2rem; }
+      .h-slide-step-num { font-size: 5rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -1495,46 +1697,94 @@
 
 
 
-    <!-- The Artisanal Process -->
-    <section class="section" style="background-color: var(--color-surface);">
-      <div class="container">
-        <div style="text-align: center;" class="reveal">
-          <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Our Heritage</h2>
-          <h2 style="font-size: 2.5rem;">The 4 Steps of Purity</h2>
-          <p style="margin-top: var(--space-xs); max-width: 600px; margin-left: auto; margin-right: auto;">We preserve the ancient Indian tradition of hand-rolling, ensuring zero chemical compression and maximum aroma retention.</p>
+    <!-- The Artisanal Process (Immersive Dark Slider) -->
+    <section class="heritage-section" id="heritageSection">
+      <!-- Animated aurora orbs -->
+      <div class="heritage-aurora">
+        <div class="h-orb h-orb-1"></div>
+        <div class="h-orb h-orb-2"></div>
+        <div class="h-orb h-orb-3"></div>
+      </div>
+
+      <!-- Header -->
+      <div class="heritage-hdr reveal">
+        <span class="heritage-hdr-eye">Our Heritage</span>
+        <h2>The 4 Steps of Purity</h2>
+        <p>We preserve the ancient Indian tradition of hand-rolling, ensuring zero chemical compression and maximum aroma retention.</p>
+      </div>
+
+      <!-- Slider -->
+      <div class="heritage-slider-wrap">
+        <div class="heritage-slides" id="heritageSlides">
+
+          <!-- Slide 1 -->
+          <div class="heritage-slide active">
+            <div class="h-slide-text">
+              <div class="h-slide-step-num">01</div>
+              <div class="h-slide-tag">Step One</div>
+              <h3 class="h-slide-title">Sourcing</h3>
+              <p class="h-slide-desc">Selecting only the finest pure botanical resins, gums, and woods. Each raw material is hand-inspected for aroma purity and natural quality before entering our process.</p>
+              <div class="h-slide-icon"><i class="fa-solid fa-seedling"></i></div>
+            </div>
+            <div class="h-slide-img">
+              <img src="./assets/images/process_sourcing.png" alt="Sourcing natural botanical ingredients">
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="heritage-slide">
+            <div class="h-slide-text">
+              <div class="h-slide-step-num">02</div>
+              <div class="h-slide-tag">Step Two</div>
+              <h3 class="h-slide-title">Kneading</h3>
+              <p class="h-slide-desc">Blending premium ingredients by hand into a fragrant, chemical-free aromatic dough. No machines, no shortcuts — only the artisan's touch creates this consistency.</p>
+              <div class="h-slide-icon"><i class="fa-solid fa-hands"></i></div>
+            </div>
+            <div class="h-slide-img">
+              <img src="./assets/images/process_kneading.png" alt="Kneading the aromatic paste">
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="heritage-slide">
+            <div class="h-slide-text">
+              <div class="h-slide-step-num">03</div>
+              <div class="h-slide-tag">Step Three</div>
+              <h3 class="h-slide-title">Hand-Rolling</h3>
+              <p class="h-slide-desc">Skilled artisans roll the aromatic paste onto natural bamboo splints with expert precision. Each stick is formed with a perfect density — never compressed by machine.</p>
+              <div class="h-slide-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+            </div>
+            <div class="h-slide-img">
+              <img src="./assets/images/process_rolling.png" alt="Hand rolling the incense sticks">
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="heritage-slide">
+            <div class="h-slide-text">
+              <div class="h-slide-step-num">04</div>
+              <div class="h-slide-tag">Step Four</div>
+              <h3 class="h-slide-title">Sun Curing</h3>
+              <p class="h-slide-desc">Slowly air and sun-dried over days in the open Pondicherry breeze. This natural curing locks in the deep, resonant aromas that make our incense truly exceptional.</p>
+              <div class="h-slide-icon"><i class="fa-solid fa-sun"></i></div>
+            </div>
+            <div class="h-slide-img">
+              <img src="./assets/images/pondicherry.png" alt="Sun curing the finished incense">
+            </div>
+          </div>
+
         </div>
-        <div class="process-grid">
-          <div class="process-step reveal">
-            <div class="process-img-wrapper">
-              <img src="./assets/images/process_sourcing.png" alt="Sourcing">
-            </div>
-            <h4>1. Sourcing</h4>
-            <p style="font-size: 0.9rem;">Selecting only pure botanical resins, gums, and woods.</p>
-          </div>
-          <div class="process-step reveal reveal-delay-1">
-            <div class="process-img-wrapper">
-              <img src="./assets/images/process_kneading.png" alt="Kneading">
-            </div>
-            <h4>2. Kneading</h4>
-            <p style="font-size: 0.9rem;">Blending ingredients into a fragrant, chemical-free dough.</p>
-          </div>
-          <div class="process-step reveal reveal-delay-2">
-            <div class="process-img-wrapper">
-              <img src="./assets/images/process_rolling.png" alt="Hand Rolling">
-            </div>
-            <h4>3. Hand-Rolling</h4>
-            <p style="font-size: 0.9rem;">Artisans skillfully roll the dough onto natural bamboo splints.</p>
-          </div>
-          <div class="process-step reveal reveal-delay-3">
-            <div class="process-img-wrapper">
-              <img src="./assets/images/pondicherry.png" alt="Sun Drying">
-            </div>
-            <h4>4. Sun Curing</h4>
-            <p style="font-size: 0.9rem;">Slowly air and sun-dried to lock in the deep, resonant aromas.</p>
-          </div>
+
+        <!-- Step indicator dots -->
+        <div class="heritage-dots" id="heritageDots">
+          <div class="h-dot active" data-idx="0"></div>
+          <div class="h-dot" data-idx="1"></div>
+          <div class="h-dot" data-idx="2"></div>
+          <div class="h-dot" data-idx="3"></div>
         </div>
       </div>
     </section>
+
 
     <!-- Video Section -->
     <section class="section video-section" style="background-color: var(--color-bg-dark); color: var(--color-bg); padding: 0;">
@@ -1928,6 +2178,87 @@
       if (nextBtn) {
         nextBtn.addEventListener('click', () => { goTo(current + 1); startTimer(); });
       }
+
+      startTimer();
+    })();
+    // ===== OUR HERITAGE — STEPS SLIDER =====
+    (function() {
+      const slides    = document.querySelectorAll('.heritage-slide');
+      const dots      = document.querySelectorAll('.h-dot');
+      const track     = document.getElementById('heritageSlides');
+      if (!track || slides.length === 0) return;
+
+      let current = 0;
+      let timer;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        track.style.transform = `translateX(-${current * 100}%)`;
+      }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 5000);
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { goTo(i); startTimer(); });
+      });
+
+      startTimer();
+    })();
+
+    // ===== REVEAL-LEFT + REVEAL-RIGHT OBSERVER =====
+    (function() {
+      const allReveal = document.querySelectorAll('.reveal-left, .reveal-right');
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.08 });
+        allReveal.forEach(el => obs.observe(el));
+        // Also immediately reveal any already-visible elements
+        setTimeout(() => {
+          allReveal.forEach(el => {
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('revealed');
+          });
+        }, 150);
+      } else {
+        allReveal.forEach(el => el.classList.add('revealed'));
+      }
+    })();
+
+    // ===== OUR STORY IMAGE SLIDER =====
+    (function() {
+      const slider = document.getElementById('storySlider');
+      const dots   = document.querySelectorAll('.story-dot');
+      if (!slider || !dots.length) return;
+      const slides = slider.querySelectorAll('.story-slide');
+      let current = 0;
+      let timer;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 4000);
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { goTo(i); startTimer(); });
+      });
 
       startTimer();
     })();
