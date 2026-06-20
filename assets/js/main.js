@@ -528,18 +528,32 @@ function initVideoPlayer() {
   const overlay = document.getElementById('videoOverlay');
   const playBtn = document.getElementById('playVideoBtn');
   const video = document.getElementById('processVideo');
+  const ytPlayer = document.getElementById('ytPlayer');
+  const ytPlayerWrap = document.getElementById('ytPlayerWrap');
 
-  if (!overlay || !video) return;
+  if (!overlay) return;
 
-  // When play is clicked, hide overlay and play the video
-  overlay.addEventListener('click', () => {
+  const startPlaying = () => {
     overlay.style.opacity = '0';
     setTimeout(() => {
       overlay.style.display = 'none';
-      video.muted = false; // Unmute for user to hear the audio
-      video.play().catch(err => console.log("Video play failed:", err));
+      if (video) {
+        video.muted = false;
+        video.play().catch(err => console.log("Video play failed:", err));
+      } else if (ytPlayer && ytPlayerWrap) {
+        ytPlayerWrap.style.display = 'block';
+        ytPlayer.src = "https://www.youtube.com/embed/ku4JxldtkI0?autoplay=1&mute=0&rel=0&showinfo=0&controls=1";
+      }
     }, 500); // match CSS transition duration
-  });
+  };
+
+  overlay.addEventListener('click', startPlaying);
+  if (playBtn) {
+    playBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      startPlaying();
+    });
+  }
 }
 
 // Ensure functions are called

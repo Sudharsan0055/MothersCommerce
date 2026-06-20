@@ -1454,6 +1454,31 @@
       .h-slide-step-num { font-size: 5rem; }
     }
 
+    /* Video section cover image */
+    .video-cover-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.45) saturate(1.1);
+      transition: filter 0.5s ease;
+    }
+    .video-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+    }
+    .video-cover-text {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
   </style>
 </head>
 <body>
@@ -1786,24 +1811,7 @@
     </section>
 
 
-    <!-- Video Section -->
-    <section class="section video-section" style="background-color: var(--color-bg-dark); color: var(--color-bg); padding: 0;">
-      <div class="video-container reveal">
-        <div class="video-overlay" id="videoOverlay">
-          <h2 style="color: var(--color-gold); font-size: 3rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); margin-bottom: 1rem;">Experience the Process</h2>
-          <button class="play-btn magnetic" id="playVideoBtn" aria-label="Play video">
-            <i class="fa-solid fa-play"></i>
-          </button>
-        </div>
-        <video id="processVideo" class="background-video" loop muted playsinline poster="./assets/images/process_sourcing.png">
-          <!-- Mixkit incense smoke video link -->
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-smoke-rising-slowly-from-an-incense-stick-34282-large.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </section>
-
-    <!-- Featured Ingredients -->
+    <!-- Featured Ingredients (Raw Materials) -->
     <section class="section">
       <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);" class="reveal">
@@ -1838,6 +1846,37 @@
         </div>
       </div>
     </section>
+
+    <!-- Video Section (YouTube) -->
+    <section class="section video-section" id="videoSection" style="background-color: var(--color-bg-dark); color: var(--color-bg); padding: 0;">
+      <div class="video-container reveal" id="videoContainer">
+        <!-- Cover overlay shown before play -->
+        <div class="video-overlay" id="videoOverlay">
+          <div class="video-cover-text">
+            <span class="video-eyebrow">Watch</span>
+            <h2 style="color: #faf8f5; font-size: 3rem; text-shadow: 2px 2px 12px rgba(0,0,0,0.7); margin-bottom: 1rem; font-family: var(--font-serif);">Experience the Process</h2>
+            <p style="color: rgba(250,248,245,0.75); font-size: 1.05rem; max-width: 450px; margin: 0 auto 1.5rem auto; line-height: 1.7;">Watch how our artisans craft every stick with pure botanical ingredients and centuries-old tradition.</p>
+          </div>
+          <button class="play-btn magnetic" id="playVideoBtn" aria-label="Play video">
+            <i class="fa-solid fa-play"></i>
+          </button>
+        </div>
+        <!-- Cover image shown until play -->
+        <img src="./assets/images/incense_premium_bundle_1781801699731.png" alt="Experience the incense making process" class="video-cover-img" id="videoCoverImg">
+        <!-- YouTube iframe injected on play -->
+        <div id="ytPlayerWrap" style="display:none; position:absolute; inset:0; z-index:5;">
+          <iframe id="ytPlayer"
+            width="100%" height="100%"
+            src=""
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="position:absolute; inset:0; width:100%; height:100%;">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Testimonials -->
     <section class="section" style="background-color: rgba(212, 175, 55, 0.05); border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
