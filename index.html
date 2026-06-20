@@ -1086,6 +1086,172 @@
         inset 0 6px 14px rgba(255,255,255,0.6);
     }
 
+    /* ===== FEATURED COLLECTIONS IMMERSIVE SLIDER ===== */
+    .feat-slider-outer {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      overflow: hidden;
+      background: #0a0f0a;
+    }
+
+    .feat-slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .feat-slide {
+      position: relative;
+      min-width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .feat-slide-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      transition: transform 7s ease-out;
+      z-index: 0;
+    }
+
+    .feat-slide.active .feat-slide-bg {
+      transform: scale(1.0);
+    }
+
+    .feat-slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(5, 10, 7, 0.88) 0%,
+        rgba(5, 10, 7, 0.68) 38%,
+        rgba(5, 10, 7, 0.15) 65%,
+        rgba(5, 10, 7, 0.05) 100%
+      );
+      z-index: 1;
+    }
+
+    .feat-slide-content {
+      position: absolute;
+      top: 50%;
+      left: 6%;
+      transform: translateY(-50%);
+      z-index: 2;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.045);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 20px;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    .feat-slide-tag {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .feat-slide-title {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: 500;
+      color: var(--color-bg);
+      line-height: 1.2;
+      margin: 0 0 1rem 0;
+    }
+
+    .feat-slide-desc {
+      font-size: 0.97rem;
+      color: rgba(250, 248, 245, 0.80);
+      line-height: 1.65;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .feat-slide-btn {
+      background: var(--color-gold) !important;
+      color: #111 !important;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.8rem !important;
+      border-radius: 50px !important;
+      border: none !important;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feat-slide-btn:hover {
+      background: #e8c730 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .feat-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(18, 30, 23, 0.7);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+      font-size: 1.1rem;
+    }
+
+    .feat-arrow:hover {
+      background: var(--color-gold);
+      color: #111;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.45);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .feat-prev { left: 22px; }
+    .feat-next { right: 22px; }
+
+    .feat-counter {
+      position: absolute;
+      bottom: 20px;
+      right: 26px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: rgba(250, 248, 245, 0.65);
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .feat-slider-outer { height: 460px; }
+      .feat-slide-content { left: 4%; max-width: 88%; padding: 1.8rem 1.5rem; }
+      .feat-slide-title { font-size: 1.7rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -1254,81 +1420,80 @@
         </div>
       </div>
     </section>
-
     <!-- Featured Collections Teaser -->
-    <section class="section">
-      <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-3xl); flex-wrap: wrap; gap: var(--space-md);" class="reveal">
+    <section class="section feat-collections-section" style="padding: 0; background: var(--color-bg);">
+      <!-- Section Header -->
+      <div class="container" style="padding-top: var(--space-4xl); padding-bottom: var(--space-2xl);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-md);" class="reveal">
           <div>
             <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Featured Collections</h2>
             <h2 style="font-size: 2.5rem;">Crafted Aroma Families</h2>
           </div>
           <a href="products.html" class="btn btn-outline">View Catalog</a>
         </div>
+      </div>
 
-        <div class="product-slider" style="padding-bottom: 2rem;">
-          <!-- Card 1 -->
-          <div class="product-teaser-card reveal">
-            <div class="product-teaser-img-wrapper">
-              <img src="./assets/images/incense_premium_bundle_1781801699731.png" alt="Natural Incense" class="product-teaser-img">
-            </div>
-            <div class="product-teaser-content">
-              <div class="product-tag">INCENSE</div>
-              <h3>Premium Hand-Rolled Incense</h3>
-              <p>Rich, woody, and floral fragrances. Made using traditional techniques for a clean and long-lasting burn.</p>
-              <div class="product-teaser-actions">
-                <a href="incense.html" class="btn btn-outline" style="padding: 0.5rem 1.2rem; width: 100%; text-align: center;">View Incense</a>
-              </div>
-            </div>
-          </div>
+      <!-- Full-width Immersive Slider -->
+      <div class="feat-slider-outer reveal">
+        <div class="feat-slider-track" id="featSlider">
 
-          <!-- Card 2 -->
-          <div class="product-teaser-card reveal reveal-delay-1">
-            <div class="product-teaser-img-wrapper">
-              <img src="./assets/images/incense_cones_aesthetic_1781801710438.png" alt="Incense Cones" class="product-teaser-img">
-            </div>
-            <div class="product-teaser-content">
-              <div class="product-tag">CONES</div>
-              <h3>Aromatic Incense Cones</h3>
-              <p>Compact and potent. Our natural cones deliver an intense burst of pure botanical aroma for your space.</p>
-              <div class="product-teaser-actions">
-                <a href="cones.html" class="btn btn-outline" style="padding: 0.5rem 1.2rem; width: 100%; text-align: center;">View Cones</a>
-              </div>
+          <!-- Slide 1: Incense -->
+          <div class="feat-slide">
+            <img src="./assets/images/incense_premium_bundle_1781801699731.png" alt="Natural Incense" class="feat-slide-bg">
+            <div class="feat-slide-overlay"></div>
+            <div class="feat-slide-content">
+              <div class="feat-slide-tag">Incense</div>
+              <h2 class="feat-slide-title">Premium Hand-Rolled<br>Incense</h2>
+              <p class="feat-slide-desc">Rich, woody, and floral fragrances. Made using traditional techniques for a clean and long-lasting burn.</p>
+              <a href="incense.html" class="btn feat-slide-btn">Explore Collection</a>
             </div>
           </div>
 
-          <!-- Card 3 -->
-          <div class="product-teaser-card reveal reveal-delay-2">
-            <div class="product-teaser-img-wrapper">
-              <img src="./assets/images/essential_oils_bottles_1781801723388.png" alt="Perfume Oils" class="product-teaser-img">
-            </div>
-            <div class="product-teaser-content">
-              <div class="product-tag">OILS</div>
-              <h3>Perfume & Essential Oils</h3>
-              <p>Highly concentrated natural oils. Perfect for diffusers, personal fragrance, and holistic healing.</p>
-              <div class="product-teaser-actions">
-                <a href="essential-oil.html" class="btn btn-outline" style="padding: 0.5rem 1.2rem; width: 100%; text-align: center;">View Oils</a>
-              </div>
+          <!-- Slide 2: Cones -->
+          <div class="feat-slide">
+            <img src="./assets/images/incense_cones_aesthetic_1781801710438.png" alt="Incense Cones" class="feat-slide-bg">
+            <div class="feat-slide-overlay"></div>
+            <div class="feat-slide-content">
+              <div class="feat-slide-tag">Cones</div>
+              <h2 class="feat-slide-title">Aromatic Incense<br>Cones</h2>
+              <p class="feat-slide-desc">Compact and potent. Our natural cones deliver an intense burst of pure botanical aroma for your space.</p>
+              <a href="cones.html" class="btn feat-slide-btn">Explore Collection</a>
             </div>
           </div>
-          
-          <!-- Card 4 -->
-          <div class="product-teaser-card reveal reveal-delay-3">
-            <div class="product-teaser-img-wrapper">
-              <img src="./assets/images/mandala_wall_tapestry_1781801736289.png" alt="Tapestry" class="product-teaser-img">
-            </div>
-            <div class="product-teaser-content">
-              <div class="product-tag">TAPESTRY</div>
-              <h3>Artisanal Wall Tapestries</h3>
-              <p>Beautiful, intricately designed fabrics to adorn your walls and create a spiritual ambiance.</p>
-              <div class="product-teaser-actions">
-                <a href="tapestry.html" class="btn btn-outline" style="padding: 0.5rem 1.2rem; width: 100%; text-align: center;">View Tapestry</a>
-              </div>
+
+          <!-- Slide 3: Oils -->
+          <div class="feat-slide">
+            <img src="./assets/images/essential_oils_bottles_1781801723388.png" alt="Perfume & Essential Oils" class="feat-slide-bg">
+            <div class="feat-slide-overlay"></div>
+            <div class="feat-slide-content">
+              <div class="feat-slide-tag">Oils</div>
+              <h2 class="feat-slide-title">Perfume &amp; Essential<br>Oils</h2>
+              <p class="feat-slide-desc">Highly concentrated natural oils. Perfect for diffusers, personal fragrance, and holistic healing.</p>
+              <a href="essential-oil.html" class="btn feat-slide-btn">Explore Collection</a>
             </div>
           </div>
+
+          <!-- Slide 4: Tapestry -->
+          <div class="feat-slide">
+            <img src="./assets/images/mandala_wall_tapestry_1781801736289.png" alt="Artisanal Tapestry" class="feat-slide-bg">
+            <div class="feat-slide-overlay"></div>
+            <div class="feat-slide-content">
+              <div class="feat-slide-tag">Tapestry</div>
+              <h2 class="feat-slide-title">Artisanal Wall<br>Tapestries</h2>
+              <p class="feat-slide-desc">Beautiful, intricately designed fabrics to adorn your walls and create a spiritual ambiance.</p>
+              <a href="tapestry.html" class="btn feat-slide-btn">Explore Collection</a>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Arrow Navigation (hidden) -->
+        <button class="feat-arrow feat-prev" id="featPrev" aria-label="Previous" style="display:none;"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="feat-arrow feat-next" id="featNext" aria-label="Next" style="display:none;"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
     </section>
+
+
 
     <!-- The Artisanal Process -->
     <section class="section" style="background-color: var(--color-surface);">
@@ -1726,26 +1891,47 @@
       setTimeout(resize, 2000);
     })();
 
-    // ===== EXTEND REVEAL TO INCLUDE reveal-left + reveal-right =====
-    document.addEventListener('DOMContentLoaded', () => {
-      const allReveal = document.querySelectorAll('.reveal-left, .reveal-right');
-      if ('IntersectionObserver' in window) {
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
-          });
-        }, { threshold: 0.05 });
-        allReveal.forEach(el => obs.observe(el));
-        setTimeout(() => {
-          allReveal.forEach(el => {
-            const r = el.getBoundingClientRect();
-            if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('revealed');
-          });
-        }, 150);
-      } else {
-        allReveal.forEach(el => el.classList.add('revealed'));
+    // ===== FEATURED COLLECTIONS IMMERSIVE SLIDER =====
+    (function() {
+      const track = document.getElementById('featSlider');
+      const prevBtn = document.getElementById('featPrev');
+      const nextBtn = document.getElementById('featNext');
+      const counter = document.getElementById('featCounter');
+      if (!track) return;
+
+      const slides = track.querySelectorAll('.feat-slide');
+      const total = slides.length;
+      let current = 0;
+      let timer;
+
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        current = (idx + total) % total;
+        slides[current].classList.add('active');
+        track.style.transform = `translateX(-${current * 100}%)`;
+        if (counter) counter.textContent = `${pad(current + 1)} / ${pad(total)}`;
       }
-    });
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 6000);
+      }
+
+      // Init first slide
+      slides[0].classList.add('active');
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+      }
+
+      startTimer();
+    })();
+
   </script>
 </body>
 </html>
