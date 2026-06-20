@@ -38,9 +38,12 @@ function initNavigation() {
 
   // Mobile menu toggle
   if (toggle && mobileMenu) {
+    const headerEl = document.querySelector('.header');
+
     toggle.addEventListener('click', () => {
       toggle.classList.toggle('open');
       mobileMenu.classList.toggle('open');
+      if (headerEl) headerEl.classList.toggle('menu-open');
       
       // Prevent scrolling when menu is open
       if (mobileMenu.classList.contains('open')) {
@@ -56,6 +59,7 @@ function initNavigation() {
       link.addEventListener('click', () => {
         toggle.classList.remove('open');
         mobileMenu.classList.remove('open');
+        if (headerEl) headerEl.classList.remove('menu-open');
         document.body.style.overflow = '';
       });
     });

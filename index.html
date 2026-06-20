@@ -10,7 +10,7 @@
   
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="./assets/css/variables.css?v=10">
-  <link rel="stylesheet" href="./assets/css/styles.css?v=13">
+  <link rel="stylesheet" href="./assets/css/styles.css?v=14">
   
   <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -737,7 +737,7 @@
     /* Our Story Slider Styling */
     .story-slider-wrapper {
       position: relative;
-      height: 500px;
+      height: 100%;
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
@@ -1153,7 +1153,7 @@
     .feat-slide-content {
       position: absolute;
       top: 50%;
-      left: 6%;
+      left: max(5vw, calc((100vw - 1280px) / 2));
       transform: translateY(-50%);
       z-index: 2;
       max-width: 400px;
@@ -1261,7 +1261,7 @@
 
     @media (max-width: 768px) {
       .feat-slider-outer { height: 460px; }
-      .feat-slide-content { left: 4%; max-width: 88%; padding: 1.8rem 1.5rem; }
+      .feat-slide-content { left: 5%; max-width: 88%; padding: 1.8rem 1.5rem; }
       .feat-slide-title { font-size: 1.7rem; }
     }
 
@@ -1335,7 +1335,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 4rem 3.5rem 4rem 6%;
+      padding: 4rem 3.5rem 4rem max(5vw, calc((100vw - 1280px) / 2));
       gap: 1.5rem;
     }
     .h-slide-step-num {
@@ -1412,7 +1412,7 @@
     .heritage-dots {
       position: absolute;
       bottom: 24px;
-      left: 6%;
+      left: max(5vw, calc((100vw - 1280px) / 2));
       display: flex;
       gap: 10px;
       z-index: 10;
@@ -2016,7 +2016,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="./assets/js/main.js?v=13"></script>
+  <script src="./assets/js/main.js?v=14"></script>
   <script>
     // ===== CINEMATIC PARTICLE SYSTEM =====
     (function() {

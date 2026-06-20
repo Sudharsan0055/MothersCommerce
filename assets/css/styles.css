@@ -1013,3 +1013,27 @@ a {
   margin-bottom: var(--space-lg);
   font-size: 1.2rem;
 }
+
+/* Mobile Menu Open State Visibility Overrides */
+.header.menu-open {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+.header.menu-open::after {
+  display: none !important; /* Hide scrolled bottom gold line */
+}
+
+.header.menu-open .logo-text {
+  color: var(--color-primary) !important;
+}
+
+.header.menu-open .logo-text span {
+  color: var(--color-gold) !important;
+}
+
+.header.menu-open .mobile-nav-toggle span {
+  background-color: var(--color-primary) !important;
+}
+
