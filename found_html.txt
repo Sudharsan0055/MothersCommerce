@@ -1,0 +1,153 @@
+The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-19T15:51:07Z sender=7d2e76b8-bf1e-4874-aed7-9117796e256f/task-457 priority=MESSAGE_PRIORITY_HIGH content=Task id "7d2e76b8-bf1e-4874-aed7-9117796e256f/task-457" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+  index.html:440:    .testimonial-author { font-weight: 600; color: var(--color-primary); }
+  index.html:441:    .testimonial-company { font-size: 0.85rem; color: var(--color-terracotta); text-transform: 
+uppercase; letter-spacing: 0.05em; }
+  index.html:442:
+> index.html:443:    /* Wholesale CTA */
+> index.html:444:    .wholesale-cta {
+  index.html:445:      position: relative;
+  index.html:446:      border-radius: var(--radius-lg);
+  index.html:447:      overflow: hidden;
+  index.html:832:    <!-- Shop CTA -->
+  index.html:833:    <section class="section">
+  index.html:834:      <div class="container">
+> index.html:835:        <div class="wholesale-cta reveal parallax-wrapper">
+> index.html:836:          <img src="./assets/images/b2b_wholesale_cta.png" alt="Shop Collection" class="cta-bg 
+parallax-img" data-speed="0.1">
+  index.html:837:          <div class="cta-overlay"></div>
+  index.html:838:          <div class="cta-content">
+  index.html:839:            <h2 class="text-reveal-line">Ready to Transform Your Space?</h2>
+
+
+
+
+Log: file:///C:/Users/kamar/.gemini/antigravity-ide/brain/7d2e76b8-bf1e-4874-aed7-9117796e256f/.system_generated/tasks/task-457.log
+</SYSTEM_MESSAGE>The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-19T16:08:30Z sender=7d2e76b8-bf1e-4874-aed7-9117796e256f/task-624 priority=MESSAGE_PRIORITY_HIGH content=Task id "7d2e76b8-bf1e-4874-aed7-9117796e256f/task-624" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+        </div>
+      </section>
+  
+      <!-- Shop CTA -->
+      <section class="section">
+        <div class="container">
+          <div class="wholesale-cta reveal parallax-wrapper">
+            <img src="./assets/images/b2b_wholesale_cta.png" alt="Shop Collection" class="cta-bg parallax-img" 
+data-speed="0.1">
+            <div class="cta-overlay"></div>
+            <div class="cta-content">
+>             <h2 class="text-reveal-line">Ready to Transform Your Space?</h2>
+              <p>Explore our complete catalog of natural incense, cones, and oils today.</p>
+              <a href="products.html" class="btn btn-terracotta magnetic" style="padding: 1rem 2rem; font-size: 
+1.1rem; border-radius: 50px;">Shop Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- Counters Section -->
+      <section class="section counters-section">
+        <div class="container">
+
+
+
+
+Log: file:///C:/Users/kamar/.gemini/antigravity-ide/brain/7d2e76b8-bf1e-4874-aed7-9117796e256f/.system_generated/tasks/task-624.log
+</SYSTEM_MESSAGE>The following is a <SYSTEM_MESSAGE> not actually sent by the user. It is provided by the system as important information to pay attention to.
+
+<SYSTEM_MESSAGE>
+[Message] timestamp=2026-06-19T16:08:41Z sender=7d2e76b8-bf1e-4874-aed7-9117796e256f/task-628 priority=MESSAGE_PRIORITY_HIGH content=Task id "7d2e76b8-bf1e-4874-aed7-9117796e256f/task-628" finished with result:
+
+				The command completed successfully.
+				Output:
+				
+      .stars { color: var(--color-gold); margin-bottom: var(--space-sm); font-size: 1.1rem; }
+      .testimonial-text { font-style: italic; margin-bottom: var(--space-md); color: var(--color-text); line-height: 
+1.6; }
+      .testimonial-author { font-weight: 600; color: var(--color-primary); }
+      .testimonial-company { font-size: 0.85rem; color: var(--color-terracotta); text-transform: uppercase; 
+letter-spacing: 0.05em; }
+  
+>     /* Wholesale CTA */
+>     .wholesale-cta {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        margin-top: var(--space-2xl);
+      }
+>     .cta-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+>     .cta-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(30, 58, 43, 0.85);
+        z-index: 2;
+      }
+>     .cta-content {
+        position: relative;
+        z-index: 3;
+        padding: var(--space-4xl) var(--space-xl);
+        text-align: center;
+        color: var(--color-bg);
+      }
+>     .cta-content h2 { color: var(--color-gold); font-size: 2.8rem; margin-bottom: var(--space-sm); }
+>     .cta-content p { font-size: 1.2rem; max-width: 600px; margin: 0 auto var(--space-xl) auto; opacity: 0.9; }
+  
+      /* Parallax & Magnetic Styles */
+      .parallax-wrapper {
+        overflow: hidden;
+        position: relative;
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+  
+        <div class="nav-actions">
+>         <a href="contact.html" class="btn btn-outline" id="navCta">Enquire Now</a>
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+>     <!-- Shop CTA -->
+      <section class="section">
+        <div class="container">
+>         <div class="wholesale-cta reveal parallax-wrapper">
+>           <img src="./assets/images/b2b_wholesale_cta.png" alt="Shop Collection" class="cta-bg parallax-img" 
+data-speed="0.1">
+>           <div class="cta-overlay"></div>
+>           <div class="cta-content">
+              <h2 class="text-reveal-line">Ready to Transform Your Space?</h2>
+              <p>Explore our complete catalog of natural incense, cones, and oils today.</p>
+              <a href="products.html" class="btn btn-terracotta magnetic" style="padding: 1rem 2rem; font-size: 
+1.1rem; border-radius: 50px;">Shop Now</a>
+            </div>
+          </div>
+
+
+
+
+Log: file:///C:/Users/kamar/.gemini/antigravity-ide/brain/7d2e76b8-bf1e-4874-aed7-9117796e256f/.system_generated/tasks/task-628.log
+</SYSTEM_MESSAGE>

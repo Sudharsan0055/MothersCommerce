@@ -1,0 +1,27 @@
+Step 466: 
+  Tool: multi_replace_file_content
+  Desc: "Restore CTA styling and script"
+  Instr: "Restore the CTA section styling inside the head, replace the HTML for the CTA, and add the counter animation script at the bottom."
+Step 467: 
+Step 486: 
+Step 1136: 
+  Tool: replace_file_content
+  Desc: "Restore proper glassmorphism layout and styling for Wholesale CTA in index.html"
+  Instr: "Replace the outdated wholesale CTA inline styles with a modern glassmorphism flex layout."
+Step 1205: 
+Step 1269: 
+Step 1393: 
+Step 1497: 
+Step 1525: 
+Step 1531: 
+Step 1564: 
+Step 1660: 
+  Tool: multi_replace_file_content
+  Desc: "Updating CSS/JS version cache busters to v4 so the browser loads the latest versions of styles.css and main.js, and removing the outdated hero-image-wrapper and hero-image inline CSS rules that are no longer used (the new slider uses hero-slider-wrapper class instead)."
+  Instr: "Update version busters to v4 and remove old hero-image-wrapper CSS that was for the original single image (before slider was added)"
+Step 1661: 
+Step 1729: 
+  Tool: multi_replace_file_content
+  Desc: "Removing the reveal class from hero content and slider wrapper (they're above the fold and shouldn't start hidden). Adding direct CSS fade-in animations instead of JS-triggered reveals for above-fold hero content, ensuring the hero is always visible regardless of JS timing. Also fixing the scroll event handler to use optional chaining to prevent crashes."
+  Instr: "Fix hero section visibility - remove reveal class from hero elements that should be immediately visible, add CSS keyframe animations instead. Also add hero-specific inline animation CSS."
+Step 1730: 

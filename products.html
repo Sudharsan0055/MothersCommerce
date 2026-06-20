@@ -440,36 +440,261 @@
     .testimonial-author { font-weight: 600; color: var(--color-primary); }
     .testimonial-company { font-size: 0.85rem; color: var(--color-terracotta); text-transform: uppercase; letter-spacing: 0.05em; }
 
-    /* Wholesale CTA */
-    .wholesale-cta {
+    /* Animated & Glassmorphic CTA */
+    .wholesale-cta-animated {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
       margin-top: var(--space-2xl);
+      background: #0f1c14; /* Fallback */
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      transition: border-color 0.5s ease, box-shadow 0.5s ease;
+      padding: var(--space-2xl);
     }
-    .cta-bg {
+
+    .wholesale-cta-animated:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 0 35px 80px rgba(212, 175, 55, 0.15), 0 25px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Gradient Mesh Background Animation */
+    .cta-mesh-bg {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      background: radial-gradient(circle at 20% 30%, rgba(30, 58, 43, 0.9), transparent 60%),
+                  radial-gradient(circle at 80% 70%, rgba(194, 125, 86, 0.45), transparent 70%),
+                  radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.2), transparent 50%),
+                  radial-gradient(circle at 10% 80%, rgba(30, 58, 43, 0.9), transparent 60%),
+                  #0b140f;
+      background-size: 200% 200%;
       z-index: 1;
+      animation: cta-mesh-shift 15s ease infinite alternate;
     }
-    .cta-overlay {
+
+    @keyframes cta-mesh-shift {
+      0% {
+        background-position: 0% 0%;
+      }
+      50% {
+        background-position: 100% 100%;
+      }
+      100% {
+        background-position: 0% 100%;
+      }
+    }
+
+    /* Floating Golden Particles */
+    .cta-particles-container {
       position: absolute;
       inset: 0;
-      background: rgba(30, 58, 43, 0.85);
       z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
     }
-    .cta-content {
+
+    .cta-particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 230, 150, 0.85) 0%, rgba(212, 175, 55, 0) 70%);
+      filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.8));
+      animation: cta-particle-rise linear infinite;
+    }
+
+    /* Define individual particle styles */
+    .cta-particle:nth-child(1) { left: 10%; width: 6px; height: 6px; bottom: -20px; animation-duration: 8s; animation-delay: 0s; --opacity: 0.6; }
+    .cta-particle:nth-child(2) { left: 25%; width: 12px; height: 12px; bottom: -20px; animation-duration: 12s; animation-delay: 2s; --opacity: 0.4; }
+    .cta-particle:nth-child(3) { left: 40%; width: 8px; height: 8px; bottom: -20px; animation-duration: 9s; animation-delay: 4s; --opacity: 0.5; }
+    .cta-particle:nth-child(4) { left: 55%; width: 10px; height: 10px; bottom: -20px; animation-duration: 11s; animation-delay: 1s; --opacity: 0.6; }
+    .cta-particle:nth-child(5) { left: 70%; width: 5px; height: 5px; bottom: -20px; animation-duration: 7s; animation-delay: 3s; --opacity: 0.7; }
+    .cta-particle:nth-child(6) { left: 85%; width: 14px; height: 14px; bottom: -20px; animation-duration: 14s; animation-delay: 5s; --opacity: 0.3; }
+    .cta-particle:nth-child(7) { left: 95%; width: 7px; height: 7px; bottom: -20px; animation-duration: 10s; animation-delay: 2s; --opacity: 0.5; }
+    .cta-particle:nth-child(8) { left: 18%; width: 9px; height: 9px; bottom: -20px; animation-duration: 10.5s; animation-delay: 6s; --opacity: 0.45; }
+    .cta-particle:nth-child(9) { left: 63%; width: 6px; height: 6px; bottom: -20px; animation-duration: 8.5s; animation-delay: 7s; --opacity: 0.55; }
+    .cta-particle:nth-child(10) { left: 78%; width: 11px; height: 11px; bottom: -20px; animation-duration: 13s; animation-delay: 0.5s; --opacity: 0.35; }
+
+    @keyframes cta-particle-rise {
+      0% {
+        transform: translateY(0) scale(1) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--opacity, 0.6);
+      }
+      90% {
+        opacity: var(--opacity, 0.6);
+      }
+      100% {
+        transform: translateY(-500px) scale(0.6) translateX(40px);
+        opacity: 0;
+      }
+    }
+
+    /* Glowing Aurora Orbs */
+    .cta-aurora-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 2;
+      opacity: 0.3;
+      pointer-events: none;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    .cta-orb-1 {
+      top: -10%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, rgba(212, 175, 55, 0) 70%);
+      animation: cta-orb-drift-1 12s ease-in-out infinite alternate;
+    }
+
+    .cta-orb-2 {
+      bottom: -10%;
+      right: -10%;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(194, 125, 86, 0.4) 0%, rgba(194, 125, 86, 0) 70%);
+      animation: cta-orb-drift-2 15s ease-in-out infinite alternate;
+    }
+
+    .wholesale-cta-animated:hover .cta-aurora-orb {
+      opacity: 0.45;
+    }
+
+    @keyframes cta-orb-drift-1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 30px) scale(1.15); }
+    }
+
+    @keyframes cta-orb-drift-2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-60px, -40px) scale(1.2); }
+    }
+
+    /* Luxury Glass Card Content container */
+    .cta-glass-card {
       position: relative;
       z-index: 3;
-      padding: var(--space-4xl) var(--space-xl);
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5.5rem var(--space-2xl); /* 88px top and bottom, 32px left and right */
+      background: rgba(15, 28, 20, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
       text-align: center;
-      color: var(--color-bg);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.5s ease, box-shadow 0.5s ease;
+      overflow: hidden;
     }
-    .cta-content h2 { color: var(--color-gold); font-size: 2.8rem; margin-bottom: var(--space-sm); }
-    .cta-content p { font-size: 1.2rem; max-width: 600px; margin: 0 auto var(--space-xl) auto; opacity: 0.9; }
+
+    .cta-glass-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 45%,
+        rgba(255, 255, 255, 0.1) 48%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 52%,
+        transparent 55%
+      );
+      transform: rotate(-45deg);
+      transition: transform 0.8s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .wholesale-cta-animated:hover .cta-glass-card {
+      transform: translateY(-5px);
+      border-color: rgba(212, 175, 55, 0.25);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.05);
+    }
+
+    .wholesale-cta-animated:hover .cta-glass-card::before {
+      transform: translate(50%, 50%) rotate(-45deg);
+    }
+
+    .cta-glass-card h2 {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      margin-bottom: 2rem; /* 32px spacing */
+      color: var(--color-bg);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-glass-card h2 span {
+      background: linear-gradient(135deg, #f9df9f 0%, #d4af37 50%, #aa801e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cta-glass-card p {
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 3rem auto; /* 48px bottom spacing */
+      color: rgba(250, 248, 245, 0.85);
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-glass-card .btn-cta-gold {
+      background: linear-gradient(135deg, #d4af37 0%, #aa801e 100%);
+      color: #0f1c14 !important;
+      padding: 1rem 2.5rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      border-radius: 50px;
+      border: 1px solid var(--color-gold);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 2;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .cta-glass-card .btn-cta-gold:hover {
+      background: linear-gradient(135deg, #f9df9f 0%, #d4af37 100%);
+      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    @media (max-width: 768px) {
+      .wholesale-cta-animated {
+        min-height: auto;
+        padding: var(--space-xl) var(--space-md);
+      }
+      .cta-glass-card {
+        padding: 3.5rem var(--space-md);
+      }
+      .cta-glass-card h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+      }
+      .cta-glass-card p {
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+      }
+    }
 
     /* Parallax & Magnetic Styles */
     .parallax-wrapper {
@@ -510,7 +735,7 @@
   <header class="header header-transparent" id="mainHeader">
     <div class="container header-container">
       <a href="index.html" class="logo-wrapper" id="headerLogo">
-        <div class="logo-icon">M</div>
+        <img src="./assets/images/lotus-logo-golden.webp" alt="Mothers Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
         <div class="logo-text">
           Mothers Fragrances
           <span>Pure Aromas</span>
@@ -615,13 +840,26 @@
     <!-- Wholesale CTA Section -->
     <section class="section" style="padding-top: 0;">
       <div class="container">
-        <div class="wholesale-cta reveal">
-          <img src="./assets/images/b2b_wholesale_cta.png" alt="Wholesale" class="cta-bg" onerror="this.src='./assets/images/process_sourcing.png'">
-          <div class="cta-overlay"></div>
-          <div class="cta-content">
-            <h2>Partner With Us</h2>
-            <p>We supply premium, fair-trade incense to boutiques and retailers worldwide. Interested in bulk orders?</p>
-            <a href="contact.html" class="btn btn-outline" style="border-color: var(--color-gold); color: var(--color-gold); font-size: 1.1rem; padding: 1rem 2rem;">Enquire Wholesale Pricing</a>
+        <div class="wholesale-cta-animated reveal">
+          <div class="cta-mesh-bg"></div>
+          <div class="cta-aurora-orb cta-orb-1"></div>
+          <div class="cta-aurora-orb cta-orb-2"></div>
+          <div class="cta-particles-container">
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+            <div class="cta-particle"></div>
+          </div>
+          <div class="cta-glass-card">
+            <h2>Partner <span>With Us</span></h2>
+            <p>We supply premium, fair-trade incense, cones, and essential oils to boutiques and retailers worldwide. Interested in bulk wholesale orders?</p>
+            <a href="contact.html" class="btn-cta-gold magnetic">Enquire Wholesale Pricing</a>
           </div>
         </div>
       </div>
@@ -632,7 +870,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="logo-wrapper">
-            <div class="logo-icon">M</div>
+            <img src="./assets/images/lotus-logo-golden.webp" alt="Mothers Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
             <div class="logo-text">Mothers Fragrances</div>
           </a>
           <p style="margin-top: var(--space-sm);">Manufacturers of 100% botanical, chemical-free incense sticks, cones, and essential oils. Sourced from nature, rolled by hand.</p>

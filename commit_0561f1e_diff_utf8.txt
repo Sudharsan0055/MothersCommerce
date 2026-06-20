@@ -1,0 +1,59 @@
+=== COMMIT 0561f1e SHOW ===
+commit 0561f1e674544edfb27d12f1e93811f61e0647c4
+Author: Kamaraj VS <kamarajvbgd@gmail.com>
+Date:   Fri Jun 19 10:23:14 2026 +0530
+
+    feat: added dynamic hero slider and video section to landing page
+
+diff --git a/index.html b/index.html
+index 6574c4f..8ec4aa5 100644
+--- a/index.html
++++ b/index.html
+@@ -559,9 +559,20 @@
+             <a href="about-us.html" class="btn btn-outline magnetic" style="color: var(--color-bg); border-color: rgba(250, 248, 245, 0.4);">About Us</a>
+           </div>
+         </div>
+-        <div class="hero-image-wrapper reveal reveal-delay-2 parallax-wrapper">
+-          <img src="./assets/images/hero_incense_mood_1781801686159.png" alt="Aesthetic setup of handcrafted natural incense burning with elegant smoke" class="hero-image parallax-img" data-speed="0.1">
++        <div class="hero-slider-wrapper reveal reveal-delay-2 parallax-wrapper">
++          <div class="hero-slider" id="heroSlider">
++            <img src="./assets/images/hero_incense_mood_1781801686159.png" alt="Aesthetic setup of handcrafted natural incense burning with elegant smoke" class="hero-slide active parallax-img" data-speed="0.1">
++            <img src="./assets/images/essential_oils_bottles_1781801723388.png" alt="Pure essential oils" class="hero-slide parallax-img" data-speed="0.1">
++            <img src="./assets/images/incense_cones_aesthetic_1781801710438.png" alt="Natural botanical cones" class="hero-slide parallax-img" data-speed="0.1">
++          </div>
+           <div class="hero-shape"></div>
++          
++          <!-- Slider Controls -->
++          <div class="hero-slider-controls">
++            <button class="slider-dot active" data-index="0" aria-label="Slide 1"></button>
++            <button class="slider-dot" data-index="1" aria-label="Slide 2"></button>
++            <button class="slider-dot" data-index="2" aria-label="Slide 3"></button>
++          </div>
+         </div>
+       </div>
+     </section>
+@@ -735,6 +746,23 @@
+       </div>
+     </section>
+ 
++    <!-- Video Section -->
++    <section class="section video-section" style="background-color: var(--color-bg-dark); color: var(--color-bg); padding: 0;">
++      <div class="video-container reveal">
++        <div class="video-overlay" id="videoOverlay">
++          <h2 style="color: var(--color-gold); font-size: 3rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); margin-bottom: 1rem;">Experience the Process</h2>
++          <button class="play-btn magnetic" id="playVideoBtn" aria-label="Play video">
++            <i class="fa-solid fa-play"></i>
++          </button>
++        </div>
++        <video id="processVideo" class="background-video" loop muted playsinline poster="./assets/images/process_sourcing.png">
++          <!-- Placeholder nature/smoke video link -->
++          <source src="https://cdn.pixabay.com/video/2021/08/25/86278-592864626_large.mp4" type="video/mp4">
++          Your browser does not support the video tag.
++        </video>
++      </div>
++    </section>
++
+     <!-- Featured Ingredients -->
+     <section class="section">
+       <div class="container">
+

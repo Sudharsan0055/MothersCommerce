@@ -1,0 +1,78 @@
+
+--- STEP 178 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Add a lotus logo instead of the 'M' logo"
+Instruction: "Replace the <div class=\"logo-icon\">M</div> in the header and footer with a lotus SVG icon."
+
+--- STEP 201 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Update logo to the selected AI generated image"
+Instruction: "Replace the lotus SVG inside the header and footer logo-wrapper with an img tag pointing to the new lotus-logo.png"
+
+--- STEP 232 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Use the original lotus logo from mothersfragrances.com and colorize it golden using CSS filter"
+Instruction: "Replace the lotus-logo.png references in the logo-wrapper with MF-logo-1.png and apply a CSS filter to make it golden."
+Chunk 0 [Lines 835-837]:
+      <a href="index.html" class="logo-wrapper" id="headerLogo">
+        <img src="./assets/images/MF-logo-1.png" alt="Lotus Logo" style="width: 50px; height: auto; filter: invert(75%) sepia(45%) saturate(600%) hue-rotate(5deg) brightness(95%) contrast(85%); margin-right: 10px;">
+        <div class="logo-text">
+Chunk 1 [Lines 1280-1282]:
+          <a href="index.html" class="logo-wrapper magnetic">
+            <img src="./assets/images/MF-logo-1.png" alt="Lotus Logo" style="width: 50px; height: auto; filter: invert(75%) sepia(45%) saturate(600%) hue-rotate(5deg) brightness(95%) contrast(85%); margin-right: 10px;">
+            <div class="logo-text">Mothers Fragrances</div>
+
+--- STEP 275 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Link to the live logo URL to bypass anti-bot blocking the download"
+Instruction: "Replace the local image source with the absolute URL for the MF-logo-1.png since the local file was an HTML anti-bot page."
+Chunk 0 [Lines 835-837]:
+      <a href="index.html" class="logo-wrapper" id="headerLogo">
+        <img src="https://mothersfragrances.com/wp-content/uploads/2022/12/MF-logo-1.png" alt="Lotus Logo" style="width: 50px; height: auto; filter: invert(75%) sepia(45%) saturate(600%) hue-rotate(5deg) brightness(95%) contrast(85%); margin-right: 10px;">
+        <div class="logo-text">
+Chunk 1 [Lines 1280-1282]:
+          <a href="index.html" class="logo-wrapper magnetic">
+            <img src="https://mothersfragrances.com/wp-content/uploads/2022/12/MF-logo-1.png" alt="Lotus Logo" style="width: 50px; height: auto; filter: invert(75%) sepia(45%) saturate(600%) hue-rotate(5deg) brightness(95%) contrast(85%); margin-right: 10px;">
+            <div class="logo-text">Mothers Fragrances</div>
+
+--- STEP 285 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Recreate the lotus logo using an inline SVG with golden colors."
+Instruction: "Replace the image tag for the logo with an inline SVG that draws a golden lotus."
+
+--- STEP 321 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Update index.html to use the generated golden webp image"
+Instruction: "Replace the inline SVG with an image tag pointing to the new lotus-logo-golden.webp"
+
+--- STEP 391 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Add golden logo and smoke animation to footer"
+Instruction: "Replace the logo 'M' with the new golden image, and add the smoke-container to the footer."
+
+--- STEP 550 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Replace broken img with inline golden lotus SVG"
+Instruction: "Replace the lotus-logo-golden.webp img tags in header and footer with a beautiful inline golden lotus SVG."
+
+--- STEP 1128 (multi_replace_file_content) ---
+Target: "c:\\Users\\kamar\\Downloads\\Mothers\\index.html"
+Description: "Incorporate logo images and footer smoke canvas in index.html"
+Instruction: "Replace the text-based logo-icons with the high-quality golden webp logo image and add the smoke canvas container under the footer opening tag."
+Chunk 0 [Lines 512-518]:
+      <a href="index.html" class="logo-wrapper" id="headerLogo">
+        <img src="./assets/images/lotus-logo-golden.webp" alt="Mothers Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
+        <div class="logo-text">
+          Mothers Fragrances
+          <span>Pure Aromas</span>
+        </div>
+      </a>
+Chunk 1 [Lines 873-874]:
+  <footer class="footer">
+    <canvas id="footer-smoke-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+    <div class="container">
+Chunk 2 [Lines 876-880]:
+          <a href="index.html" class="logo-wrapper">
+            <img src="./assets/images/lotus-logo-golden.webp" alt="Mothers Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
+            <div class="logo-text">Mothers Fragrances</div>
+          </a>
