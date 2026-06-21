@@ -500,6 +500,29 @@ function initWhySlider() {
 
 document.addEventListener('DOMContentLoaded', initWhySlider);
 
+/* --- Shop CTA Background Slider Logic --- */
+function initCtaSlider() {
+  const slides = document.querySelectorAll('.cta-bg-slide');
+  if (slides.length === 0) return;
+
+  let currentSlide = 0;
+  let slideInterval;
+
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+
+  function startInterval() {
+    slideInterval = setInterval(nextSlide, 6000); // 6 seconds per slide
+  }
+
+  startInterval();
+}
+
+document.addEventListener('DOMContentLoaded', initCtaSlider);
+
 /* --- Featured Collections Slider Logic --- */
 function initCollectionSlider() {
   const slider = document.getElementById('collectionSlider');

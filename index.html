@@ -10,7 +10,7 @@
   
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="./assets/css/variables.css?v=10">
-  <link rel="stylesheet" href="./assets/css/styles.css?v=17">
+  <link rel="stylesheet" href="./assets/css/styles.css?v=19">
   
   <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -707,80 +707,269 @@
       -webkit-backdrop-filter: blur(8px);
     }
 
-    /* Testimonials */
+    /* Testimonials Section */
+    .testimonials-section {
+      position: relative;
+      background: 
+        radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 90% 90%, rgba(194, 125, 86, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #FAF8F5 0%, #F6F2EC 100%) !important;
+      border-top: 1px solid rgba(212, 175, 55, 0.18);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      overflow: hidden;
+    }
+
+    /* Glowing ambient orbs for testimonials */
+    .t-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: tOrbFloat 14s ease-in-out infinite alternate;
+    }
+    .t-orb-1 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+      top: -10%; left: 5%;
+    }
+    .t-orb-2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(194, 125, 86, 0.05) 0%, transparent 70%);
+      bottom: -10%; right: 5%;
+      animation-delay: -7s;
+    }
+    @keyframes tOrbFloat {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-25px) scale(1.08); }
+    }
+
     .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: var(--space-xl);
-      margin-top: var(--space-xl);
-    }
-    .testimonial-card {
-      background: var(--color-bg);
-      padding: var(--space-xl);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
+      margin-top: var(--space-2xl);
       position: relative;
+      z-index: 1;
     }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.55) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.25) !important;
+      padding: var(--space-xl) var(--space-lg);
+      border-radius: 20px;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+
     .testimonial-card::before {
       content: '\f10d';
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
       position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 2rem;
-      color: rgba(212, 175, 55, 0.2);
+      top: 24px;
+      right: 24px;
+      font-size: 2.2rem;
+      color: rgba(212, 175, 55, 0.15);
+      transition: all 0.4s ease;
     }
-    .stars { color: var(--color-gold); margin-bottom: var(--space-sm); font-size: 1.1rem; }
-    .testimonial-text { font-style: italic; margin-bottom: var(--space-md); color: var(--color-text); line-height: 1.6; }
-    .testimonial-author { font-weight: 600; color: var(--color-primary); }
-    .testimonial-company { font-size: 0.85rem; color: var(--color-terracotta); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .testimonial-card:hover {
+      background: rgba(255, 255, 255, 0.85) !important;
+      transform: translateY(-8px);
+      border-color: rgba(212, 175, 55, 0.6) !important;
+      box-shadow: 
+        0 20px 40px rgba(212, 175, 55, 0.1),
+        0 15px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .testimonial-card:hover::before {
+      color: rgba(212, 175, 55, 0.35);
+      transform: translateY(-4px) scale(1.08);
+    }
+
+    .stars {
+      color: var(--color-gold);
+      margin-bottom: var(--space-sm);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover .stars {
+      transform: scale(1.04);
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-size: 1.05rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author-info {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: auto;
+      border-top: 1px solid rgba(212, 175, 55, 0.12);
+      padding-top: var(--space-md);
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(194, 125, 86, 0.15) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--color-gold);
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+    }
+
+    .testimonial-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: 1rem;
+    }
+
+    .testimonial-company {
+      font-size: 0.78rem;
+      color: var(--color-terracotta);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
 
     /* Wholesale CTA */
     .wholesale-cta {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      min-height: 480px;
+      min-height: 580px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: var(--space-3xl) var(--space-xl);
-      background-color: #050a07;
+      padding: var(--space-xl) var(--space-md);
+      background-color: #0c2618;
       margin-top: var(--space-2xl);
     }
-    .cta-bg {
+    .cta-bg-slider {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .cta-bg-slider .cta-bg-slide {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 1;
-      opacity: 0.55;
+      opacity: 0;
+      transition: opacity 1.8s ease-in-out, transform 8s ease-out;
+      transform: scale(1);
+    }
+    .cta-bg-slider .cta-bg-slide.active {
+      opacity: 0.75;
+      transform: scale(1.05);
     }
     .cta-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(5, 10, 7, 0.75) 100%);
+      background: radial-gradient(circle at center, rgba(30, 58, 43, 0.2) 0%, rgba(12, 38, 24, 0.7) 100%);
       z-index: 2;
+      pointer-events: none;
     }
+    
+    /* Glowing animated background orbs */
+    .cta-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 2;
+      opacity: 0.25;
+      pointer-events: none;
+      width: 280px;
+      height: 280px;
+      animation: cta-orb-drift 12s infinite alternate ease-in-out;
+    }
+    .cta-orb-1 {
+      top: -10%;
+      left: -10%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.45) 0%, rgba(212, 175, 55, 0) 70%);
+    }
+    .cta-orb-2 {
+      bottom: -10%;
+      right: -10%;
+      background: radial-gradient(circle, rgba(194, 125, 86, 0.45) 0%, rgba(194, 125, 86, 0) 70%);
+      animation-delay: -6s;
+    }
+    @keyframes cta-orb-drift {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -20px) scale(1.15); }
+      100% { transform: translate(-20px, 30px) scale(0.9); }
+    }
+
     .cta-content {
       position: relative;
       z-index: 3;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       padding: var(--space-2xl) var(--space-xl);
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(212, 175, 55, 0.25);
+      border: 1px solid rgba(212, 175, 55, 0.25) !important;
       max-width: 720px;
       width: 90%;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       text-align: center;
-      color: var(--color-bg);
+      color: #FFFFFF;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
-    .cta-content h2 { color: var(--color-gold); font-size: 2.6rem; margin-bottom: var(--space-sm); line-height: 1.2; }
-    .cta-content p { font-size: 1.15rem; max-width: 580px; margin: 0 auto var(--space-lg) auto; opacity: 0.9; }
+    .cta-content:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212, 175, 55, 0.55) !important;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+    }
+    .cta-content h2 { 
+      color: var(--color-gold-light); 
+      font-size: 2.8rem; 
+      margin-bottom: var(--space-sm); 
+      line-height: 1.25; 
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .cta-content p { 
+      font-size: 1.15rem; 
+      max-width: 580px; 
+      margin: 0 auto var(--space-lg) auto; 
+      opacity: 0.95; 
+      color: rgba(250, 248, 245, 0.95);
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
 
     /* Parallax & Magnetic Styles */
     .parallax-wrapper {
@@ -2036,30 +2225,55 @@
 
 
     <!-- Testimonials -->
-    <section class="section" style="background-color: rgba(212, 175, 55, 0.05); border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
-      <div class="container">
-        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto;" class="reveal">
+    <section class="section testimonials-section">
+      <!-- Ambient Orbs -->
+      <div class="t-orb t-orb-1"></div>
+      <div class="t-orb t-orb-2"></div>
+      
+      <div class="container" style="position: relative; z-index: 2;">
+        <div style="text-align: center; max-width: var(--max-width-narrow); margin: 0 auto var(--space-xl) auto;" class="reveal">
           <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Loved by Many</h2>
-          <h2 style="font-size: 2.5rem;">What Our Customers Say</h2>
+          <h2 style="font-size: 2.5rem; color: var(--color-primary);">What Our Customers Say</h2>
         </div>
+        
         <div class="testimonial-grid">
+          <!-- Card 1 -->
           <div class="testimonial-card reveal">
             <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <p class="testimonial-text">"Mothers Fragrances provides the highest quality natural incense I've ever burned. The aromas are distinctly premium and transform my home."</p>
-            <div class="testimonial-author">Sarah Jenkins</div>
-            <div class="testimonial-company">Verified Buyer</div>
+            <div class="testimonial-author-info">
+              <div class="testimonial-avatar">SJ</div>
+              <div class="testimonial-meta">
+                <span class="testimonial-author">Sarah Jenkins</span>
+                <span class="testimonial-company">Verified Buyer</span>
+              </div>
+            </div>
           </div>
+          
+          <!-- Card 2 -->
           <div class="testimonial-card reveal reveal-delay-1">
             <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <p class="testimonial-text">"Finding true hand-rolled, chemical-free incense is difficult. Mothers Fragrances is now my go-to for essential oils and meditation cones."</p>
-            <div class="testimonial-author">David Alistair</div>
-            <div class="testimonial-company">Verified Buyer</div>
+            <div class="testimonial-author-info">
+              <div class="testimonial-avatar">DA</div>
+              <div class="testimonial-meta">
+                <span class="testimonial-author">David Alistair</span>
+                <span class="testimonial-company">Verified Buyer</span>
+              </div>
+            </div>
           </div>
+          
+          <!-- Card 3 -->
           <div class="testimonial-card reveal reveal-delay-2">
             <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <p class="testimonial-text">"The tapestries are beautifully detailed and the fragrances are incredible. Highly recommend the sandalwood line!"</p>
-            <div class="testimonial-author">Emma Torres</div>
-            <div class="testimonial-company">Verified Buyer</div>
+            <div class="testimonial-author-info">
+              <div class="testimonial-avatar">ET</div>
+              <div class="testimonial-meta">
+                <span class="testimonial-author">Emma Torres</span>
+                <span class="testimonial-company">Verified Buyer</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2068,9 +2282,20 @@
     <!-- Shop CTA -->
     <section class="section">
       <div class="container">
-        <div class="wholesale-cta reveal parallax-wrapper">
-          <img src="./assets/images/b2b_wholesale_cta.png" alt="Shop Collection" class="cta-bg parallax-img" data-speed="0.1">
+        <div class="wholesale-cta reveal">
+          <!-- Background slider -->
+          <div class="cta-bg-slider" id="ctaSliderBg">
+            <img src="./assets/images/b2b_wholesale_cta.png" alt="Incense bundles" class="cta-bg-slide active">
+            <img src="./assets/images/incense_premium_bundle_1781801699731.png" alt="Premium incense bundle" class="cta-bg-slide">
+            <img src="./assets/images/mandala_wall_tapestry_1781801736289.png" alt="Mandala wall tapestry" class="cta-bg-slide">
+          </div>
+          <!-- Background overlay -->
           <div class="cta-overlay"></div>
+          
+          <!-- Glowing orbs -->
+          <div class="cta-orb cta-orb-1"></div>
+          <div class="cta-orb cta-orb-2"></div>
+
           <div class="cta-content">
             <h2 class="text-reveal-line">Ready to Transform Your Space?</h2>
             <p>Explore our complete catalog of natural incense, cones, and oils today.</p>
@@ -2160,7 +2385,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="./assets/js/main.js?v=18"></script>
+  <script src="./assets/js/main.js?v=19"></script>
   <script>
     // ===== CINEMATIC PARTICLE SYSTEM =====
     (function() {
