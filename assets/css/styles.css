@@ -1037,3 +1037,208 @@ a {
   background-color: var(--color-primary) !important;
 }
 
+/* --- Fragrances Showcase Section --- */
+.fragrances-showcase-section {
+  background: linear-gradient(180deg, #121413 0%, #1e3a2b 100%);
+  color: var(--color-bg);
+  padding: var(--space-4xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.fragrances-showcase-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fragrance-filters {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-bottom: var(--space-3xl);
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-filter {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(250, 248, 245, 0.7);
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-round);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-filter:hover {
+  border-color: var(--color-gold);
+  color: var(--color-bg);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.btn-filter.active {
+  border-color: var(--color-gold);
+  color: var(--color-gold-light);
+  background-color: rgba(212, 175, 55, 0.12);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+}
+
+.fragrance-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xl);
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+.fragrance-card {
+  background-color: rgba(26, 29, 27, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.fragrance-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+}
+
+.frag-img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background-color: #0f1210;
+}
+
+.frag-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0.85;
+}
+
+.fragrance-card:hover .frag-img-wrap img {
+  transform: scale(1.08);
+  opacity: 1;
+}
+
+.frag-card-content {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--space-xs);
+}
+
+.frag-cat-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+}
+
+.fragrance-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--color-bg);
+  margin: 0.1rem 0;
+  font-weight: 500;
+}
+
+.frag-desc {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(250, 248, 245, 0.75);
+  margin-bottom: var(--space-md);
+}
+
+.frag-explore-link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-gold);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: var(--transition-fast);
+  padding-top: var(--space-xs);
+}
+
+.frag-explore-link i {
+  transition: transform 0.3s ease;
+}
+
+.frag-explore-link:hover {
+  color: var(--color-gold-light);
+}
+
+.frag-explore-link:hover i {
+  transform: translateX(4px);
+}
+
+/* Hidden Class for Filter Animation */
+.fragrance-card.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .fragrance-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .fragrance-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .fragrance-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  .fragrances-showcase-section {
+    padding: var(--space-2xl) 0;
+  }
+  .fragrance-card h3 {
+    font-size: 1.3rem;
+  }
+}
+

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initInquiryDrawer();
   initParallax();
   initMagneticButtons();
+  initScentLibrary();
 });
 
 /* --- Navigation Header logic --- */
@@ -880,4 +881,48 @@ function initHeritageSmokeBubbles() {
   if (isVisible) {
     animate();
   }
+}
+
+/* --- Scent Library Filtering Logic --- */
+function initScentLibrary() {
+  const filterContainer = document.querySelector('.fragrance-filters');
+  const cards = document.querySelectorAll('.fragrance-card');
+  if (!filterContainer || !cards.length) return;
+
+  const buttons = filterContainer.querySelectorAll('.btn-filter');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filterValue = button.getAttribute('data-filter');
+
+      // Toggle active class on filter buttons
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Toggle hidden/revealed class on cards
+      cards.forEach(card => {
+        const isFeatured = card.getAttribute('data-featured') === 'true';
+        const cardCategory = card.getAttribute('data-category');
+
+        let show = false;
+        if (filterValue === 'all') {
+          show = true;
+        } else if (filterValue === 'featured') {
+          show = isFeatured;
+        } else {
+          show = (cardCategory === filterValue);
+        }
+
+        if (show) {
+          card.classList.remove('hidden');
+          // Ensure reveal animations trigger
+          setTimeout(() => {
+            card.classList.add('revealed');
+          }, 50);
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
 }
