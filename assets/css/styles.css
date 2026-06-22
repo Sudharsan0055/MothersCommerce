@@ -1242,3 +1242,116 @@ a {
   }
 }
 
+/* --- Products Page Collections Showcase --- */
+.product-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+.product-display-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-display-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(30, 58, 43, 0.15);
+  box-shadow: var(--shadow-md);
+}
+
+.product-display-img-wrap {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  background-color: #f7f5f0;
+}
+
+.product-display-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.product-display-card:hover .product-display-img-wrap img {
+  transform: scale(1.06);
+}
+
+.product-display-content {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--space-xs);
+}
+
+.product-display-content h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin: 0.2rem 0;
+  font-weight: 500;
+}
+
+.product-display-content p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  font-size: 0.98rem;
+  margin-bottom: var(--space-lg);
+}
+
+.product-display-actions {
+  margin-top: auto;
+  padding-top: var(--space-md);
+}
+
+/* Informational Notice Banner */
+.catalog-notice {
+  background-color: rgba(194, 125, 86, 0.07);
+  border-left: 4px solid var(--color-terracotta);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-3xl);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.catalog-notice i {
+  color: var(--color-terracotta);
+  font-size: 1.3rem;
+  margin-top: 2px;
+}
+
+@media (max-width: 1024px) {
+  .product-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  .product-display-img-wrap {
+    height: 250px;
+  }
+  .catalog-notice {
+    margin-bottom: var(--space-xl);
+  }
+}
+
