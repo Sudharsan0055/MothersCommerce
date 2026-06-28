@@ -760,10 +760,12 @@
     </div>
   </header>
   <main>
-    <section class="page-hero" style="background: linear-gradient(rgba(30, 58, 43, 0.8), rgba(30, 58, 43, 0.8)), url('./assets/images/incense_premium_bundle_1781801699731.png') no-repeat center/cover; color: var(--color-bg);">
-      <div class="container flex-center" style="flex-direction: column; text-align: center;">
-        <h1 class="text-reveal-line" style="color: var(--color-gold);">Our Products</h1>
-        <p class="reveal reveal-delay-1" style="max-width: 600px; margin: 0 auto; color: var(--color-bg);">Browse our entire catalog of purely botanical, hand-rolled incense and lifestyle products.</p>
+    <!-- Hero Section (Parallax) -->
+    <section class="hero" style="background-image: url('./assets/images/incense_premium_bundle_1781801699731.png'); height: 60vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; background-attachment: fixed;">
+      <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5);"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+        <h1 class="reveal" style="color: #ffffff; font-size: 4rem; margin-bottom: 1rem; text-shadow: 0 4px 12px rgba(0,0,0,0.5); font-family: var(--font-serif);">Our Collections</h1>
+        <p class="reveal reveal-delay-1" style="color: #f0f0f0; max-width: 600px; margin: 0 auto; font-size: 1.25rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">Browse our exclusive catalog of pure botanical incense, cones, and lifestyle products.</p>
       </div>
     </section>
     
