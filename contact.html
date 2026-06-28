@@ -3,345 +3,1829 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Export & Contact - Wholesale Inquiry | Mothers Commerce</title>
-  <meta name="description" content="Inquire about wholesale incense exporting to UK, USA, Australia, and EU. Custom specifications, secure maritime logistics, and compliant packaging.">
+  <title>Mothersfragrances | Premium Incense, Cones & Oils</title>
+  <meta name="description" content="Discover The Mother's Fragrances. Shop our premium collections of handcrafted Incense, Cones, Perfume Oils, Essential Oils, and Tapestries.">
+  <meta name="keywords" content="The Mother's Fragrances, incense, cones, tapestry, perfume oils, essential oils, handcrafted incense">
   <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
   
   <!-- CSS Stylesheets -->
-  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/variables.css?v=10">
   <link rel="stylesheet" href="./assets/css/styles.css?v=19">
   
   <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Cinzel for cinematic feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   
   <style>
-    /* Contact page specific styles */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: var(--space-3xl);
-      align-items: start;
+    /* Home page specific styles */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: #050a07;
+      padding-top: var(--header-height);
+    }
+
+    .hero-bg-slider {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-bg-slider .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out, transform 8s ease-out;
+      transform: scale(1);
+    }
+
+    .hero-bg-slider .hero-slide.active {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(5, 10, 7, 0.45) 0%, rgba(5, 10, 7, 0.8) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Centered Glassmorphic card */
+    .hero-container {
+      position: relative;
+      z-index: 3;
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card {
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: none;
+      padding: var(--space-xl) var(--space-md);
+      text-align: center;
+      box-shadow: none;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      animation: cinematicFadeUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s both;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      background-color: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--color-gold);
+      color: var(--color-gold-light);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-round);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-card h1 {
+      color: var(--color-bg);
+      font-size: 4rem;
+      line-height: 1.15;
+      font-weight: 500;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-card h1 span {
+      color: var(--color-gold);
+      font-style: italic;
+    }
+
+    .hero-card p {
+      color: rgba(250, 248, 245, 0.85);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 620px;
+      margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--space-sm);
+    }
+
+
+
+    .hero-shape {
+      position: absolute;
+      border: 2px solid var(--color-gold);
+      opacity: 0.3;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      height: 100%;
+      top: 20px;
+      left: 20px;
+      z-index: -1;
+    }
+
+
+    /* ===== CINEMATIC HERO ANIMATIONS ===== */
+
+    /* Particle Canvas */
+    #heroCanvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Glowing orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 2;
+      pointer-events: none;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    .hero-orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(194,125,86,0.35) 0%, transparent 70%);
+      top: -100px; right: -50px;
+      animation-delay: 0s;
+    }
+    .hero-orb-2 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
+      bottom: -80px; left: 5%;
+      animation-delay: -3s;
+    }
+    .hero-orb-3 {
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(30,58,43,0.5) 0%, transparent 70%);
+      top: 30%; left: 40%;
+      animation-delay: -5s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-30px) scale(1.08); }
+    }
+
+    /* Cursor glow */
+    .cursor-glow {
+      position: fixed;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+    }
+
+    /* Cinematic hero text entrance */
+    @keyframes cinematicFadeUp {
+      0% { opacity: 0; transform: translateY(60px) scale(0.96); filter: blur(8px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+    @keyframes cinematicFadeLeft {
+      0% { opacity: 0; transform: translateX(80px); filter: blur(6px); }
+      100% { opacity: 1; transform: translateX(0); filter: blur(0); }
+    }
+    @keyframes shimmerLine {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+    @keyframes badgePop {
+      0% { opacity: 0; transform: scale(0.7) translateY(10px); }
+      70% { transform: scale(1.05) translateY(-2px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.1); }
+      50% { text-shadow: 0 0 30px rgba(212,175,55,0.5), 0 0 60px rgba(212,175,55,0.2), 0 0 80px rgba(212,175,55,0.1); }
+    }
+    @keyframes lineReveal {
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+
+    /* Hero badge */
+    .hero-badge {
+      animation: badgePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both !important;
+    }
+
+    /* Hero h1 cinematic */
+    .hero-card h1 {
+      animation: cinematicFadeUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both !important;
+    }
+    .hero-card h1 span {
+      color: var(--color-gold);
+      font-style: italic;
+      animation: glowPulse 3s ease-in-out 2s infinite;
+    }
+
+    /* Decorative shimmer line under h1 */
+    .hero-shimmer-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), rgba(212,175,55,0.5), transparent);
+      border-radius: 2px;
+      animation: shimmerLine 1s ease-out 1.4s both;
+      transform-origin: center;
+      max-width: 280px;
+    }
+
+    /* Hero paragraph */
+    .hero-card p {
+      animation: cinematicFadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) 1s both !important;
+    }
+
+    /* Hero actions */
+    .hero-actions {
+      animation: cinematicFadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) 1.3s both !important;
+    }
+
+    /* Cinematic grain overlay */
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* Stats bar in hero */
+    .hero-stats {
+      display: flex;
+      gap: var(--space-xl);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(250,248,245,0.15);
+      margin-top: var(--space-md);
+      animation: cinematicFadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) 1.6s both;
+    }
+    .hero-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-stat-num {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(250,248,245,0.55);
+      margin-top: 2px;
+    }
+
+    /* Section reveal — cinematic version */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), filter 0.9s ease;
+      filter: blur(3px);
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .reveal-left.revealed { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+    /* Section number decorators */
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--space-xs);
+    }
+    .section-eyebrow::before {
+      content: '';
+      width: 30px; height: 2px;
+      background: var(--color-gold);
+      display: block;
     }
 
     @media (max-width: 1024px) {
-      .contact-grid {
+      .hero-container {
         grid-template-columns: 1fr;
-        gap: var(--space-2xl);
+        text-align: center;
+        padding: var(--space-xl) 0;
+      }
+      .hero-badge {
+        align-self: center;
+      }
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+      .hero p {
+        margin: 0 auto;
+      }
+      .hero-actions {
+        justify-content: center;
       }
     }
 
-    /* Map Graphic */
-    .map-container {
+    /* Pillars */
+    .pillar-card {
       background-color: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
-      padding: var(--space-lg);
-      box-shadow: var(--shadow-sm);
+      padding: var(--space-xl);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: var(--space-md);
     }
 
-    .map-svg-wrapper {
-      width: 100%;
-      height: 300px;
-      position: relative;
-      background-color: #F0EDE8;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      border: 1px solid var(--color-border);
-    }
-
-    /* Simple Map Nodes */
-    .map-node {
+    .pillar-card::before {
+      content: '';
       position: absolute;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--color-primary);
       transition: var(--transition-smooth);
     }
 
-    .map-node::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 30px;
-      height: 30px;
-      border: 1px solid inherit;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      animation: pulseMap 2s infinite ease-out;
-      pointer-events: none;
+    .pillar-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(30, 58, 43, 0.15);
     }
 
-    .node-hub {
-      top: 60%;
-      left: 62%;
+    .pillar-card:hover::before {
       background-color: var(--color-terracotta);
-      border: 2px solid var(--color-bg);
+      width: 8px;
     }
 
-    .node-hub::before {
-      border-color: var(--color-terracotta);
+    .pillar-icon {
+      font-size: 2.2rem;
+      color: var(--color-terracotta);
     }
 
-    .map-region-node {
-      background-color: var(--color-primary);
-      border: 2px solid var(--color-bg);
+    .pillar-card h3 {
+      font-size: 1.5rem;
+      color: var(--color-primary);
     }
 
-    .map-region-node::before {
-      border-color: var(--color-primary);
-    }
-
-    .map-region-node.active {
-      background-color: var(--color-gold);
-      transform: scale(1.3);
-    }
-
-    .map-region-node.active::before {
-      border-color: var(--color-gold);
-    }
-
-    .node-usa { top: 38%; left: 20%; }
-    .node-uk { top: 30%; left: 45%; }
-    .node-eu { top: 32%; left: 49%; }
-    .node-australia { top: 78%; left: 85%; }
-
-    @keyframes pulseMap {
-      0% {
-        width: 14px;
-        height: 14px;
-        opacity: 1;
-      }
-      100% {
-        width: 45px;
-        height: 45px;
-        opacity: 0;
-      }
-    }
-
-    /* Map connection line indicators */
-    .map-line-label {
-      position: absolute;
-      font-family: var(--font-sans);
-      font-size: 0.65rem;
-      font-weight: bold;
-      background-color: var(--color-primary);
-      color: var(--color-bg);
-      padding: 2px 6px;
-      border-radius: var(--radius-xs);
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-    }
-
-    /* Specs card */
-    .map-details-card {
-      background-color: rgba(30, 58, 43, 0.03);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      padding: var(--space-md);
-      transition: opacity var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .map-details-grid {
+    /* Split Section */
+    .split-section {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-sm);
-      font-size: 0.85rem;
-      margin-top: var(--space-sm);
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      gap: var(--space-4xl);
     }
 
-    .map-details-grid strong {
-      color: var(--color-primary);
+    .split-image-wrapper {
+      position: relative;
+      height: 500px;
     }
 
-    /* Logistics Specs Table */
-    .logistics-table-wrapper {
-      margin-top: var(--space-xl);
-    }
-
-    .logistics-table {
+    .split-image {
       width: 100%;
-      border-collapse: collapse;
-      font-family: var(--font-sans);
-      font-size: 0.85rem;
-      text-align: left;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
     }
 
-    .logistics-table th, .logistics-table td {
-      padding: var(--space-sm);
-      border-bottom: 1px solid var(--color-border);
+    @media (max-width: 768px) {
+      .split-section {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      .split-image-wrapper {
+        height: 300px;
+      }
     }
 
-    .logistics-table th {
-      color: var(--color-primary);
-      font-weight: 600;
-      background-color: rgba(30, 58, 43, 0.02);
-    }
-
-    /* Form Container */
-    .form-container {
+    /* Product Cards Teaser */
+    .product-teaser-card {
       background-color: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-md);
-      padding: var(--space-xl);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .form-title {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      color: var(--color-primary);
-      margin-bottom: var(--space-xs);
-    }
-
-    .form-group {
+      overflow: hidden;
+      transition: var(--transition-smooth);
       display: flex;
       flex-direction: column;
-      gap: var(--space-xxs);
-      margin-bottom: var(--space-md);
+      height: 100%;
     }
 
-    .form-group label {
-      font-family: var(--font-sans);
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--color-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .product-teaser-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
     }
 
-    .form-control {
-      padding: 0.75rem var(--space-md);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-sans);
-      font-size: 0.95rem;
-      background-color: var(--color-bg);
-      outline: none;
-      transition: var(--transition-fast);
+    .product-teaser-img-wrapper {
+      height: 250px;
+      overflow: hidden;
     }
 
-    .form-control:focus {
-      border-color: var(--color-primary);
-      background-color: var(--color-surface);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Selected Basket inside form */
-    .form-basket-box {
-      border: 1px dashed var(--color-terracotta);
-      border-radius: var(--radius-sm);
-      padding: var(--space-md);
-      background-color: rgba(194, 125, 86, 0.03);
-      margin-bottom: var(--space-md);
-    }
-
-    .form-basket-box h4 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      color: var(--color-terracotta);
-      margin-bottom: var(--space-sm);
-      border-bottom: 1px solid rgba(194, 125, 86, 0.15);
-      padding-bottom: 4px;
-    }
-
-    .form-basket-items {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-xs);
-      max-height: 180px;
-      overflow-y: auto;
-    }
-
-    .form-basket-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--space-xs);
-      background-color: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-xs);
-      font-size: 0.85rem;
-    }
-
-    .form-basket-remove {
-      background: none;
-      border: none;
-      color: var(--color-terracotta);
-      cursor: pointer;
-      font-size: 1.2rem;
-      line-height: 1;
-      padding: 0 4px;
-    }
-
-    .form-basket-remove:hover {
-      color: var(--color-primary);
-    }
-
-    /* Success Overlay and Modal */
-    .success-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .product-teaser-img {
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      object-fit: cover;
+      transition: var(--transition-slow);
     }
 
-    .success-modal {
-      background-color: var(--color-bg);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xxl) var(--space-xl);
-      max-width: 480px;
-      width: 90%;
-      text-align: center;
-      box-shadow: var(--shadow-lg);
+    .product-teaser-card:hover .product-teaser-img {
+      transform: scale(1.05);
+    }
+
+    .product-teaser-content {
+      padding: var(--space-lg);
+      flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: var(--space-sm);
     }
 
-    .success-icon {
-      font-size: 3.5rem;
+    .product-tag {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-terracotta);
+      letter-spacing: 0.05em;
+    }
+
+    .product-teaser-content h3 {
+      font-size: 1.4rem;
       color: var(--color-primary);
     }
 
-    .success-modal h3 {
-      font-size: 1.8rem;
+    .product-teaser-actions {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-border);
     }
+
+    /* Counters section */
+    .counters-section {
+      background-color: var(--color-primary);
+      color: var(--color-bg);
+      text-align: center;
+    }
+
+    .counter-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .counter-num {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      font-weight: bold;
+      color: var(--color-gold);
+      line-height: 1;
+    }
+
+    .counter-title {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(250, 248, 245, 0.7);
+    }
+
+    /* Process Timeline */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-2xl);
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+    .process-step:not(:last-child)::after {
+      content: '\f101';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 30%;
+      right: -20px;
+      color: var(--color-gold);
+      font-size: 1.5rem;
+      transform: translateY(-50%);
+    }
+    .process-img-wrapper {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto var(--space-md) auto;
+      overflow: hidden;
+      border: 3px solid var(--color-gold);
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+    .process-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .process-step:hover .process-img-wrapper img {
+      transform: scale(1.1);
+    }
+    .process-step h4 {
+      color: var(--color-terracotta);
+      font-size: 1.2rem;
+      margin-bottom: var(--space-xs);
+    }
+    @media (max-width: 900px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-xl); }
+      .process-step:not(:last-child)::after { display: none; }
+    }
+    @media (max-width: 500px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Ingredients Grid */
+    .ingredients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-xl);
+    }
+    .ingredient-card {
+      display: block;
+      position: relative;
+      height: 380px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ingredient-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
+      filter: brightness(0.85);
+    }
+    .ingredient-card:hover .ingredient-img {
+      transform: scale(1.1);
+      filter: brightness(0.7) blur(1px);
+    }
+    .ingredient-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(18, 30, 23, 0.95) 0%, rgba(18, 30, 23, 0.4) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-xl);
+      color: var(--color-bg);
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 2;
+    }
+    .ingredient-card-header {
+      transform: translateY(25px);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ingredient-card:hover .ingredient-card-header {
+      transform: translateY(0);
+    }
+    .ingredient-overlay h3 {
+      color: var(--color-bg);
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin: 0;
+      transition: color 0.4s ease;
+    }
+    .ingredient-card:hover .ingredient-overlay h3 {
+      color: var(--color-gold);
+    }
+    .ingredient-overlay .decorative-line {
+      width: 40px;
+      height: 1px;
+      background-color: var(--color-gold);
+      margin: var(--space-xs) 0;
+      transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ingredient-card:hover .decorative-line {
+      width: 100%;
+    }
+    .ingredient-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(250, 248, 245, 0.8);
+      opacity: 0;
+      transform: translateY(15px);
+      margin: var(--space-xs) 0 0 0;
+      transition: opacity 0.4s, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ingredient-card:hover .ingredient-desc {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+    .ingredient-action {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-gold);
+      margin-top: var(--space-md);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ingredient-card:hover .ingredient-action {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
+    .ingredient-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-gold);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(212, 175, 55, 0.25);
+    }
+    .ingredient-card:hover .ingredient-overlay {
+      background: rgba(18, 30, 23, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      position: relative;
+      background: 
+        radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 90% 90%, rgba(194, 125, 86, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #FAF8F5 0%, #F6F2EC 100%) !important;
+      border-top: 1px solid rgba(212, 175, 55, 0.18);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      overflow: hidden;
+    }
+
+    /* Glowing ambient orbs for testimonials */
+    .t-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: tOrbFloat 14s ease-in-out infinite alternate;
+    }
+    .t-orb-1 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+      top: -10%; left: 5%;
+    }
+    .t-orb-2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(194, 125, 86, 0.05) 0%, transparent 70%);
+      bottom: -10%; right: 5%;
+      animation-delay: -7s;
+    }
+    @keyframes tOrbFloat {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-25px) scale(1.08); }
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.55) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.25) !important;
+      padding: var(--space-xl) var(--space-lg);
+      border-radius: 20px;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    .testimonial-card::before {
+      content: '\f10d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 2.2rem;
+      color: rgba(212, 175, 55, 0.15);
+      transition: all 0.4s ease;
+    }
+
+    .testimonial-card:hover {
+      background: rgba(255, 255, 255, 0.85) !important;
+      transform: translateY(-8px);
+      border-color: rgba(212, 175, 55, 0.6) !important;
+      box-shadow: 
+        0 20px 40px rgba(212, 175, 55, 0.1),
+        0 15px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .testimonial-card:hover::before {
+      color: rgba(212, 175, 55, 0.35);
+      transform: translateY(-4px) scale(1.08);
+    }
+
+    .stars {
+      color: var(--color-gold);
+      margin-bottom: var(--space-sm);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover .stars {
+      transform: scale(1.04);
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-size: 1.05rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author-info {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: auto;
+      border-top: 1px solid rgba(212, 175, 55, 0.12);
+      padding-top: var(--space-md);
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(194, 125, 86, 0.15) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--color-gold);
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+    }
+
+    .testimonial-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: 1rem;
+    }
+
+    .testimonial-company {
+      font-size: 0.78rem;
+      color: var(--color-terracotta);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    /* Wholesale CTA */
+    .wholesale-cta {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl) var(--space-md);
+      background-color: #0c2618;
+      margin-top: var(--space-2xl);
+    }
+    .cta-bg-slider {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .cta-bg-slider .cta-bg-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.8s ease-in-out, transform 8s ease-out;
+      transform: scale(1);
+    }
+    .cta-bg-slider .cta-bg-slide.active {
+      opacity: 0.75;
+      transform: scale(1.05);
+    }
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(30, 58, 43, 0.2) 0%, rgba(12, 38, 24, 0.7) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    
+    /* Glowing animated background orbs */
+    .cta-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 2;
+      opacity: 0.25;
+      pointer-events: none;
+      width: 280px;
+      height: 280px;
+      animation: cta-orb-drift 12s infinite alternate ease-in-out;
+    }
+    .cta-orb-1 {
+      top: -10%;
+      left: -10%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.45) 0%, rgba(212, 175, 55, 0) 70%);
+    }
+    .cta-orb-2 {
+      bottom: -10%;
+      right: -10%;
+      background: radial-gradient(circle, rgba(194, 125, 86, 0.45) 0%, rgba(194, 125, 86, 0) 70%);
+      animation-delay: -6s;
+    }
+    @keyframes cta-orb-drift {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -20px) scale(1.15); }
+      100% { transform: translate(-20px, 30px) scale(0.9); }
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: var(--space-2xl) var(--space-xl);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(212, 175, 55, 0.25) !important;
+      max-width: 720px;
+      width: 90%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      color: #FFFFFF;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .cta-content:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212, 175, 55, 0.55) !important;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+    }
+    .cta-content h2 { 
+      color: var(--color-gold-light); 
+      font-size: 2.8rem; 
+      margin-bottom: var(--space-sm); 
+      line-height: 1.25; 
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .cta-content p { 
+      font-size: 1.15rem; 
+      max-width: 580px; 
+      margin: 0 auto var(--space-lg) auto; 
+      opacity: 0.95; 
+      color: rgba(250, 248, 245, 0.95);
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Parallax & Magnetic Styles */
+    .parallax-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+    .parallax-img {
+      will-change: transform;
+      transform: scale(1.1);
+      transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .magnetic {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s, color 0.3s, border-color 0.3s;
+      will-change: transform;
+    }
+    .text-reveal-line {
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .reveal-word {
+      display: inline-block;
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s ease;
+      vertical-align: top;
+    }
+    .text-reveal-line.revealed .reveal-word {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Our Story Slider Styling */
+    .story-slider-wrapper {
+      position: relative;
+      height: 100%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .story-slider {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .story-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out, transform 6s ease-out;
+      transform: scale(1);
+    }
+
+    .story-slide.active {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .story-slider-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 10, 7, 0.4) 0%, transparent 60%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .story-slider-controls {
+      position: absolute;
+      bottom: var(--space-md);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+      background: rgba(18, 30, 23, 0.6);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-round);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .story-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(250, 248, 245, 0.4);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    .story-dot.active, .story-dot:hover {
+      background-color: var(--color-gold);
+      transform: scale(1.2);
+    }
+
+    /* Premium Header CTA (Enquire Now) Styling */
+    #navCta {
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    #navCta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transform: skewX(-25deg);
+      transition: none;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    #navCta:hover::before {
+      left: 150%;
+      transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Transparent header state - over dark hero */
+    .header.header-transparent #navCta {
+      color: var(--color-gold-light);
+      border-color: rgba(212, 175, 55, 0.5);
+      background: rgba(212, 175, 55, 0.06);
+      backdrop-filter: blur(4px);
+    }
+    
+    .header.header-transparent #navCta:hover {
+      color: var(--color-primary);
+      background: var(--color-gold);
+      border-color: var(--color-gold);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Scrolled header state - over light page body */
+    .header.scrolled #navCta {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      background: transparent;
+    }
+    
+    .header.scrolled #navCta:hover {
+      color: var(--color-bg);
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 12px rgba(30, 58, 43, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Premium Scrolling Header Enhancements */
+    .header {
+      transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
+    }
+    
+    .header.scrolled {
+      height: 68px !important; /* Compress height slightly on scroll */
+      background-color: rgba(250, 248, 245, 0.88) !important;
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      box-shadow: 0 10px 30px rgba(30, 58, 43, 0.04), 0 1px 0 rgba(212, 175, 55, 0.12) !important;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+    }
+
+    /* Subtle golden shimmer line under scrolled header */
+    .header.scrolled::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.35), transparent);
+      z-index: 10;
+    }
+
+    .header.scrolled .nav-link {
+      color: var(--color-primary) !important;
+      font-weight: 600 !important;
+    }
+
+    .header.scrolled .nav-link:hover,
+    .header.scrolled .nav-link.active {
+      color: var(--color-terracotta) !important;
+    }
+
+    .header.scrolled .logo-text {
+      color: var(--color-primary) !important;
+    }
+    
+    .header.scrolled .logo-text span {
+      color: var(--color-terracotta) !important;
+    }
+
+    /* Transparent header state links styling */
+    .header.header-transparent .nav-link {
+      color: rgba(250, 248, 245, 0.95) !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.06em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+    .header.header-transparent .nav-link:hover {
+      color: var(--color-gold-light) !important;
+    }
+
+    /* Why Choose Us Section & Slider Styling */
+    .why-choose-us-section {
+      background: #04150b !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-bg-slider {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .why-bg-slider .why-bg-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out, transform 8s ease-out;
+      transform: scale(1);
+    }
+    .why-bg-slider .why-bg-slide.active {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+    .why-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(4, 21, 11, 0.50) 0%, rgba(4, 21, 11, 0.85) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .why-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: 2;
+      pointer-events: none;
+      animation: orbFloat 10s ease-in-out infinite;
+    }
+    .why-orb-1 {
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(22, 101, 52, 0.25) 0%, rgba(6, 70, 30, 0.10) 50%, transparent 70%);
+      top: -20%; left: -8%;
+      animation-delay: 0s;
+    }
+    .why-orb-2 {
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(16, 85, 42, 0.20) 0%, rgba(10, 60, 25, 0.05) 50%, transparent 70%);
+      bottom: -20%; right: -5%;
+      animation-delay: -4s;
+    }
+
+    .why-slider-wrapper {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+
+    .why-slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(18, 30, 23, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .why-slider-arrow:hover {
+      background: var(--color-gold);
+      color: var(--color-primary);
+      border-color: var(--color-gold);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.45);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .why-prev {
+      left: 10px;
+    }
+
+    .why-next {
+      right: 10px;
+    }
+
+    .why-slider {
+      display: flex;
+      width: 100%;
+      transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .pillar-card-wrapper {
+      width: 100%;
+      flex: 0 0 100%;
+      padding: var(--space-md);
+      box-sizing: border-box;
+    }
+
+    .why-slider .pillar-card {
+      background: rgba(255, 255, 255, 0.08) !important;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(212, 175, 55, 0.25) !important;
+      border-radius: 24px;
+      padding: var(--space-3xl) var(--space-xl) !important;
+      text-align: center;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-slider .pillar-card::before {
+      background: linear-gradient(to bottom, rgba(212, 175, 55, 0.4), rgba(150, 117, 21, 0.4)) !important;
+      width: 4px;
+      transition: all 0.4s ease;
+    }
+
+    .why-slider .pillar-card:hover::before {
+      background: linear-gradient(to bottom, #ffe89e, #d4af37, #b38600) !important;
+      width: 8px;
+    }
+
+    .why-slider .pillar-card h3 {
+      color: var(--color-bg) !important;
+      font-size: 1.65rem;
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 500;
+    }
+
+    .why-slider .pillar-card p {
+      color: rgba(250, 248, 245, 0.75) !important;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 480px;
+    }
+
+    /* Glassmorphic Double-Ring Golden Icons styling */
+    .why-slider .pillar-icon {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.08);
+      border: 2px solid rgba(212, 175, 55, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.3rem;
+      color: var(--color-gold) !important;
+      box-shadow: 
+        0 8px 24px rgba(212, 175, 55, 0.15), 
+        inset 0 0 15px rgba(212, 175, 55, 0.1);
+      transform: perspective(600px) translateZ(10px);
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      margin-bottom: var(--space-sm);
+      position: relative;
+    }
+    .why-slider .pillar-icon::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 50%;
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+
+    .why-slider .pillar-card:hover {
+      border-color: rgba(212, 175, 55, 0.75) !important;
+      background: rgba(255, 255, 255, 0.15) !important;
+      transform: translateY(-4px);
+      box-shadow: 
+        0 0 25px rgba(212, 175, 55, 0.2),
+        0 25px 50px rgba(0,0,0,0.4);
+    }
+
+    .why-slider .pillar-card:hover .pillar-icon {
+      transform: perspective(600px) translateZ(25px) scale(1.08);
+      border-color: var(--color-gold);
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--color-gold-light) !important;
+      box-shadow: 
+        0 15px 30px rgba(212, 175, 55, 0.35), 
+        inset 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+    .why-slider .pillar-card:hover .pillar-icon::before {
+      inset: -10px;
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: rotate(180deg);
+    }
+
+    /* ===== FEATURED COLLECTIONS IMMERSIVE SLIDER ===== */
+    .feat-slider-outer {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      overflow: hidden;
+      background: #0a0f0a;
+    }
+
+    .feat-slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .feat-slide {
+      position: relative;
+      min-width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .feat-slide-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      transition: transform 7s ease-out;
+      z-index: 0;
+    }
+
+    .feat-slide.active .feat-slide-bg {
+      transform: scale(1.0);
+    }
+
+    .feat-slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(5, 10, 7, 0.88) 0%,
+        rgba(5, 10, 7, 0.68) 38%,
+        rgba(5, 10, 7, 0.15) 65%,
+        rgba(5, 10, 7, 0.05) 100%
+      );
+      z-index: 1;
+    }
+
+    .feat-slide-content {
+      position: absolute;
+      top: 50%;
+      left: max(5vw, calc((100vw - 1280px) / 2));
+      transform: translateY(-50%);
+      z-index: 2;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.045);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 20px;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    .feat-slide-tag {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .feat-slide-title {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: 500;
+      color: var(--color-bg);
+      line-height: 1.2;
+      margin: 0 0 1rem 0;
+    }
+
+    .feat-slide-desc {
+      font-size: 0.97rem;
+      color: rgba(250, 248, 245, 0.80);
+      line-height: 1.65;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .feat-slide-btn {
+      background: var(--color-gold) !important;
+      color: #111 !important;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.8rem !important;
+      border-radius: 50px !important;
+      border: none !important;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feat-slide-btn:hover {
+      background: #e8c730 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .feat-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(18, 30, 23, 0.7);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+      font-size: 1.1rem;
+    }
+
+    .feat-arrow:hover {
+      background: var(--color-gold);
+      color: #111;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.45);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .feat-prev { left: 22px; }
+    .feat-next { right: 22px; }
+
+    .feat-counter {
+      position: absolute;
+      bottom: 20px;
+      right: 26px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: rgba(250, 248, 245, 0.65);
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .feat-slider-outer { height: 460px; }
+      .feat-slide-content { left: 5%; max-width: 88%; padding: 1.8rem 1.5rem; }
+      .feat-slide-title { font-size: 1.7rem; }
+    }
+
+    /* ===== OUR HERITAGE — 4 STEPS OF PURITY (LIGHT SLIDER) ===== */
+    .heritage-section {
+      position: relative;
+      padding: 0;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 90% 80%, rgba(194, 125, 86, 0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #FAF8F5 0%, #F5F1E9 100%);
+      overflow: hidden;
+      min-height: 600px;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    /* Animated aurora orbs */
+    .heritage-aurora {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;
+    }
+    .h-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: hOrbFloat 12s ease-in-out infinite;
+    }
+    .h-orb-1 {
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(180,130,20,0.04) 50%, transparent 70%);
+      top: -20%; left: 0%;
+      animation-delay: 0s;
+    }
+    .h-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(240,200,80,0.08) 0%, rgba(200,150,30,0.02) 50%, transparent 70%);
+      bottom: -15%; right: 5%;
+      animation-delay: -5s;
+    }
+    .h-orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255,215,80,0.06) 0%, transparent 70%);
+      top: 35%; right: 18%;
+      animation-delay: -9s;
+    }
+    @keyframes hOrbFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-35px) scale(1.08); }
+    }
+
+    /* Slider container */
+    .heritage-slider-wrap {
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      width: 100%;
+    }
+    .heritage-slides {
+      display: flex;
+      transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+      width: 100%;
+    }
+    .heritage-slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+
+    /* Left text panel */
+    .h-slide-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3.5rem 4rem max(5vw, calc((100vw - 1280px) / 2));
+      gap: 1.5rem;
+    }
+    .h-slide-step-num {
+      font-family: var(--font-serif);
+      font-size: 7rem;
+      font-weight: 700;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(212,175,55,0.45);
+      margin-bottom: -2rem;
+    }
+    .h-slide-tag {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+    }
+    .h-slide-title {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 500;
+      color: var(--color-primary);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .h-slide-desc {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+      max-width: 420px;
+      margin: 0;
+    }
+    .h-slide-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06));
+      border: 1px solid rgba(212,175,55,0.35);
+      color: var(--color-gold);
+      font-size: 1.35rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Right image panel */
+    .h-slide-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .h-slide-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.06);
+      transition: transform 7s ease-out;
+      filter: brightness(0.85) saturate(1.1);
+    }
+    .heritage-slide.active .h-slide-img img {
+      transform: scale(1);
+    }
+    .h-slide-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(250, 248, 245, 1) 0%, rgba(250, 248, 245, 0.2) 40%, transparent 100%);
+      z-index: 1;
+    }
+
+    /* Step dots at bottom */
+    .heritage-dots {
+      position: absolute;
+      bottom: 24px;
+      left: max(5vw, calc((100vw - 1280px) / 2));
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .h-dot {
+      width: 28px; height: 3px;
+      border-radius: 2px;
+      background: rgba(212,175,55,0.35);
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .h-dot.active {
+      background: var(--color-gold);
+      width: 48px;
+    }
+
+    /* Section header above slider */
+    .heritage-hdr {
+      text-align: center;
+      padding: var(--space-3xl) 0 var(--space-2xl) 0;
+      position: relative;
+      z-index: 2;
+    }
+    .heritage-hdr-eye {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: var(--space-sm);
+    }
+    .heritage-hdr h2 {
+      font-size: 2.8rem;
+      color: var(--color-primary);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .heritage-hdr p {
+      color: var(--color-text-muted);
+      max-width: 540px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .heritage-slide { grid-template-columns: 1fr; min-height: auto; }
+      .h-slide-text { padding: 2.5rem 5%; }
+      .h-slide-img { height: 280px; }
+      .h-slide-img img { height: 280px; }
+      .h-slide-title { font-size: 2rem; }
+      .h-slide-step-num { font-size: 5rem; }
+      .h-slide-img::before {
+        background: linear-gradient(180deg, rgba(250, 248, 245, 1) 0%, transparent 40%) !important;
+      }
+    }
+
+    /* Video section cover image */
+    .video-cover-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.45) saturate(1.1);
+      transition: filter 0.5s ease;
+    }
+    .video-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+    }
+    .video-cover-text {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
   </style>
 </head>
 <body>
 
   <!-- Navigation Header -->
-  <header class="header" id="mainHeader">
+  <header class="header header-transparent" id="mainHeader">
     <div class="container header-container">
       <a href="index.html" class="logo-wrapper" id="headerLogo">
         <img src="./assets/images/lotus-logo-golden.webp" alt="The Mother's Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
         <div class="logo-text">
-          Mothers Commerce
-          <span>Export Division</span>
+          The Mother's Fragrances
         </div>
       </a>
       
       <nav class="nav" id="desktopNav">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">Our Story</a>
-        <a href="products.html" class="nav-link">Collections</a>
-        <a href="ingredients.html" class="nav-link">Ingredients</a>
-        <a href="contact.html" class="nav-link">Export & Contact</a>
+        <a href="about-us.html" class="nav-link">About Us</a>
+        <a href="fragrances.html" class="nav-link">Fragrances</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
       </nav>
 
       <div class="nav-actions">
@@ -358,196 +1842,175 @@
   <!-- Mobile Drawer Menu -->
   <div class="mobile-menu" id="mobileMenuOverlay">
     <a href="index.html" class="nav-link">Home</a>
-    <a href="about.html" class="nav-link">Our Story</a>
-    <a href="products.html" class="nav-link">Collections</a>
-    <a href="ingredients.html" class="nav-link">Ingredients</a>
-    <a href="contact.html" class="nav-link">Export & Contact</a>
+    <a href="about-us.html" class="nav-link">About Us</a>
+    <a href="fragrances.html" class="nav-link">Fragrances</a>
+    <a href="products.html" class="nav-link">Products</a>
+    <a href="contact.html" class="nav-link active">Contact</a>
     <a href="contact.html" class="btn btn-primary" style="margin-top: var(--space-md);">Enquire Now</a>
   </div>
 
-  <main>
-    <!-- Page Hero -->
-    <section class="page-hero" style="background-image: linear-gradient(rgba(30, 58, 43, 0.85), rgba(30, 58, 43, 0.85)), url('./assets/images/global-shipping.png'); background-size: cover; background-position: center;">
-      <div class="container">
-        <h1 class="reveal">Global Export & Contact</h1>
-        <p class="reveal reveal-delay-1">Wholesale distribution and sample package logistics. Fully compliant with UK, US, and Australian biosecurity standards.</p>
+  <main class="main">
+  <!-- Hero Section -->
+  <section class="hero" style="background-image: url('./assets/images/hero-banner.png'); height: 60vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; background-attachment: fixed;">
+    <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4);"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <h1 class="reveal" style="color: #ffffff; font-size: 4rem; margin-bottom: 1rem; text-shadow: 0 4px 12px rgba(0,0,0,0.5); font-family: var(--font-serif);">Get In Touch</h1>
+      <p class="reveal reveal-delay-1" style="color: #f0f0f0; max-width: 600px; margin: 0 auto; font-size: 1.25rem; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">We're always eager to hear from you! Reach out for inquiries, support, or wholesale opportunities.</p>
+    </div>
+  </section>
+
+  <!-- Interactive Map Section -->
+  <section class="section" style="background-color: var(--color-surface); border-bottom: 1px solid var(--color-border); position: relative; overflow: hidden;">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 4rem;">
+        <span class="product-tag reveal" style="background: var(--color-terracotta); color: var(--color-bg);">Global Reach</span>
+        <h2 class="reveal" style="color: var(--color-primary); font-size: 2.8rem; margin-top: 1rem;">Our Worldwide Presence</h2>
       </div>
-    </section>
 
-    <!-- Content Section -->
-    <section class="section">
-      <div class="container">
+      <div class="reveal reveal-delay-1" style="position: relative; width: 100%; max-width: 900px; height: 500px; margin: 0 auto; background-color: rgba(30, 58, 43, 0.03); border-radius: var(--radius-md); border: 1px solid var(--color-border); overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,0.05);">
+        <!-- SVG Map Background -->
+        <svg viewBox="0 0 1000 500" style="width: 100%; height: 100%; opacity: 0.15; position: absolute; top: 0; left: 0;">
+          <!-- Stylized abstract map lines -->
+          <path d="M 150 150 Q 300 100 500 200 T 800 250" fill="transparent" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="5,5"/>
+          <path d="M 450 150 Q 600 350 750 400" fill="transparent" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="5,5"/>
+          <path d="M 500 200 Q 650 250 850 350" fill="transparent" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="5,5"/>
+          <circle cx="150" cy="150" r="3" fill="var(--color-primary)" />
+          <circle cx="450" cy="150" r="3" fill="var(--color-primary)" />
+          <circle cx="500" cy="200" r="3" fill="var(--color-primary)" />
+          <circle cx="800" cy="250" r="3" fill="var(--color-primary)" />
+          <circle cx="850" cy="350" r="3" fill="var(--color-primary)" />
+          <circle cx="750" cy="400" r="3" fill="var(--color-primary)" />
+        </svg>
+
+        <!-- Nodes -->
+        <style>
+          .map-node { position: absolute; width: 14px; height: 14px; background-color: var(--color-terracotta); border-radius: 50%; border: 3px solid var(--color-surface); cursor: pointer; transform: translate(-50%, -50%); z-index: 10; transition: var(--transition-smooth); box-shadow: var(--shadow-sm); }
+          .map-node::after { content: ''; position: absolute; top: 50%; left: 50%; width: 45px; height: 45px; background-color: var(--color-terracotta); border-radius: 50%; transform: translate(-50%, -50%); animation: pulseMap 2.5s infinite ease-out; opacity: 0.4; pointer-events: none; }
+          .map-node.hub { background-color: var(--color-gold); width: 18px; height: 18px; }
+          .map-node.hub::after { background-color: var(--color-gold); width: 70px; height: 70px; }
+          .map-node-label { position: absolute; top: -35px; left: 50%; transform: translateX(-50%); background: var(--color-bg); padding: 5px 12px; border-radius: var(--radius-xs); font-size: 0.85rem; font-weight: 600; color: var(--color-primary); box-shadow: var(--shadow-sm); opacity: 0; transition: var(--transition-smooth); white-space: nowrap; pointer-events: none; border: 1px solid var(--color-border); z-index: 20; }
+          .map-node:hover .map-node-label { opacity: 1; top: -45px; }
+          @keyframes pulseMap { 0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0.7; } 100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; } }
+        </style>
         
-        <div class="contact-grid">
-          
-          <!-- Left side: Map and specifications -->
-          <div class="reveal">
+        <div class="map-node" style="top: 30%; left: 22%;">
+          <div class="map-node-label">USA (Mere Cie Deux)</div>
+        </div>
+        <div class="map-node" style="top: 25%; left: 45%;">
+          <div class="map-node-label">UK (Greater Goods)</div>
+        </div>
+        <div class="map-node" style="top: 27%; left: 49%;">
+          <div class="map-node-label">Netherlands (Mira International)</div>
+        </div>
+        <div class="map-node hub" style="top: 40%; left: 68%;">
+          <div class="map-node-label">India (Head Office)</div>
+        </div>
+        <div class="map-node" style="top: 80%; left: 86%;">
+          <div class="map-node-label">Australia (Exotic Designers)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Distributors Grid -->
+  <section class="section" style="background-color: var(--color-bg);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start;">
+        
+        <!-- Left Column: Head Office & Form -->
+        <div class="reveal" style="display: flex; flex-direction: column; gap: 3rem;">
+          <div style="background: rgba(30,58,43,0.03); padding: 2.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+            <h3 style="color: var(--color-primary); margin-bottom: 1.5rem; font-size: 1.8rem; font-family: var(--font-serif);">Head Office (India)</h3>
+            <p style="margin-bottom: 2rem; line-height: 1.6; color: var(--color-text);"><strong>M/s. Mother's Commerce Company Pvt. Ltd.</strong><br>No.40, 1st Floor, Montorsier Street, Pondicherry &ndash; 605 001.</p>
             
-            <h2 class="italic text-serif" style="color: var(--color-terracotta); font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-xs);">Maritime Logistics</h2>
-            <h2 style="font-size: 2.5rem; margin-bottom: var(--space-md);">Export Regions Map</h2>
-            
-            <!-- Interactive Map Graphic -->
-            <div class="map-container">
-              <div class="map-svg-wrapper">
-                
-                <!-- Simplified World Outline Background (visual styling only) -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.06; background-image: radial-gradient(circle at 50% 50%, var(--color-primary) 2px, transparent 2px); background-size: 12px 12px;"></div>
-                
-                <!-- lines representation -->
-                <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: 1;">
-                  <!-- Pondicherry to UK -->
-                  <path d="M 405,180 Q 340,110 292,90" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="4" opacity="0.6"/>
-                  <!-- Pondicherry to USA -->
-                  <path d="M 405,180 Q 220,130 130,114" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="4" opacity="0.6"/>
-                  <!-- Pondicherry to Australia -->
-                  <path d="M 405,180 Q 480,210 552,234" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="4" opacity="0.6"/>
-                </svg>
-
-                <!-- Map node buttons representing target destinations -->
-                <div class="map-node node-hub" title="Pondicherry Hub (Loading Port: Chennai)"></div>
-                
-                <button class="map-node map-region-node node-usa active" data-dest="usa" aria-label="USA Export Spec"></button>
-                <button class="map-node map-region-node node-uk" data-dest="uk" aria-label="UK Export Spec"></button>
-                <button class="map-node map-region-node node-eu" data-dest="eu" aria-label="Europe Export Spec"></button>
-                <button class="map-node map-region-node node-australia" data-dest="australia" aria-label="Australia Export Spec"></button>
-                
-                <span class="map-line-label" style="top: 55%; left: 62%;">PONDICHERRY</span>
-                <span class="map-line-label" style="top: 33%; left: 20%;">USA</span>
-                <span class="map-line-label" style="top: 25%; left: 45%;">UK</span>
-                <span class="map-line-label" style="top: 73%; left: 85%;">AUSTRALIA</span>
-              </div>
-              
-              <!-- Map Detail Container -->
-              <div class="map-details-card" id="mapDetailsCard">
-                <h3 id="mapSpecTitle" style="font-size: 1.25rem; font-weight: 600; color: var(--color-primary); border-bottom: 1px solid var(--color-border); padding-bottom: 4px;">United States (USA) Port Operations</h3>
-                <div class="map-details-grid">
-                  <div>
-                    <strong>Discharge Ports:</strong><br>
-                    <span id="mapSpecPorts">NY/NJ (New York), LA/Long Beach (California), Savannah (Georgia)</span>
-                  </div>
-                  <div>
-                    <strong>Sea Freight Transit:</strong><br>
-                    <span id="mapSpecTransit">28 - 35 days Sea Cargo</span>
-                  </div>
-                </div>
-                <div style="font-size: 0.85rem; margin-top: var(--space-sm);">
-                  <strong>Biosecurity Compliance:</strong><br>
-                  <span id="mapSpecCompliance">FDA organic packaging standards, Lacey Act wood import declaration compliant, pallet fumigation (ISPM-15) pre-certified.</span>
-                </div>
-                <div style="font-size: 0.85rem; margin-top: var(--space-sm);">
-                  <strong>Wholesale MOQ:</strong> <span id="mapSpecMoq">Min 1,000 boxes</span>
-                </div>
-              </div>
-              
-              <div style="text-align: center; font-size: 0.75rem; color: var(--color-text-muted);">
-                <i class="fas fa-info-circle"></i> Click the map nodes (USA, UK, Europe, Australia) to swap operations info.
-              </div>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; align-items: center;"><i class="fa-solid fa-phone" style="color: var(--color-terracotta); width: 35px; font-size: 1.2rem;"></i> +91 413-2333 349</div>
+              <div style="display: flex; align-items: center;"><i class="fa-solid fa-phone" style="color: var(--color-terracotta); width: 35px; font-size: 1.2rem;"></i> +91 413-2342 442</div>
+              <div style="display: flex; align-items: center;"><i class="fa-solid fa-fax" style="color: var(--color-terracotta); width: 35px; font-size: 1.2rem;"></i> +91 413-2330 603</div>
+              <div style="display: flex; align-items: center;"><i class="fa-solid fa-envelope" style="color: var(--color-terracotta); width: 35px; font-size: 1.2rem;"></i> motherscommerce@gmail.com</div>
+              <div style="display: flex; align-items: center;"><i class="fa-solid fa-globe" style="color: var(--color-terracotta); width: 35px; font-size: 1.2rem;"></i> www.mothersfragrances.com</div>
             </div>
-
-            <!-- Logistics Specs Table -->
-            <div class="logistics-table-wrapper">
-              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-sm);">Wholesale Freight Specifications</h3>
-              <table class="logistics-table">
-                <thead>
-                  <tr>
-                    <th>Specification</th>
-                    <th>Standard Standard</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Port of Loading</strong></td>
-                    <td>Chennai Sea Port (MAA) or Tuticorin Sea Port (TUT), India.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Customs H.S. Code</strong></td>
-                    <td>33074100 (Agarbatti and other odoriferous preparations).</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Fumigation certification</strong></td>
-                    <td>ISPM-15 standard fumigation certificate issued for wood pallets. Methyl bromide standard for bamboo splints.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Packaging Options</strong></td>
-                    <td>Recycled FSC paperboard retail cartons, heavy-duty double-walled sea cartons. Custom private labeling available.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
           </div>
           
-          <!-- Right side: Wholesale inquiry form -->
-          <div class="reveal reveal-delay-2">
-            <div class="form-container">
-              <h2 class="form-title">Wholesale Inquiry</h2>
-              <p style="font-size: 0.9rem; margin-bottom: var(--space-md);">Connect with our export desk. Request product samples or submit bulk order specs.</p>
-              
-              <form id="wholesaleContactForm">
-                <input type="hidden" id="requestedSamplesInput" name="samples">
-                
-                <div class="form-group">
-                  <label for="company">Company / Organization *</label>
-                  <input type="text" id="company" class="form-control" placeholder="Acme Import Ltd" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="name">Contact Person Name *</label>
-                  <input type="text" id="name" class="form-control" placeholder="Jane Doe" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="email">Corporate Email *</label>
-                  <input type="email" id="email" class="form-control" placeholder="jane@acmeimports.com" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="country">Target Market / Destination *</label>
-                  <select id="country" class="form-control" required>
-                    <option value="" disabled selected>Select destination country...</option>
-                    <option value="usa">United States (USA)</option>
-                    <option value="uk">United Kingdom (UK)</option>
-                    <option value="australia">Australia</option>
-                    <option value="eu">European Union (EU)</option>
-                    <option value="others">Other International</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="volume">Est. Annual Order Volume</label>
-                  <select id="volume" class="form-control">
-                    <option value="small">&lt; 5,000 packs per year</option>
-                    <option value="medium">5,000 - 20,000 packs per year</option>
-                    <option value="large">20,000 - 50,000 packs per year</option>
-                    <option value="enterprise">50,000+ packs per year</option>
-                  </select>
-                </div>
-
-                <!-- Selected Samples Basket Section -->
-                <div class="form-basket-box" id="formBasketContainer" style="display: none;">
-                  <h4>Selected Sample Requests</h4>
-                  <div class="form-basket-items" id="formBasketList">
-                    <!-- Javascript populates -->
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="notes">Special Requirements / Custom Branding</label>
-                  <textarea id="notes" class="form-control" rows="4" placeholder="Let us know if you require private labeling, specific stick sizes (e.g. 10-inch), or maritime logistics details."></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.9rem; margin-top: var(--space-xs);">
-                  Submit Wholesale Inquiry
-                </button>
-              </form>
-            </div>
+          <div style="background: var(--color-surface); padding: 2.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+            <h3 style="color: var(--color-primary); margin-bottom: 2rem; font-size: 1.8rem; font-family: var(--font-serif);">Send a Message</h3>
+            <form>
+              <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; font-size: 0.85rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em;">Your Name</label>
+                <input type="text" style="width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit; background-color: var(--color-bg); transition: var(--transition-fast);" onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(30,58,43,0.1)'" onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'">
+              </div>
+              <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; font-size: 0.85rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em;">Email Address</label>
+                <input type="email" style="width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit; background-color: var(--color-bg); transition: var(--transition-fast);" onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(30,58,43,0.1)'" onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'">
+              </div>
+              <div style="margin-bottom: 2rem;">
+                <label style="display: block; font-size: 0.85rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em;">Message</label>
+                <textarea rows="5" style="width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit; resize: vertical; background-color: var(--color-bg); transition: var(--transition-fast);" onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 3px rgba(30,58,43,0.1)'" onblur="this.style.borderColor='var(--color-border)'; this.style.boxShadow='none'"></textarea>
+              </div>
+              <button type="button" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1rem;">Send Message</button>
+            </form>
           </div>
-
         </div>
 
+        <!-- Right Column: Worldwide Distributors -->
+        <div class="reveal reveal-delay-1" style="background: rgba(194, 125, 86, 0.02); padding: 3rem; border-radius: var(--radius-md); border: 1px solid rgba(194, 125, 86, 0.1);">
+          <h3 style="color: var(--color-primary); margin-bottom: 2.5rem; font-size: 2rem; border-bottom: 2px solid var(--color-terracotta); display: inline-block; padding-bottom: 0.5rem; font-family: var(--font-serif);">Worldwide Distributors</h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            
+            <div style="padding: 2rem; background-color: var(--color-surface); border-radius: var(--radius-sm); border-left: 4px solid var(--color-terracotta); box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-sm)'">
+              <h4 style="color: var(--color-primary); margin-bottom: 1rem; font-size: 1.4rem;">Mere Cie Deux <span style="font-weight: 400; color: var(--color-text-light); font-size: 1.1rem; margin-left: 5px;">(USA)</span></h4>
+              <p style="color: var(--color-text); line-height: 1.6; margin-bottom: 1.2rem; font-size: 1.05rem;">Tara Haack, 123 River Road Claremont, NH 03743 USA</p>
+              <div style="display: flex; flex-direction: column; gap: 0.8rem; color: var(--color-text); font-size: 0.95rem;">
+                <span><i class="fa-solid fa-phone" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> 206-276-5945</span>
+                <span><i class="fa-solid fa-envelope" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> info@mereciedeux.com</span>
+                <span><i class="fa-solid fa-globe" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> www.mereciedeux.com</span>
+              </div>
+            </div>
+
+            <div style="padding: 2rem; background-color: var(--color-surface); border-radius: var(--radius-sm); border-left: 4px solid var(--color-terracotta); box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-sm)'">
+              <h4 style="color: var(--color-primary); margin-bottom: 1rem; font-size: 1.4rem;">Greater Goods <span style="font-weight: 400; color: var(--color-text-light); font-size: 1.1rem; margin-left: 5px;">(UK)</span></h4>
+              <p style="color: var(--color-text); line-height: 1.6; margin-bottom: 1.2rem; font-size: 1.05rem;">Greater Goods Ltd, 44 Rock Road, Midsomer Norton, BA3 2AQ</p>
+              <div style="display: flex; flex-direction: column; gap: 0.8rem; color: var(--color-text); font-size: 0.95rem;">
+                <span><i class="fa-solid fa-fax" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> 01761 / 417040</span>
+                <span><i class="fa-solid fa-envelope" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> info@greatergoods.co.uk</span>
+                <span><i class="fa-solid fa-globe" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> www.mothersfragrances.com</span>
+              </div>
+            </div>
+
+            <div style="padding: 2rem; background-color: var(--color-surface); border-radius: var(--radius-sm); border-left: 4px solid var(--color-terracotta); box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-sm)'">
+              <h4 style="color: var(--color-primary); margin-bottom: 1rem; font-size: 1.4rem;">M/s. Exotic Designers & Importers <span style="font-weight: 400; color: var(--color-text-light); font-size: 1.1rem; margin-left: 5px;">(Australia)</span></h4>
+              <p style="color: var(--color-text); line-height: 1.6; margin-bottom: 1.2rem; font-size: 1.05rem;">Unit 3-23 Dudgeons Lane Bangalow NSW 2479 AUSTRALIA</p>
+              <div style="display: flex; flex-direction: column; gap: 0.8rem; color: var(--color-text); font-size: 0.95rem;">
+                <span><i class="fa-solid fa-phone" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> 0427 85 88 35</span>
+                <span><i class="fa-solid fa-fax" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> 61-2-6680 9864</span>
+                <span><i class="fa-solid fa-envelope" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> exoticdesigners@hotmail.com</span>
+                <span><i class="fa-solid fa-globe" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> mothersfragranceincense.com.au</span>
+              </div>
+            </div>
+
+            <div style="padding: 2rem; background-color: var(--color-surface); border-radius: var(--radius-sm); border-left: 4px solid var(--color-terracotta); box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateX(8px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-sm)'">
+              <h4 style="color: var(--color-primary); margin-bottom: 1rem; font-size: 1.4rem;">M/s. Mira International <span style="font-weight: 400; color: var(--color-text-light); font-size: 1.1rem; margin-left: 5px;">(Netherlands)</span></h4>
+              <p style="color: var(--color-text); line-height: 1.6; margin-bottom: 1.2rem; font-size: 1.05rem;">Achterwerf 312, 1357 DG Almere Haven, The Netherlands.</p>
+              <div style="display: flex; flex-direction: column; gap: 0.8rem; color: var(--color-text); font-size: 0.95rem;">
+                <span><i class="fa-solid fa-phone" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> +00-31-36-5400183</span>
+                <span><i class="fa-solid fa-envelope" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> miraint@worldonline.nl</span>
+                <span><i class="fa-solid fa-globe" style="color: var(--color-terracotta); margin-right: 10px; width: 20px;"></i> www.wierook.nl</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- Google Map Section -->
+  <section style="width: 100%; height: 450px; margin-top: 2rem;">
+    <iframe src="https://maps.google.com/maps?q=Mothers%20Commerce,%20Montorsier%20St,%20Pondicherry&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+</main>
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -557,49 +2020,47 @@
         <div class="footer-brand">
           <a href="index.html" class="logo-wrapper">
             <img src="./assets/images/lotus-logo-golden.webp" alt="The Mother's Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
-            <div class="logo-text">Mothers Commerce</div>
+            <div class="logo-text">The Mother's Fragrances</div>
           </a>
-          <p style="margin-top: var(--space-sm);">Manufacturers and global exporters of 100% botanical, chemical-free incense sticks. Sourced from nature, rolled by hand, exported globally since 1986.</p>
+          <p style="margin-top: var(--space-sm);">Manufacturers of 100% botanical, chemical-free incense sticks, cones, and essential oils. Sourced from nature, rolled by hand.</p>
         </div>
         
         <div>
           <h4>Explore</h4>
           <div class="footer-links">
             <a href="index.html">Home</a>
-            <a href="about.html">Our Story</a>
-            <a href="products.html">Collections</a>
-            <a href="ingredients.html">Ingredients</a>
-            <a href="contact.html">Export & Contact</a>
+            <a href="about-us.html">About Us</a>
+            <a href="fragrances.html">Fragrances</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact</a>
           </div>
         </div>
 
         <div>
-          <h4>Global Markets</h4>
+          <h4>Collections</h4>
           <div class="footer-links">
-            <a href="contact.html">United States (USA)</a>
-            <a href="contact.html">United Kingdom (UK)</a>
-            <a href="contact.html">Australia</a>
-            <a href="contact.html">European Union (EU)</a>
-            <a href="contact.html">Customs & Shipping Compliance</a>
+            <a href="incense.html">Incense</a>
+            <a href="cones.html">Cones</a>
+            <a href="essential-oil.html">Essential Oils</a>
+            <a href="tapestry.html">Tapestry</a>
           </div>
         </div>
 
         <div class="footer-newsletter">
-          <h4>Export Inquiries</h4>
-          <p>Subscribe to our seasonal catalog releases and harvest updates.</p>
+          <h4>Join Our Community</h4>
+          <p>Subscribe for updates on our latest products and exclusive offers.</p>
           <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
-            <input type="email" placeholder="Your corporate email..." class="newsletter-input" required>
+            <input type="email" placeholder="Your email address..." class="newsletter-input" required>
             <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
           </form>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Mothers Commerce. All rights reserved. Made in Pondicherry, India.</p>
+        <p>&copy; 2026 The Mother's Fragrances. All rights reserved.</p>
         <div class="footer-socials">
-          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/mothers_fragrances/?hl=en" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/Mothersfragrances/" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
       </div>
     </div>
@@ -607,6 +2068,305 @@
 
   <!-- Scripts -->
   <script src="./assets/js/main.js?v=19"></script>
-  <script src="./assets/js/contact.js"></script>
+  <script>
+    // ===== CINEMATIC PARTICLE SYSTEM =====
+    (function() {
+      const canvas = document.getElementById('heroCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animId;
+
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+
+      function createParticle() {
+        const x = Math.random() * canvas.width;
+        const y = canvas.height + 10;
+        const size = Math.random() * 3 + 1;
+        const speedX = (Math.random() - 0.5) * 0.6;
+        const speedY = -(Math.random() * 0.8 + 0.3);
+        const opacity = Math.random() * 0.4 + 0.05;
+        const color = Math.random() > 0.5 
+          ? `rgba(212,175,55,${opacity})` 
+          : `rgba(250,230,200,${opacity})`;
+        return { x, y, size, speedX, speedY, opacity, color, life: 1, decay: Math.random() * 0.003 + 0.001 };
+      }
+
+      function initParticles() {
+        particles = [];
+        const count = Math.floor(canvas.width / 12);
+        for (let i = 0; i < count; i++) {
+          const p = createParticle();
+          p.y = Math.random() * canvas.height; // spread initial positions
+          particles.push(p);
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Add new particles
+        if (particles.length < 120 && Math.random() > 0.6) {
+          particles.push(createParticle());
+        }
+        particles = particles.filter(p => p.life > 0);
+        particles.forEach(p => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.life -= p.decay;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${p.life * p.opacity})`);
+          ctx.fill();
+        });
+        animId = requestAnimationFrame(animate);
+      }
+
+      resize();
+      initParticles();
+      animate();
+      window.addEventListener('resize', () => { resize(); initParticles(); });
+    })();
+
+    // ===== CURSOR GLOW =====
+    (function() {
+      const glow = document.createElement('div');
+      glow.className = 'cursor-glow';
+      document.body.appendChild(glow);
+      document.addEventListener('mousemove', e => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
+    })();
+
+    // ===== WHY CHOOSE US INCENSE SMOKE CANVASES SYSTEM =====
+    (function() {
+      const canvas = document.getElementById('whySmokeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+
+      function resize() {
+        const parent = canvas.parentElement;
+        if (parent) {
+          canvas.width = parent.clientWidth || window.innerWidth;
+          canvas.height = parent.clientHeight || 800;
+        } else {
+          canvas.width = canvas.offsetWidth || window.innerWidth;
+          canvas.height = canvas.offsetHeight || 800;
+        }
+      }
+
+      class SmokeParticle {
+        constructor(side) {
+          // Spawn from bottom-left or bottom-right bands only
+          const bandWidth = canvas.width * 0.18; // 18% on each side
+          if (side === 'left') {
+            this.x = Math.random() * bandWidth;
+            this.vx = (Math.random() * 0.4 + 0.1); // drift inward (right)
+          } else {
+            this.x = canvas.width - Math.random() * bandWidth;
+            this.vx = -(Math.random() * 0.4 + 0.1); // drift inward (left)
+          }
+          this.y = canvas.height + 20;
+          this.vy = -(Math.random() * 0.55 + 0.25); // slow rise
+          this.baseSize = 40 + Math.random() * 50;
+          this.size = this.baseSize;
+          // Very low alpha — smoke should be an atmospheric hint, not a fill
+          this.alpha = 0.08 + Math.random() * 0.10;
+          this.decay = 0.00015 + Math.random() * 0.0002;
+          this.growth = 0.30 + Math.random() * 0.25;
+          this.wobbleSpeed = 0.004 + Math.random() * 0.008;
+          this.wobbleAngle = Math.random() * Math.PI * 2;
+          this.wobbleRange = 0.3 + Math.random() * 0.4;
+          // Dark muted green-grey that blends with the background (NOT bright/white)
+          const r = Math.random();
+          if (r < 0.5) {
+            this.color = '50, 90, 60';    // dark muted green
+          } else if (r < 0.8) {
+            this.color = '40, 75, 50';    // deeper green-grey
+          } else {
+            this.color = '70, 110, 80';   // slightly lighter green
+          }
+        }
+
+        update() {
+          this.x += this.vx + Math.sin(this.wobbleAngle) * this.wobbleRange;
+          this.y += this.vy;
+          this.wobbleAngle += this.wobbleSpeed;
+          this.size += this.growth;
+          this.alpha -= this.decay;
+        }
+
+        draw() {
+          if (this.alpha <= 0) return;
+          ctx.save();
+          ctx.globalAlpha = this.alpha;
+          const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+          grad.addColorStop(0,    `rgba(${this.color}, 0.45)`);
+          grad.addColorStop(0.40, `rgba(${this.color}, 0.12)`);
+          grad.addColorStop(0.75, `rgba(${this.color}, 0.03)`);
+          grad.addColorStop(1,    `rgba(${this.color}, 0)`);
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Spawn only from left or right sides, low density (max 40 particles)
+        if (particles.length < 40 && Math.random() > 0.72) {
+          const side = Math.random() < 0.5 ? 'left' : 'right';
+          particles.push(new SmokeParticle(side));
+        }
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.update();
+          p.draw();
+          if (p.alpha <= 0 || p.y < -p.size) {
+            particles.splice(i, 1);
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+
+      resize();
+      animate();
+      window.addEventListener('resize', resize);
+      window.addEventListener('load', resize);
+      setTimeout(resize, 500);
+      setTimeout(resize, 2000);
+    })();
+
+    // ===== FEATURED COLLECTIONS IMMERSIVE SLIDER =====
+    (function() {
+      const track = document.getElementById('featSlider');
+      const prevBtn = document.getElementById('featPrev');
+      const nextBtn = document.getElementById('featNext');
+      const counter = document.getElementById('featCounter');
+      if (!track) return;
+
+      const slides = track.querySelectorAll('.feat-slide');
+      const total = slides.length;
+      let current = 0;
+      let timer;
+
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        current = (idx + total) % total;
+        slides[current].classList.add('active');
+        track.style.transform = `translateX(-${current * 100}%)`;
+        if (counter) counter.textContent = `${pad(current + 1)} / ${pad(total)}`;
+      }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 6000);
+      }
+
+      // Init first slide
+      slides[0].classList.add('active');
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+      }
+
+      startTimer();
+    })();
+    // ===== OUR HERITAGE — STEPS SLIDER =====
+    (function() {
+      const slides    = document.querySelectorAll('.heritage-slide');
+      const dots      = document.querySelectorAll('.h-dot');
+      const track     = document.getElementById('heritageSlides');
+      if (!track || slides.length === 0) return;
+
+      let current = 0;
+      let timer;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        track.style.transform = `translateX(-${current * 100}%)`;
+      }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 5000);
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { goTo(i); startTimer(); });
+      });
+
+      startTimer();
+    })();
+
+    // ===== REVEAL-LEFT + REVEAL-RIGHT OBSERVER =====
+    (function() {
+      const allReveal = document.querySelectorAll('.reveal-left, .reveal-right');
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.08 });
+        allReveal.forEach(el => obs.observe(el));
+        // Also immediately reveal any already-visible elements
+        setTimeout(() => {
+          allReveal.forEach(el => {
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('revealed');
+          });
+        }, 150);
+      } else {
+        allReveal.forEach(el => el.classList.add('revealed'));
+      }
+    })();
+
+    // ===== OUR STORY IMAGE SLIDER =====
+    (function() {
+      const slider = document.getElementById('storySlider');
+      const dots   = document.querySelectorAll('.story-dot');
+      if (!slider || !dots.length) return;
+      const slides = slider.querySelectorAll('.story-slide');
+      let current = 0;
+      let timer;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 4000);
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { goTo(i); startTimer(); });
+      });
+
+      startTimer();
+    })();
+
+  </script>
 </body>
 </html>
