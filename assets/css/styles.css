@@ -1364,7 +1364,7 @@ a {
 }
 
 /* Use a pseudo-element on the link to bridge the gap to the absolute mega menu */
-.has-mega-menu > a::after {
+.has-mega-menu > a::before {
   content: '';
   position: absolute;
   top: 100%;
