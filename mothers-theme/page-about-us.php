@@ -179,7 +179,7 @@ include 'header.php';
         position: relative;
       }
       .modern-process-img-wrap {
-        width: 200px; height: 260px; /* Changed to rectangle */
+        width: 250px; height: 240px; /* Square look */
         border-radius: 16px; /* Soft corners */
         margin: 0 auto 2rem auto;
         position: relative;
@@ -202,7 +202,7 @@ include 'header.php';
       .modern-process-number {
         position: absolute;
         top: -15px; 
-        right: calc(50% - 110px); /* 100px is edge + 10px overlap */
+        right: calc(50% - 135px); /* Adjusted for 250px width */
         width: 45px; height: 45px;
         background: linear-gradient(135deg, var(--color-gold, #d4af37), #b89326);
         color: white;
@@ -215,8 +215,8 @@ include 'header.php';
       }
       .modern-process-connector {
         position: absolute;
-        top: 130px; left: calc(50% + 100px);
-        width: calc(100% - 200px);
+        top: 120px; left: calc(50% + 125px);
+        width: calc(100% - 250px);
         height: 2px;
         background: linear-gradient(90deg, var(--color-gold, #d4af37) 0%, transparent 100%);
         z-index: 0;
