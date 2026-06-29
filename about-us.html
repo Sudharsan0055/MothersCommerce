@@ -869,28 +869,185 @@
       </div>
     </section>
 
-    <!-- Community & Empowerment Section -->
-    <section class="section" style="background-color: var(--color-surface); position: relative; overflow: hidden;">
-      <div class="container split-section" style="align-items: center;">
-        <div class="split-image-wrapper reveal">
-          <img src="./assets/images/community_women.jpg" onerror="this.src='./assets/images/process_sourcing.png'" alt="Women artisans hand-rolling incense" class="split-image" style="border-radius: var(--radius-lg); object-position: center;">
-          <div class="hero-shape" style="top: -20px; left: -20px; border-color: var(--color-terracotta);"></div>
-        </div>
-        <div class="split-content reveal reveal-delay-1">
-          <div class="hero-badge" style="margin-bottom: var(--space-md);">Community First</div>
-          <h2 style="color: var(--color-primary); font-size: 2.5rem; margin-bottom: 1.5rem;">Empowering Women, Enriching Lives</h2>
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: var(--color-text);">
-            At The Mother's Fragrances, our dedication goes beyond creating premium incense. We are deeply committed to fair trade principles, providing ethical, sustainable employment to hundreds of women in our local community in Pondicherry.
-          </p>
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; color: var(--color-text);">
-            By choosing our products, you are directly supporting a network of artisans, helping them achieve financial independence, and preserving the beautiful, ancient tradition of hand-rolling agarbatti.
-          </p>
-          <a href="contact.html" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-            Support Our Mission <i class="fa-solid fa-arrow-right"></i>
-          </a>
+    <!-- Vision/Mission/Goal Slider Section -->
+    <style>
+      .vision-slider-container {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+        overflow: hidden;
+        min-height: 450px;
+      }
+      .vision-slider-images {
+        flex: 1;
+        position: relative;
+        min-height: 450px;
+        overflow: hidden;
+      }
+      .vision-img-layer {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transform: scale(1.1);
+        transition: opacity 0.8s ease, transform 4s ease-out;
+      }
+      .vision-img-layer.active {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .vision-slider-content-wrapper {
+        flex: 1;
+        padding: 4rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 450px;
+      }
+      .vision-slide-text {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-40%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        width: calc(100% - 8rem);
+      }
+      .vision-slide-text.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%);
+      }
+      .vision-slide-text h3 {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--color-terracotta, #c27d56);
+        margin-bottom: 1rem;
+      }
+      .vision-slide-text h2 {
+        font-size: 2.5rem;
+        color: var(--color-primary, #2c3e50);
+        font-family: var(--font-serif);
+        margin-bottom: 1.5rem;
+      }
+      .vision-slide-text p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+      }
+      .vision-controls {
+        display: flex;
+        gap: 12px;
+        margin-top: auto;
+        position: absolute;
+        bottom: 3rem;
+        left: 4rem;
+      }
+      .vision-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e0e0e0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .vision-dot.active {
+        background: var(--color-gold, #d4af37);
+        transform: scale(1.3);
+      }
+      @media (max-width: 992px) {
+        .vision-slider-container { flex-direction: column; }
+        .vision-slider-images, .vision-slider-content-wrapper { min-height: 350px; width: 100%; }
+        .vision-slide-text { position: relative; top: 0; transform: none; width: 100%; display: none; }
+        .vision-slide-text.active { transform: none; display: block; }
+        .vision-slider-content-wrapper { padding: 2rem; justify-content: flex-start; }
+        .vision-controls { position: relative; bottom: 0; left: 0; margin-top: 2rem; }
+      }
+    </style>
+
+    <section class="section" style="background-color: #faf8f5;">
+      <div class="container">
+        <div class="vision-slider-container reveal">
+          <div class="vision-slider-images">
+            <img src="./assets/images/process_sourcing.png" alt="Our Vision" class="vision-img-layer active">
+            <img src="./assets/images/process_kneading.png" alt="Our Mission" class="vision-img-layer">
+            <img src="./assets/images/hero_incense_mood_1781801686159.png" alt="Our Goal" class="vision-img-layer">
+          </div>
+          <div class="vision-slider-content-wrapper">
+            <div class="vision-slide-text active">
+              <h3>Our Vision</h3>
+              <h2>Empowering Women</h2>
+              <p>Women who work for us are rewarded with a wage above the legal minimum and far higher than the industry’s average.</p>
+            </div>
+            <div class="vision-slide-text">
+              <h3>Our Mission</h3>
+              <h2>The Masala Method</h2>
+              <p>The Mother's Fragrances incense is made by the 'masala method’. Dipping the incense would be much quicker and cheaper.</p>
+            </div>
+            <div class="vision-slide-text">
+              <h3>Our Goal</h3>
+              <h2>Connect With Us</h2>
+              <p>Have you got any questions, remarks, or experiences you'd like to share with us, we'd love to hear from you.</p>
+            </div>
+            <div class="vision-controls">
+              <div class="vision-dot active" onclick="setVisionSlide(0)"></div>
+              <div class="vision-dot" onclick="setVisionSlide(1)"></div>
+              <div class="vision-dot" onclick="setVisionSlide(2)"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <script>
+      let currentVisionSlide = 0;
+      const totalVisionSlides = 3;
+      let visionInterval;
+
+      function updateVisionSlider() {
+        document.querySelectorAll('.vision-img-layer').forEach((img, index) => {
+          if(index === currentVisionSlide) img.classList.add('active');
+          else img.classList.remove('active');
+        });
+        document.querySelectorAll('.vision-slide-text').forEach((text, index) => {
+          if(index === currentVisionSlide) text.classList.add('active');
+          else text.classList.remove('active');
+        });
+        document.querySelectorAll('.vision-dot').forEach((dot, index) => {
+          if(index === currentVisionSlide) dot.classList.add('active');
+          else dot.classList.remove('active');
+        });
+      }
+
+      function nextVisionSlide() {
+        currentVisionSlide = (currentVisionSlide + 1) % totalVisionSlides;
+        updateVisionSlider();
+      }
+
+      function setVisionSlide(index) {
+        currentVisionSlide = index;
+        updateVisionSlider();
+        resetVisionInterval();
+      }
+
+      function resetVisionInterval() {
+        clearInterval(visionInterval);
+        visionInterval = setInterval(nextVisionSlide, 5000);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        if(document.querySelector('.vision-slider-container')) {
+          resetVisionInterval();
+        }
+      });
+    </script>
 
     <!-- Call to Action Section -->
     <section class="section" style="padding-top: 2rem;">
