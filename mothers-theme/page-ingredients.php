@@ -17,7 +17,7 @@ get_header();
     ?>
 
     <!-- Page Hero -->
-    <section class="page-hero" style="background-image: linear-gradient(rgba(30, 58, 43, 0.8), rgba(30, 58, 43, 0.8)), url('./assets/images/ingredients-bg.png'); background-size: cover; background-position: center;">
+    <section class="page-hero" style="background-image: linear-gradient(rgba(30, 58, 43, 0.8), rgba(30, 58, 43, 0.8)), url('<?php echo get_template_directory_uri(); ?>/assets/images/ingredients-bg.png'); background-size: cover; background-position: center;">
       <div class="container">
         <h1 class="reveal">Botanical Library & Purity</h1>
         <p class="reveal reveal-delay-1">Deep dive into the pure woods, resins, and blossoms that make our products. 100% natural, certified clean.</p>

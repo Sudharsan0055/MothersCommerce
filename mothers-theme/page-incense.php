@@ -16,7 +16,7 @@ get_header();
     endif;
     ?>
 
-    <section class="page-hero" style="background: linear-gradient(rgba(30, 58, 43, 0.8), rgba(30, 58, 43, 0.8)), url('./assets/images/incense_premium_bundle_1781801699731.png') no-repeat center/cover; color: var(--color-bg);">
+    <section class="page-hero" style="background: linear-gradient(rgba(30, 58, 43, 0.8), rgba(30, 58, 43, 0.8)), url('<?php echo get_template_directory_uri(); ?>/assets/images/incense_premium_bundle_1781801699731.png') no-repeat center/cover; color: var(--color-bg);">
       <div class="container flex-center" style="flex-direction: column; text-align: center;">
         <h1 class="text-reveal-line" style="color: var(--color-gold);">Premium Incense</h1>
         <p class="reveal reveal-delay-1" style="max-width: 600px; margin: 0 auto; color: var(--color-bg);">Hand-rolled agarbatti made from nature's purest ingredients.</p>

@@ -25,3 +25,4 @@ function mothers_theme_setup() {
 }
 add_action('after_setup_theme', 'mothers_theme_setup');
 ?>
+

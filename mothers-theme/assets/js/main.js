@@ -926,3 +926,233 @@ function initScentLibrary() {
     });
   });
 }
+
+// ===== FOOTER SMOKE CANVAS =====
+(function() {
+  const canvas = document.getElementById('footer-smoke-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resize() {
+    if (canvas.parentElement) {
+      canvas.width = canvas.offsetWidth || window.innerWidth;
+      canvas.height = canvas.offsetHeight || 800;
+    }
+  }
+  class SmokeParticle {
+    constructor(side) {
+      const bandWidth = canvas.width * 0.18; 
+      if (side === 'left') {
+        this.x = Math.random() * bandWidth;
+        this.vx = (Math.random() * 0.4 + 0.1); 
+      } else {
+        this.x = canvas.width - Math.random() * bandWidth;
+        this.vx = -(Math.random() * 0.4 + 0.1); 
+      }
+      this.y = canvas.height + 20;
+      this.vy = -(Math.random() * 0.55 + 0.25); 
+      this.baseSize = 40 + Math.random() * 50;
+      this.size = this.baseSize;
+      this.alpha = 0.08 + Math.random() * 0.10;
+      this.decay = 0.00015 + Math.random() * 0.0002;
+      this.growth = 0.30 + Math.random() * 0.25;
+      this.wobbleSpeed = 0.004 + Math.random() * 0.008;
+      this.wobbleAngle = Math.random() * Math.PI * 2;
+      this.wobbleRange = 0.3 + Math.random() * 0.4;
+      const r = Math.random();
+      if (r < 0.5) { this.color = '50, 90, 60'; } 
+      else if (r < 0.8) { this.color = '40, 75, 50'; } 
+      else { this.color = '70, 110, 80'; }
+    }
+    update() {
+      this.x += this.vx + Math.sin(this.wobbleAngle) * this.wobbleRange;
+      this.y += this.vy;
+      this.wobbleAngle += this.wobbleSpeed;
+      this.size += this.growth;
+      this.alpha -= this.decay;
+    }
+    draw() {
+      if (this.alpha <= 0) return;
+      ctx.save();
+      ctx.globalAlpha = this.alpha;
+      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+      grad.addColorStop(0,    `rgba(${this.color}, 0.45)`);
+      grad.addColorStop(0.40, `rgba(${this.color}, 0.12)`);
+      grad.addColorStop(0.75, `rgba(${this.color}, 0.03)`);
+      grad.addColorStop(1,    `rgba(${this.color}, 0)`);
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (particles.length < 40 && Math.random() > 0.72) {
+      const side = Math.random() < 0.5 ? 'left' : 'right';
+      particles.push(new SmokeParticle(side));
+    }
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.update();
+      p.draw();
+      if (p.alpha <= 0 || p.y < -p.size) {
+        particles.splice(i, 1);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  resize();
+  animate();
+  window.addEventListener('resize', resize);
+  window.addEventListener('load', resize);
+  setTimeout(resize, 500);
+  setTimeout(resize, 2000);
+})();
+
+// ===== FEATURED COLLECTIONS IMMERSIVE SLIDER =====
+(function() {
+  const track = document.getElementById('featSlider');
+  const prevBtn = document.getElementById('featPrev');
+  const nextBtn = document.getElementById('featNext');
+  const counter = document.getElementById('featCounter');
+  if (!track) return;
+  const slides = track.querySelectorAll('.feat-slide');
+  const total = slides.length;
+  let current = 0;
+  let timer;
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    current = (idx + total) % total;
+    slides[current].classList.add('active');
+    track.style.transform = `translateX(-${current * 100}%)`;
+    if (counter) counter.textContent = `${pad(current + 1)} / ${pad(total)}`;
+  }
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 6000);
+  }
+  slides[0].classList.add('active');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+  }
+  startTimer();
+})();
+
+// ===== OUR HERITAGE - STEPS SLIDER =====
+(function() {
+  const slides    = document.querySelectorAll('.heritage-slide');
+  const dots      = document.querySelectorAll('.h-dot');
+  const track     = document.getElementById('heritageSlides');
+  if (!track || slides.length === 0) return;
+  let current = 0;
+  let timer;
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    track.style.transform = `translateX(-${current * 100}%)`;
+  }
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); startTimer(); });
+  });
+  startTimer();
+})();
+
+// ===== REVEAL-LEFT + REVEAL-RIGHT OBSERVER =====
+(function() {
+  const allReveal = document.querySelectorAll('.reveal-left, .reveal-right');
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    allReveal.forEach(el => obs.observe(el));
+    setTimeout(() => {
+      allReveal.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('revealed');
+      });
+    }, 150);
+  } else {
+    allReveal.forEach(el => el.classList.add('revealed'));
+  }
+})();
+
+// ===== OUR STORY IMAGE SLIDER =====
+(function() {
+  const slider = document.getElementById('storySlider');
+  const dots   = document.querySelectorAll('.story-dot');
+  if (!slider || !dots.length) return;
+  const slides = slider.querySelectorAll('.story-slide');
+  let current = 0;
+  let timer;
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 4000);
+  }
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); startTimer(); });
+  });
+  startTimer();
+})();
+
+// ===== WHY CHOOSE US SLIDER =====
+(function() {
+  const track = document.getElementById('whySlider');
+  if (!track) return;
+  const cards = track.querySelectorAll('.pillar-card-wrapper');
+  if (cards.length === 0) return;
+  
+  const wrapper = document.querySelector('.why-slider-wrapper');
+  if (wrapper) {
+    const prevBtn = document.createElement('div');
+    prevBtn.className = 'why-slider-arrow why-prev';
+    prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+    
+    const nextBtn = document.createElement('div');
+    nextBtn.className = 'why-slider-arrow why-next';
+    nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+    
+    wrapper.appendChild(prevBtn);
+    wrapper.appendChild(nextBtn);
+    
+    let current = 0;
+    const total = cards.length;
+    let timer;
+    
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+    }
+    
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 5000);
+    }
+    
+    prevBtn.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+    nextBtn.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+    
+    startTimer();
+  }
+})();

@@ -2,13 +2,13 @@
 /*
 Template Name: About Us Page
 */
-include 'header.php';
+get_header();
 ?>
 
 <main>
 
     <!-- Hero Section (Parallax) -->
-    <section class="hero" style="background-image: url('./assets/images/handmade_incense.webp'); height: 60vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; background-attachment: fixed;">
+    <section class="hero" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/images/handmade_incense.webp'); height: 60vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; background-attachment: fixed;">
       <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5);"></div>
       <div class="container" style="position: relative; z-index: 2;">
         <h1 class="reveal" style="color: #ffffff; font-size: 4rem; margin-bottom: 1rem; text-shadow: 0 4px 12px rgba(0,0,0,0.5); font-family: var(--font-serif);">Our Story</h1>
@@ -38,7 +38,7 @@ include 'header.php';
           </div>
         </div>
         <div class="split-image-wrapper reveal reveal-delay-1">
-          <img src="./assets/images/process_kneading.png" alt="Hand rolling incense" class="split-image" style="object-position: center;">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/images/process_kneading.png" alt="Hand rolling incense" class="split-image" style="object-position: center;">
         </div>
       </div>
     </section>
@@ -265,7 +265,7 @@ include 'header.php';
           <div class="modern-process-step">
             <div class="modern-process-number">1</div>
             <div class="modern-process-img-wrap">
-              <img src="./assets/images/process_sourcing.png" alt="Sourcing Ingredients">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/process_sourcing.png" alt="Sourcing Ingredients">
             </div>
             <h4 style="color: var(--color-primary, #2c3e50); font-size: 1.3rem; margin-bottom: 0.5rem;">Sourcing</h4>
             <p style="font-size: 0.95rem; color: #666;">Gathering pure resins, flowers, and woods.</p>
@@ -274,7 +274,7 @@ include 'header.php';
           <div class="modern-process-step" style="transition-delay: 0.1s;">
             <div class="modern-process-number">2</div>
             <div class="modern-process-img-wrap">
-              <img src="./assets/images/process_kneading.png" alt="Kneading Dough">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/process_kneading.png" alt="Kneading Dough">
             </div>
             <h4 style="color: var(--color-primary, #2c3e50); font-size: 1.3rem; margin-bottom: 0.5rem;">Kneading</h4>
             <p style="font-size: 0.95rem; color: #666;">Blending the raw materials into a fragrant dough.</p>
@@ -283,7 +283,7 @@ include 'header.php';
           <div class="modern-process-step" style="transition-delay: 0.2s;">
             <div class="modern-process-number">3</div>
             <div class="modern-process-img-wrap">
-              <img src="./assets/images/process_rolling.png" alt="Hand Rolling">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/process_rolling.png" alt="Hand Rolling">
             </div>
             <h4 style="color: var(--color-primary, #2c3e50); font-size: 1.3rem; margin-bottom: 0.5rem;">Rolling</h4>
             <p style="font-size: 0.95rem; color: #666;">Expertly hand-rolling onto bamboo sticks.</p>
@@ -292,7 +292,7 @@ include 'header.php';
           <div class="modern-process-step" style="transition-delay: 0.3s;">
             <div class="modern-process-number">4</div>
             <div class="modern-process-img-wrap">
-              <img src="./assets/images/hero_incense_mood_1781801686159.png" alt="Curing and Packaging">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hero_incense_mood_1781801686159.png" alt="Curing and Packaging">
             </div>
             <h4 style="color: var(--color-primary, #2c3e50); font-size: 1.3rem; margin-bottom: 0.5rem;">Curing</h4>
             <p style="font-size: 0.95rem; color: #666;">Sun-drying to lock in the pure, lasting aromas.</p>
@@ -408,9 +408,9 @@ include 'header.php';
       <div class="container">
         <div class="vision-slider-container reveal">
           <div class="vision-slider-images">
-            <img src="./assets/images/vision_slider.png" alt="Our Vision" class="vision-img-layer active">
-            <img src="./assets/images/mission_slider.png" alt="Our Mission" class="vision-img-layer">
-            <img src="./assets/images/goal_slider.png" alt="Our Goal" class="vision-img-layer">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/vision_slider.png" alt="Our Vision" class="vision-img-layer active">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/mission_slider.png" alt="Our Mission" class="vision-img-layer">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/goal_slider.png" alt="Our Goal" class="vision-img-layer">
           </div>
           <div class="vision-slider-content-wrapper">
             <div class="vision-slide-text active">
@@ -483,4 +483,4 @@ include 'header.php';
 
   </main>
 
-<?php // include 'footer.php'; // get_footer() replaced, create footer.php if needed ?>
+<?php // get_footer(); // get_footer() replaced, create footer.php if needed ?>

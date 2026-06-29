@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+/*
+Template Name: Homepage
+*/
+get_header(); ?>
 
     <?php
     // Required for Elementor and standard WordPress content
