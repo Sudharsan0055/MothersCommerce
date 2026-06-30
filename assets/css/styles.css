@@ -194,6 +194,7 @@ a {
   font-weight: 600;
   color: var(--color-primary);
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .logo-text span {
@@ -210,11 +211,11 @@ a {
 .nav {
   display: flex;
   align-items: center;
-  gap: 2rem !important;
+  gap: 1.5rem !important;
 }
 
 .nav-link {
-  margin-left: 1.5rem;
+  margin-left: 0; /* Changed from 1.5rem */
   font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 500;
@@ -267,7 +268,7 @@ a {
 }
 
 .header.header-transparent .nav-link {
-  margin-left: 1.5rem;
+  margin-left: 0; /* Changed from 1.5rem */
   color: var(--color-bg);
 }
 
@@ -342,7 +343,7 @@ a {
 }
 
 .mobile-menu .nav-link {
-  margin-left: 1.5rem;
+  margin-left: 0; /* Changed from 1.5rem */
   font-size: 1.4rem;
 }
 
@@ -1550,6 +1551,10 @@ a {
   position: static; 
   display: flex;
   align-items: center;
+}
+
+.savon-mega-menu-wrapper > a {
+  position: relative;
 }
 
 .savon-mega-menu-wrapper > a::before {
