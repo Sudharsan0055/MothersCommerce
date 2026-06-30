@@ -926,3 +926,53 @@ function initScentLibrary() {
     });
   });
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Savon Mega Menu Tabs
+  const savonTabs = document.querySelectorAll('.savon-tab');
+  const savonPanels = document.querySelectorAll('.savon-panel');
+
+  if(savonTabs.length > 0) {
+    savonTabs.forEach(tab => {
+      tab.addEventListener('mouseenter', function(e) {
+        
+        // Remove active class from all tabs and panels
+        savonTabs.forEach(t => t.classList.remove('active'));
+        savonPanels.forEach(p => p.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        this.classList.add('active');
+        
+        // Show corresponding panel
+        const targetId = this.getAttribute('data-target');
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
+      });
+    });
+  }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Mega menu carousel logic
+  const carousel = document.querySelector('.incense-carousel');
+  const prevBtn = document.querySelector('.carousel-prev');
+  const nextBtn = document.querySelector('.carousel-next');
+
+  if (carousel && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      carousel.scrollBy({ left: -340, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      carousel.scrollBy({ left: 340, behavior: 'smooth' });
+    });
+  }
+});
