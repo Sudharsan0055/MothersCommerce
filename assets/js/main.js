@@ -978,4 +978,29 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
+
+  // MEGA MENU DYNAMIC BACKGROUNDS
+  const tabs = document.querySelectorAll('.savon-tab');
+  const bgLayers = document.querySelectorAll('.mega-bg-layer');
+  
+  console.log('Mega Menu Init: Found ' + tabs.length + ' tabs and ' + bgLayers.length + ' bg layers.');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('mouseenter', function() {
+      const targetId = this.getAttribute('data-target'); // e.g., 'tab-cones'
+      console.log('Hovered tab, target is:', targetId);
+      
+      // Hide all backgrounds
+      bgLayers.forEach(layer => layer.classList.remove('active'));
+      
+      // Show matching background
+      const targetBg = document.getElementById('bg-' + targetId);
+      if (targetBg) {
+        targetBg.classList.add('active');
+        console.log('Activated background:', 'bg-' + targetId);
+      } else {
+        console.error('Could not find background with ID:', 'bg-' + targetId);
+      }
+    });
+  });
 });
