@@ -54,10 +54,13 @@ function initNavigation() {
       }
     });
 
-    // Close mobile menu on clicking a link
+    // Close mobile menu on clicking a link (unless it's a dropdown toggle)
     const mobileLinks = mobileMenu.querySelectorAll('.nav-link');
     mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        // Don't close if it's the mega menu toggle
+        if (link.getAttribute('href') === '#') return;
+        
         toggle.classList.remove('open');
         mobileMenu.classList.remove('open');
         if (headerEl) headerEl.classList.remove('menu-open');
