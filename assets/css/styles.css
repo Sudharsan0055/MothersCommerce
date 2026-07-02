@@ -1588,6 +1588,49 @@ a {
   padding-left: 0.3rem;
 }
 
+/* Premium Mobile Accordion Cards */
+.mobile-accordion-group {
+  background: rgba(20, 24, 22, 0.65);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-accordion-group:hover {
+  border-color: var(--color-gold);
+  background: rgba(25, 31, 28, 0.85);
+  transform: translateX(4px);
+}
+
+.mobile-accordion-title {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0.85rem 1rem !important;
+  color: #e6e0d4 !important;
+  text-decoration: none;
+  font-size: 1.02rem;
+}
+
+.mobile-accordion-title i {
+  color: var(--color-gold);
+  margin-right: 0.6rem;
+  width: 20px;
+  text-align: center;
+}
+
+.badge-gold {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--color-gold);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
 
 
 
@@ -2087,23 +2130,48 @@ a {
     font-size: 2.8rem;
   }
 
-  /* Header: adjust logo text size and prevent horizontal cutoff */
+  /* Header: clean responsive layout without overflow or edge crowding */
   .header {
-    height: auto;
-    min-height: var(--header-height);
+    height: auto !important;
+    min-height: 72px !important;
+    padding: 0.65rem 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    top: 0 !important;
   }
   .header-container {
-    width: 95%;
+    width: 92% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    height: auto !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
   }
   .logo-wrapper {
-    flex: 1;
-    min-width: 0;
-    margin-right: var(--space-sm);
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    margin-right: 0.5rem !important;
   }
   .logo-text {
-    font-size: 20px;
-    white-space: normal;
-    line-height: 1.25;
+    font-size: 18px !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+  }
+  .nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    margin-left: auto !important;
+    gap: 0 !important;
+  }
+  .mobile-nav-toggle {
+    display: block !important;
+    margin: 0 !important;
+    padding: 4px !important;
   }
 
   /* Section padding tighter on tablet */
@@ -2120,16 +2188,17 @@ a {
 /* --- MOBILE (max 768px) --- */
 @media (max-width: 768px) {
   .header-container {
-    width: 94%;
+    width: 92% !important;
   }
   .logo-img {
     height: 32px !important;
+    width: auto !important;
   }
   .logo-text {
-    font-size: 16px;
-    white-space: normal;
-    line-height: 1.2;
-    max-width: calc(100vw - 120px);
+    font-size: 15px !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+    max-width: calc(100vw - 110px) !important;
   }
 
   /* Hero headline */
