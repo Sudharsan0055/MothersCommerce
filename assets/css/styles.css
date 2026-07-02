@@ -355,6 +355,11 @@ a {
   margin-left: 0;
   font-size: 1.4rem;
   padding: 0.5rem 0;
+  width: fit-content;
+  margin: 0 auto;
+}
+.mobile-has-mega-menu > .nav-link::after {
+  display: none;
 }
 
 @media (max-width: 900px) {
@@ -2085,6 +2090,8 @@ a {
 
   .mobile-menu > a.nav-link {
     text-align: center; /* keep main links centered */
+    width: fit-content;
+    margin: 0 auto;
   }
 
   /* Mobile menu dropdown sub-items */
