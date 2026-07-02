@@ -2036,9 +2036,23 @@ a {
     font-size: 2.8rem;
   }
 
-  /* Header: adjust logo text size for tablet */
+  /* Header: adjust logo text size and prevent horizontal cutoff */
+  .header {
+    height: auto;
+    min-height: var(--header-height);
+  }
+  .header-container {
+    width: 95%;
+  }
+  .logo-wrapper {
+    flex: 1;
+    min-width: 0;
+    margin-right: var(--space-sm);
+  }
   .logo-text {
     font-size: 20px;
+    white-space: normal;
+    line-height: 1.25;
   }
 
   /* Section padding tighter on tablet */
@@ -2054,6 +2068,19 @@ a {
 
 /* --- MOBILE (max 768px) --- */
 @media (max-width: 768px) {
+  .header-container {
+    width: 94%;
+  }
+  .logo-img {
+    height: 32px !important;
+  }
+  .logo-text {
+    font-size: 16px;
+    white-space: normal;
+    line-height: 1.2;
+    max-width: calc(100vw - 120px);
+  }
+
   /* Hero headline */
   .hero-card h1,
   .hero h1 {
@@ -2153,13 +2180,16 @@ a {
     font-size: 1.8rem;
   }
 
-  /* Header logo text: resize and allow wrapping on tiny screens */
+  /* Header logo: resize and allow dynamic wrapping on tiny screens */
+  .logo-img {
+    height: 28px !important;
+  }
   .logo-text {
     display: block;
-    font-size: 16px;
+    font-size: 15px;
     white-space: normal;
     line-height: 1.2;
-    max-width: 160px;
+    max-width: calc(100vw - 110px);
   }
 
   /* Footer: tighter spacing */
