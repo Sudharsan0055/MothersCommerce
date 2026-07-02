@@ -1987,11 +1987,25 @@ a {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease !important;
+}
+
+.savon-mega-menu .incense-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(212, 175, 55, 0.85) !important;
+  background: rgba(25, 31, 28, 0.90) !important;
+  box-shadow: 0 14px 38px rgba(212, 175, 55, 0.22), 0 0 18px rgba(212, 175, 55, 0.15) !important;
 }
 
 .savon-mega-menu .incense-card h4 {
   color: var(--color-gold) !important;
   border-bottom-color: rgba(212, 175, 55, 0.35) !important;
+  transition: border-bottom-color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.savon-mega-menu .incense-card:hover h4 {
+  border-bottom-color: var(--color-gold) !important;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
 }
 
 .savon-mega-menu .incense-card h4 span {
