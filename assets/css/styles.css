@@ -2031,7 +2031,11 @@ a {
     display: none;
   }
 
-  /* Page hero h1 scale on tablet */
+  /* Hero titles scale smoothly on tablet */
+  .hero-card h1,
+  .hero h1 {
+    font-size: 3.2rem;
+  }
   .page-hero h1 {
     font-size: 2.8rem;
   }
@@ -2164,20 +2168,26 @@ a {
 
 /* --- SMALL PHONES (max 480px) --- */
 @media (max-width: 480px) {
-  /* Aggressive hero title shrink */
+  /* Aggressive hero title shrink and fluid spacing */
   .hero-card h1,
   .hero h1 {
-    font-size: 2rem !important;
+    font-size: 1.85rem !important;
+    line-height: 1.2;
+  }
+
+  .hero-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
   .hero-badge {
-    font-size: 0.7rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 0.68rem;
+    padding: 0.35rem 0.75rem;
   }
 
   /* Page hero */
   .page-hero h1 {
-    font-size: 1.8rem;
+    font-size: 1.65rem;
   }
 
   /* Header logo: resize and allow dynamic wrapping on tiny screens */
