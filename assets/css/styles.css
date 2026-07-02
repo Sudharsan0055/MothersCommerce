@@ -911,11 +911,39 @@ a {
 }
 
 @media (max-width: 1024px) {
+  /* Homepage Hero on Tablet: Stack vertically and center for a cinematic feel */
+  .hero .grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+    text-align: center;
+  }
+  .hero-card {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
   .hero-slider-wrapper {
-    height: 400px;
-    max-width: 500px;
+    height: 420px;
+    max-width: 680px;
     margin: 0 auto;
     width: 100%;
+  }
+
+  /* Inner Page Heroes (.page-hero) on Tablet */
+  .page-hero {
+    padding-top: calc(var(--header-height) + var(--space-xl));
+    padding-bottom: var(--space-xl);
+    text-align: center;
+  }
+  .page-hero h1 {
+    font-size: 2.8rem !important;
+  }
+  .page-hero p {
+    font-size: 1.1rem !important;
+    max-width: 85% !important;
+    margin: 0 auto;
   }
 }
 
