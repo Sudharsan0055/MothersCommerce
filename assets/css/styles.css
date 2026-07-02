@@ -2031,9 +2031,9 @@ a {
     font-size: 2.8rem;
   }
 
-  /* Header: prevent overflowing logo text */
+  /* Header: adjust logo text size for tablet */
   .logo-text {
-    font-size: 0.9rem;
+    font-size: 20px;
   }
 
   /* Section padding tighter on tablet */
@@ -2146,9 +2146,13 @@ a {
     font-size: 1.8rem;
   }
 
-  /* Header logo text: hide on tiny screens */
+  /* Header logo text: resize and allow wrapping on tiny screens */
   .logo-text {
-    display: none;
+    display: block;
+    font-size: 16px;
+    white-space: normal;
+    line-height: 1.2;
+    max-width: 160px;
   }
 
   /* Footer: tighter spacing */
