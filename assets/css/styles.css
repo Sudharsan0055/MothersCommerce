@@ -2014,3 +2014,171 @@ a {
   background: transparent !important;
   overflow: hidden;
 }
+
+/* ============================================================
+   COMPREHENSIVE MOBILE & TABLET RESPONSIVE FIXES
+   ============================================================ */
+
+/* --- TABLET (768px – 900px) --- */
+@media (max-width: 900px) {
+  /* Hide the desktop savon mega menu entirely on mobile/tablet */
+  .savon-mega-menu-wrapper {
+    display: none;
+  }
+
+  /* Page hero h1 scale on tablet */
+  .page-hero h1 {
+    font-size: 2.8rem;
+  }
+
+  /* Header: prevent overflowing logo text */
+  .logo-text {
+    font-size: 0.9rem;
+  }
+
+  /* Section padding tighter on tablet */
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  /* Mobile menu: fix center-alignment fighting with mega sub-menu */
+  .mobile-menu > .mobile-has-mega-menu {
+    text-align: left;
+  }
+}
+
+/* --- MOBILE (max 768px) --- */
+@media (max-width: 768px) {
+  /* Hero headline */
+  .hero-card h1,
+  .hero h1 {
+    font-size: 2.4rem !important;
+    line-height: 1.2;
+  }
+
+  .hero-card p {
+    font-size: 1rem;
+  }
+
+  /* Page hero headings */
+  .page-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .page-hero p {
+    font-size: 1rem;
+  }
+
+  /* Section headings */
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Mobile menu: make sure sub-mega items align left properly overriding parent center */
+  .mobile-menu > * {
+    text-align: left;
+  }
+
+  .mobile-menu > .mobile-has-mega-menu {
+    text-align: left;
+  }
+
+  .mobile-menu > a.nav-link {
+    text-align: center; /* keep main links centered */
+  }
+
+  /* Mobile menu dropdown sub-items */
+  .mobile-mega-menu {
+    text-align: left;
+  }
+
+  /* Product slider items slightly wider on mobile for readability */
+  .product-slider > * {
+    flex: 0 0 240px;
+  }
+
+  /* Heritage slider: stack vertically for phones */
+  .h-slide-title {
+    font-size: 1.7rem;
+  }
+
+  .h-slide-step-num {
+    font-size: 4rem;
+  }
+
+  /* Ingredient card height: shorter on mobile */
+  .ingredient-card {
+    height: 300px;
+  }
+
+  /* Fix video/about sections padding */
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  /* Feat slider height fix */
+  .feat-slider-outer {
+    height: 400px;
+  }
+
+  /* Make buttons full-width on small mobile in hero */
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* --- SMALL PHONES (max 480px) --- */
+@media (max-width: 480px) {
+  /* Aggressive hero title shrink */
+  .hero-card h1,
+  .hero h1 {
+    font-size: 2rem !important;
+  }
+
+  .hero-badge {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* Page hero */
+  .page-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  /* Header logo text: hide on tiny screens */
+  .logo-text {
+    display: none;
+  }
+
+  /* Footer: tighter spacing */
+  .footer {
+    padding: var(--space-2xl) 0 var(--space-lg) 0;
+  }
+
+  /* Mobile menu slightly tighter padding */
+  .mobile-menu {
+    padding-top: 80px;
+    gap: var(--space-sm);
+  }
+
+  .mobile-menu .nav-link {
+    font-size: 1.2rem;
+  }
+
+  /* Product slider items */
+  .product-slider > * {
+    flex: 0 0 210px;
+  }
+
+  /* Ingredient cards */
+  .ingredient-card {
+    height: 260px;
+  }
+
+  /* Feature cards grid */
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
