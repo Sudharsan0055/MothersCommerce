@@ -194,110 +194,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"></head>
 <body>
 
-  <!-- Navigation Header -->
-  <header class="header" id="mainHeader">
-    <div class="container header-container">
-      <a href="index.html" class="logo-wrapper" id="headerLogo">
-        <img src="./assets/images/lotus-logo-golden.webp" alt="The Mother's Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
-        <div class="logo-text">
-          Mothers Commerce
-          <span>Export Division</span>
-        </div>
-      </a>
-      
-      <nav class="nav" id="desktopNav">
-        <!-- MEGA MENU WRAPPER -->
-        <div class="has-mega-menu">
-          <a href="#" class="nav-link">Catalog <i class="fa-solid fa-angle-down" style="font-size: 0.8em; margin-left: 4px;"></i></a>
-          
-          <div class="mega-menu">
-            <div class="mega-menu-column">
-              <h3 class="mega-menu-heading">Shop by Product</h3>
-              <ul class="mega-menu-list">
-                <li><a href="incense.html">Incense Sticks</a></li>
-                <li><a href="cones.html">Cones</a></li>
-                <li><a href="essential-oil.html">Essential Oils</a></li>
-                <li><a href="tapestry.html">Mandala Tapestries</a></li>
-                <li><a href="products.html">View All Products</a></li>
-              </ul>
-            </div>
-            
-            <div class="mega-menu-column">
-              <h3 class="mega-menu-heading">Shop by Fragrance</h3>
-              <ul class="mega-menu-list">
-                <li><a href="fragrances.html#floral">Floral Series</a></li>
-                <li><a href="fragrances.html#woody">Woody & Earthy</a></li>
-                <li><a href="fragrances.html#spicy">Spicy & Exotic</a></li>
-                <li><a href="fragrances.html#sweet">Sweet & Resinous</a></li>
-                <li><a href="ingredients.html">Our Natural Ingredients</a></li>
-              </ul>
-            </div>
-            
-            <div class="mega-menu-column">
-              <div class="mega-menu-featured">
-                <img src="./assets/images/incense_premium_bundle_1781801699731.png" alt="Featured Premium Collection">
-                <div class="mega-menu-featured-content">
-                  <h3>Premium Collection</h3>
-                  <p>Discover our best-selling hand-rolled incense bundles.</p>
-                  <a href="products.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Shop Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /MEGA MENU WRAPPER -->
-<a href="index.html" class="nav-link">Home</a>
-        <a href="ingredients.html" class="nav-link">Ingredients</a>
-        <a href="products.html" class="nav-link">Collections</a>
-        <a href="about.html" class="nav-link">Our Story</a>
-        <a href="contact.html" class="nav-link">Export & Contact</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="contact.html" class="btn btn-outline" id="navCta">Enquire Now</a>
-        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle mobile menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Drawer Menu -->
-  <div class="mobile-menu" id="mobileMenuOverlay">
-    <!-- MOBILE MEGA MENU -->
-    <div class="mobile-has-mega-menu" style="margin-bottom: 0.5rem;">
-      <a href="#" class="nav-link" onclick="this.parentElement.classList.toggle('active'); return false;">
-        Catalog <i class="fa-solid fa-angle-down"></i>
-      </a>
-      <div class="mobile-mega-menu">
-        <div>
-          <h4 class="mobile-mega-column-heading">Products</h4>
-          <ul class="mobile-mega-list">
-            <li><a href="incense.html">Incense Sticks</a></li>
-            <li><a href="cones.html">Cones</a></li>
-            <li><a href="essential-oil.html">Essential Oils</a></li>
-            <li><a href="tapestry.html">Tapestries</a></li>
-          </ul>
-        </div>
-        <div style="margin-top: 1rem;">
-          <h4 class="mobile-mega-column-heading">Fragrances</h4>
-          <ul class="mobile-mega-list">
-            <li><a href="fragrances.html">All Fragrances</a></li>
-            <li><a href="ingredients.html">Ingredients</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- /MOBILE MEGA MENU -->
-<a href="index.html" class="nav-link">Home</a>
-    <a href="ingredients.html" class="nav-link">Ingredients</a>
-    <a href="products.html" class="nav-link">Collections</a>
-    <a href="about.html" class="nav-link">Our Story</a>
-    <a href="contact.html" class="nav-link">Export & Contact</a>
-    <a href="contact.html" class="btn btn-primary" style="margin-top: var(--space-md);">Enquire Now</a>
-  </div>
+  <div id="site-header"></div>
 
   <main>
     <!-- Page Hero -->
@@ -455,63 +352,10 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <canvas id="footer-smoke-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="index.html" class="logo-wrapper">
-            <img src="./assets/images/lotus-logo-golden.webp" alt="The Mother's Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
-            <div class="logo-text">Mothers Commerce</div>
-          </a>
-          <p style="margin-top: var(--space-sm);">Manufacturers and global exporters of 100% botanical, chemical-free incense sticks. Sourced from nature, rolled by hand, exported globally since 1986.</p>
-        </div>
-        
-        <div>
-          <h4>Explore</h4>
-          <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">Our Story</a>
-            <a href="products.html">Collections</a>
-            <a href="ingredients.html">Ingredients</a>
-            <a href="contact.html">Export & Contact</a>
-          </div>
-        </div>
-
-        <div>
-          <h4>Global Markets</h4>
-          <div class="footer-links">
-            <a href="contact.html">United States (USA)</a>
-            <a href="contact.html">United Kingdom (UK)</a>
-            <a href="contact.html">Australia</a>
-            <a href="contact.html">European Union (EU)</a>
-            <a href="contact.html">Customs & Shipping Compliance</a>
-          </div>
-        </div>
-
-        <div class="footer-newsletter">
-          <h4>Export Inquiries</h4>
-          <p>Subscribe to our seasonal catalog releases and harvest updates.</p>
-          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
-            <input type="email" placeholder="Your corporate email..." class="newsletter-input" required>
-            <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
-          </form>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 Mothers Commerce. All rights reserved. Made in Pondicherry, India.</p>
-        <div class="footer-socials">
-          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
 
   <!-- Scripts -->
+  <script src="./assets/js/includes.js"></script>
   <script src="./assets/js/main.js?v=24"></script>
 </body>
 </html>
