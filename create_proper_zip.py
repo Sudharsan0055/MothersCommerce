@@ -2,27 +2,39 @@ import os
 import zipfile
 import glob
 
-def create_deploy_zip():
-    zip_filename = 'mothers_fragrances_deploy.zip'
-    print(f"Creating {zip_filename} with forward slashes...")
-    
-    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
-        # Add HTML files
-        html_files = glob.glob('*.html')
-        for file in html_files:
-            zipf.write(file, file)
-            print(f"Added: {file}")
-            
-        # Add assets folder
-        for root, dirs, files in os.walk('assets'):
-            for file in files:
-                file_path = os.path.join(root, file)
-                # Convert backslashes to forward slashes for the archive name
-                arcname = file_path.replace(os.sep, '/')
-                zipf.write(file_path, arcname)
-                print(f"Added: {arcname}")
-                
-    print("Zip created successfully.")
+# Core HTML files to include
+core_files = [
+    'index.html',
+    'about-us.html',
+    'incense.html',
+    'cones.html',
+    'essential-oil.html',
+    'fragrances.html',
+    'tapestry.html',
+    'products.html',
+    'ingredients.html',
+    'contact.html'
+]
 
-if __name__ == "__main__":
-    create_deploy_zip()
+zip_filename = 'Mothers_Clean_HTML_Site.zip'
+
+if os.path.exists(zip_filename):
+    os.remove(zip_filename)
+
+with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    for html_file in core_files:
+        if os.path.exists(html_file):
+            zipf.write(html_file, arcname=html_file)
+            print(f"Added {html_file}")
+        else:
+            print(f"Warning: {html_file} not found")
+            
+    # Add assets directory
+    for root, dirs, files in os.walk('assets'):
+        for file in files:
+            file_path = os.path.join(root, file)
+            # Make sure we don't accidentally zip hidden git/gemini files if they are in assets
+            if not '.git' in file_path and not '.gemini' in file_path:
+                zipf.write(file_path, arcname=file_path)
+                
+print(f"Successfully created {zip_filename}")

@@ -10,7 +10,7 @@
   
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="./assets/css/variables.css">
-  <link rel="stylesheet" href="./assets/css/styles.css?v=30">
+  <link rel="stylesheet" href="./assets/css/styles.css?v=38">
   
   <!-- FontAwesome for Premium Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -510,58 +510,356 @@
   <header class="header header-transparent" id="mainHeader">
     <div class="container header-container">
       <a href="index.html" class="logo-wrapper" id="headerLogo">
-        <img src="./assets/images/lotus-logo-golden.webp" alt="The Mother's Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
+        <img src="./assets/images/lotus-logo-golden.webp" alt="The Mother's Fragrances Logo" class="logo-img"
+          style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
         <div class="logo-text">
           The Mother's Fragrances
         </div>
       </a>
-      
-      <nav class="nav" id="desktopNav">
-        <!-- MEGA MENU WRAPPER -->
-        <div class="has-mega-menu">
-          <a href="#" class="nav-link">Catalog <i class="fa-solid fa-angle-down" style="font-size: 0.8em; margin-left: 4px;"></i></a>
-          
-          <div class="mega-menu">
-            <div class="mega-menu-column">
-              <h3 class="mega-menu-heading">Shop by Product</h3>
-              <ul class="mega-menu-list">
-                <li><a href="incense.html">Incense Sticks</a></li>
-                <li><a href="cones.html">Cones</a></li>
-                <li><a href="essential-oil.html">Essential Oils</a></li>
-                <li><a href="tapestry.html">Mandala Tapestries</a></li>
-                <li><a href="products.html">View All Products</a></li>
-              </ul>
+
+      <nav class="nav" id="desktopNav" style="gap: 1.5rem;">
+        <!-- SAVON STYLE MEGA MENU WRAPPER -->
+        <div class="savon-mega-menu-wrapper">
+          <a href="#" class="nav-link">Catalog <i class="fa-solid fa-angle-down"
+              style="font-size: 0.8em; margin-left: 4px;"></i></a>
+
+          <div class="savon-mega-menu">
+            <div class="savon-mega-menu-bg">
+              <div class="mega-bg-layer active" id="bg-tab-incense" style="background-image: url('assets/images/hero_incense_mood_1781801686159.png');"></div>
+              <div class="mega-bg-layer" id="bg-tab-cones" style="background-image: url('assets/images/incense_cones_aesthetic_1781801710438.png');"></div>
+              <div class="mega-bg-layer" id="bg-tab-oils" style="background-image: url('assets/images/essential_oils_bottles_1781801723388.png');"></div>
+              <div class="mega-bg-layer" id="bg-tab-perfume" style="background-image: url('assets/images/essence-1.webp');"></div>
             </div>
-            
-            <div class="mega-menu-column">
-              <h3 class="mega-menu-heading">Shop by Fragrance</h3>
-              <ul class="mega-menu-list">
-                <li><a href="fragrances.html#floral">Floral Series</a></li>
-                <li><a href="fragrances.html#woody">Woody & Earthy</a></li>
-                <li><a href="fragrances.html#spicy">Spicy & Exotic</a></li>
-                <li><a href="fragrances.html#sweet">Sweet & Resinous</a></li>
-                <li><a href="ingredients.html">Our Natural Ingredients</a></li>
-              </ul>
+
+            <!-- Left Sidebar Tabs -->
+            <div class="savon-sidebar">
+              <div class="savon-tab active" data-target="tab-incense">
+                <i class="fa-solid fa-fire-flame-simple"></i> Incense Sticks
+              </div>
+              <div class="savon-tab" data-target="tab-cones">
+                <i class="fa-solid fa-leaf"></i> Cones
+              </div>
+              <div class="savon-tab" data-target="tab-oils">
+                <i class="fa-solid fa-droplet"></i> Essential Oils
+              </div>
+              <div class="savon-tab" data-target="tab-perfume">
+                <i class="fa-solid fa-bottle-droplet"></i> Perfume Oils
+              </div>
             </div>
-            
-            <div class="mega-menu-column">
-              <div class="mega-menu-featured">
-                <img src="./assets/images/incense_premium_bundle_1781801699731.png" alt="Featured Premium Collection">
-                <div class="mega-menu-featured-content">
-                  <h3>Premium Collection</h3>
-                  <p>Discover our best-selling hand-rolled incense bundles.</p>
-                  <a href="products.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Shop Now</a>
+
+            <!-- Content Area -->
+            <div class="savon-content">
+
+
+              <!-- TAB 1: INCENSE STICKS -->
+              <div class="savon-panel active" id="tab-incense">
+                <div class="incense-carousel-container">
+                  <button class="carousel-nav carousel-prev" aria-label="Previous category"><i
+                      class="fa-solid fa-chevron-left"></i></button>
+
+                  <div class="incense-carousel">
+
+                    <!-- Card 1: Our Regular Incense -->
+                    <div class="incense-card">
+                      <h4>MOTHERS FRAGRANCES<br><span>OUR REGULAR INCENSE</span></h4>
+                      <div class="incense-list-container">
+                        <ul class="incense-list">
+                          <li><a href="#">Amber</a></li>
+                          <li><a href="#">Autumn Leaves</a></li>
+                          <li><a href="#">Cinnamon & Spice</a></li>
+                          <li><a href="#">Frankincense</a></li>
+                          <li><a href="#">Gardenia</a></li>
+                          <li><a href="#">Honeysuckle</a></li>
+                          <li><a href="#">Jasmine</a></li>
+                          <li><a href="#">Lavender</a></li>
+                          <li><a href="#">Lotus</a></li>
+                          <li><a href="#">Musk</a></li>
+                          <li><a href="#">Myrrh</a></li>
+                          <li><a href="#">Patchouli</a></li>
+                          <li><a href="#">Orange blossom</a></li>
+                          <li><a href="#">Oriental rose</a></li>
+                          <li><a href="#">Passion Flower</a></li>
+                          <li><a href="#">Patchouli Rose</a></li>
+                          <li><a href="#">Roses</a></li>
+                          <li><a href="#">Roses & Violets</a></li>
+                          <li><a href="#">Spicewood</a></li>
+                          <li><a href="#">Sandalwood</a></li>
+                          <li><a href="#">Tuberose</a></li>
+                          <li><a href="#">Vanilla</a></li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- Card 2: Premium Incense -->
+                    <div class="incense-card">
+                      <h4>THE MOTHERS GOLDEN FRAGRANCES<br><span>PREMIUM INCENSE</span></h4>
+                      <div class="incense-list-container">
+                        <ul class="incense-list">
+                          <li><a href="#">Amber</a></li>
+                          <li><a href="#">Cinnamon</a></li>
+                          <li><a href="#">Geranium</a></li>
+                          <li><a href="#">Iris</a></li>
+                          <li><a href="#">Jasmine</a></li>
+                          <li><a href="#">Lavender</a></li>
+                          <li><a href="#">Musk</a></li>
+                          <li><a href="#">Lotus</a></li>
+                          <li><a href="#">Myrrh</a></li>
+                          <li><a href="#">Orange Blossom</a></li>
+                          <li><a href="#">Rose</a></li>
+                          <li><a href="#">Patchouli</a></li>
+                          <li><a href="#">Spring blossom</a></li>
+                          <li><a href="#">Vanilla</a></li>
+                          <li><a href="#">Ylang Ylang</a></li>
+                          <li><a href="#">Spicewood</a></li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- Card 3: Our Special Incense -->
+                    <div class="incense-card">
+                      <h4>MIRA AGARBATHIS<br><span>OUR SPECIAL INCENSE</span></h4>
+                      <div class="incense-list-container">
+                        <ul class="incense-list">
+                          <li><a href="#">Cedarwood</a></li>
+                          <li><a href="#">Coconut</a></li>
+                          <li><a href="#">Chocolate</a></li>
+                          <li><a href="#">Church Incense</a></li>
+                          <li><a href="#">Christmas</a></li>
+                          <li><a href="#">Coronation</a></li>
+                          <li><a href="#">Lilac Lily of the Valley</a></li>
+                          <li><a href="#">Opium</a></li>
+                          <li><a href="#">Pine White Rose</a></li>
+                          <li><a href="#">Wood lily</a></li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- Card 4: Nagchampa Incense -->
+                    <div class="incense-card">
+                      <h4>MOTHER INDIA FRAGRANCES<br><span>NAGCHAMPA INCENSE</span></h4>
+                      <div class="incense-list-container">
+                        <ul class="incense-list">
+                          <li><a href="#">Agni (Musk)</a></li>
+                          <li><a href="#">Amrita</a></li>
+                          <li><a href="#">Ananda</a></li>
+                          <li><a href="#">Arjava</a></li>
+                          <li><a href="#">Atma</a></li>
+                          <li><a href="#">Bhakti (Rose)</a></li>
+                          <li><a href="#">Ganesh</a></li>
+                          <li><a href="#">Jyoti (Spicewood)</a></li>
+                          <li><a href="#">Lakshmi</a></li>
+                          <li><a href="#">Lila</a></li>
+                          <li><a href="#">Moksha</a></li>
+                          <li><a href="#">Lavanya</a></li>
+                          <li><a href="#">OM</a></li>
+                          <li><a href="#">Purusha</a></li>
+                          <li><a href="#">Shanti</a></li>
+                          <li><a href="#">Sattva</a></li>
+                          <li><a href="#">Vishnu</a></li>
+                          <li><a href="#">Yajna</a></li>
+                          <li><a href="#">Hansa</a></li>
+                        </ul>
+                      </div>
+                    </div>
+
+
+                    <!-- Card 5: Additional Fragrances -->
+                    <div class="incense-card">
+                      <h4>MOTHERS FRAGRANCES<br><span>ADDITIONAL FRAGRANCES</span></h4>
+                      <div class="incense-list-container">
+                        <ul class="incense-list">
+                          <li><a href="#">English Lavender</a></li>
+                          <li><a href="#">French Lavender</a></li>
+                          <li><a href="#">Spicewood wood</a></li>
+                          <li><a href="#">Wood Lavender</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button class="carousel-nav carousel-next" aria-label="Next category"><i
+                      class="fa-solid fa-chevron-right"></i></button>
+                </div>
+              </div>
+              <!-- TAB 2: CONES -->
+              <div class="savon-panel" id="tab-cones">
+                <div class="incense-carousel-container">
+                  <div class="incense-carousel">
+                      
+                      <!-- Card 1: 12 Fragrances -->
+                      <div class="incense-card">
+                        <h4>CONES<br><span>12 FLORAL AND WOODY FRAGRANCES</span></h4>
+                        <div class="incense-list-container">
+                          <ul class="incense-list">
+                            <li><a href="#">Amber</a></li>
+                            <li><a href="#">Autumn Leaves</a></li>
+                            <li><a href="#">Cedarwood</a></li>
+                            <li><a href="#">Frankincense</a></li>
+                            <li><a href="#">Gardenia</a></li>
+                            <li><a href="#">Jasmine</a></li>
+                            <li><a href="#">Lavender</a></li>
+                            <li><a href="#">Lotus</a></li>
+                            <li><a href="#">Musk</a></li>
+                            <li><a href="#">Patchouli</a></li>
+                            <li><a href="#">Rose</a></li>
+                            <li><a href="#">Sandalwood</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      
+                      <!-- Card 2: 18 Fragrances -->
+                      <div class="incense-card">
+                        <h4>CONES<br><span>18 FLORAL AND WOODY FRAGRANCES</span></h4>
+                        <div class="incense-list-container">
+                          <ul class="incense-list">
+                            <li><a href="#">Amber</a></li>
+                            <li><a href="#">Autumn Leaves</a></li>
+                            <li><a href="#">Cedarwood</a></li>
+                            <li><a href="#">Cinnamon & Spice</a></li>
+                            <li><a href="#">Frankincense</a></li>
+                            <li><a href="#">Gardenia</a></li>
+                            <li><a href="#">Jasmine</a></li>
+                            <li><a href="#">Lavender</a></li>
+                            <li><a href="#">Lotus</a></li>
+                            <li><a href="#">Passion Flower</a></li>
+                            <li><a href="#">Patchouli</a></li>
+                            <li><a href="#">Rose</a></li>
+                            <li><a href="#">Musk</a></li>
+                            <li><a href="#">Myrrh</a></li>
+                            <li><a href="#">Orange Blossom</a></li>
+                            <li><a href="#">Roses & Violets</a></li>
+                            <li><a href="#">Sandalwood</a></li>
+                            <li><a href="#">Vanilla</a></li>
+                          </ul>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <!-- TAB 3: ESSENTIAL OILS -->
+                <div class="savon-panel" id="tab-oils">
+                  <div class="incense-carousel-container">
+                    
+                    <div class="incense-carousel">
+                      
+                      <!-- Card 1: Essential Oils -->
+                      <div class="incense-card">
+                        <h4>ESSENTIAL OILS<br><span>PURE EXTRACTS</span></h4>
+                        <div class="incense-list-container">
+                          <ul class="incense-list">
+                            <li><a href="#">Aroma Lamps & Diffusers</a></li>
+                            <li><a href="#">Aniseed</a></li>
+                            <li><a href="#">Basil</a></li>
+                            <li><a href="#">Bergamot</a></li>
+                            <li><a href="#">Bois de Rose</a></li>
+                            <li><a href="#">Cajeput</a></li>
+                            <li><a href="#">Cardamom</a></li>
+                            <li><a href="#">Cassia</a></li>
+                            <li><a href="#">Cedarwood</a></li>
+                            <li><a href="#">Cedarwood Atlas</a></li>
+                            <li><a href="#">Cinnamon Bark</a></li>
+                            <li><a href="#">Cinnamon Leaf</a></li>
+                            <li><a href="#">Ciste Spain ABS</a></li>
+                            <li><a href="#">Citron</a></li>
+                            <li><a href="#">Citronella</a></li>
+                            <li><a href="#">Clary Sage</a></li>
+                            <li><a href="#">Clove</a></li>
+                            <li><a href="#">Dill</a></li>
+                            <li><a href="#">Eucalyptus</a></li>
+                            <li><a href="#">Frankincense</a></li>
+                            <li><a href="#">Geranium</a></li>
+                            <li><a href="#">Ginger</a></li>
+                            <li><a href="#">Grapefruit</a></li>
+                            <li><a href="#">Holy basil</a></li>
+                            <li><a href="#">Juniper berry</a></li>
+                            <li><a href="#">Labdanum Absolute</a></li>
+                            <li><a href="#">Lavender</a></li>
+                            <li><a href="#">Lavender ABS</a></li>
+                            <li><a href="#">Lavender Maillette</a></li>
+                            <li><a href="#">Lemongrass</a></li>
+                            <li><a href="#">Lime</a></li>
+                            <li><a href="#">Mandarine</a></li>
+                            <li><a href="#">Myrrh</a></li>
+                            <li><a href="#">Neroli</a></li>
+                            <li><a href="#">Nutmeg</a></li>
+                            <li><a href="#">Oakmoss ABS</a></li>
+                            <li><a href="#">Palmorasa</a></li>
+                            <li><a href="#">Patchouli</a></li>
+                            <li><a href="#">Peppermint</a></li>
+                            <li><a href="#">Peru balsam</a></li>
+                            <li><a href="#">Petitgrain</a></li>
+                            <li><a href="#">Pine</a></li>
+                            <li><a href="#">Rosemary</a></li>
+                            <li><a href="#">Sandalwood</a></li>
+                            <li><a href="#">Star Anise</a></li>
+                            <li><a href="#">Sweet Orange</a></li>
+                            <li><a href="#">Tea Tree</a></li>
+                            <li><a href="#">Thyme</a></li>
+                            <li><a href="#">Tolu Balsam</a></li>
+                            <li><a href="#">Ylang Ylang</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <!-- TAB 4: PERFUME OILS -->
+                <div class="savon-panel" id="tab-perfume">
+                  <div class="incense-carousel-container">
+                    
+                    <div class="incense-carousel">
+                      
+                      <!-- Card 1: Perfume Oils -->
+                      <div class="incense-card">
+                        <h4>PERFUME OILS<br><span>PURE FLORAL ESSENCES</span></h4>
+                        <div class="incense-list-container">
+                          <ul class="incense-list">
+                            <li><a href="#">Amber</a></li>
+                            <li><a href="#">Autumn Leaves</a></li>
+                            <li><a href="#">Box Lavender</a></li>
+                            <li><a href="#">Cedarwood</a></li>
+                            <li><a href="#">Champaca</a></li>
+                            <li><a href="#">Christmas Oil</a></li>
+                            <li><a href="#">English Lavender</a></li>
+                            <li><a href="#">Evening Rose</a></li>
+                            <li><a href="#">Frankincense</a></li>
+                            <li><a href="#">French Lavender Gardenia</a></li>
+                            <li><a href="#">Honey Suckle</a></li>
+                            <li><a href="#">Jasmine Lavender</a></li>
+                            <li><a href="#">Le Perfume</a></li>
+                            <li><a href="#">LiLac</a></li>
+                            <li><a href="#">Lilly of the Valley</a></li>
+                            <li><a href="#">Magnolia</a></li>
+                            <li><a href="#">Musk</a></li>
+                            <li><a href="#">Narcissus</a></li>
+                            <li><a href="#">Patchouli</a></li>
+                            <li><a href="#">Rose</a></li>
+                            <li><a href="#">Spice wood</a></li>
+                            <li><a href="#">Violets</a></li>
+                            <li><a href="#">White Lotus</a></li>
+                            <li><a href="#">Wood Lilly</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- /MEGA MENU WRAPPER -->
-<a href="index.html" class="nav-link">Home</a>
-        <a href="fragrances.html" class="nav-link">Fragrances</a>
-        <a href="products.html" class="nav-link">Products</a>
-        <a href="about-us.html" class="nav-link">About Us</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+          <!-- /SAVON STYLE MEGA MENU WRAPPER -->
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="fragrances.html" class="nav-link">Fragrances</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="about-us.html" class="nav-link">About Us</a>
+          <a href="contact.html" class="nav-link">Contact</a>
       </nav>
 
       <div class="nav-actions">
@@ -581,22 +879,36 @@
       <a href="#" class="nav-link" onclick="this.parentElement.classList.toggle('active'); return false;">
         Catalog <i class="fa-solid fa-angle-down"></i>
       </a>
-      <div class="mobile-mega-menu">
-        <div>
-          <h4 class="mobile-mega-column-heading">Products</h4>
-          <ul class="mobile-mega-list">
-            <li><a href="incense.html">Incense Sticks</a></li>
-            <li><a href="cones.html">Cones</a></li>
-            <li><a href="essential-oil.html">Essential Oils</a></li>
-            <li><a href="tapestry.html">Tapestries</a></li>
-          </ul>
+      <div class="mobile-mega-menu" style="gap: 0.75rem;">
+        <div class="mobile-accordion-group">
+          <a href="incense.html" class="mobile-accordion-title">
+            <span><i class="fa-solid fa-fire-flame-curved"></i> Incense Sticks</span>
+            <span class="badge-gold">Explore</span>
+          </a>
         </div>
-        <div style="margin-top: 1rem;">
-          <h4 class="mobile-mega-column-heading">Fragrances</h4>
-          <ul class="mobile-mega-list">
-            <li><a href="fragrances.html">All Fragrances</a></li>
-            <li><a href="ingredients.html">Ingredients</a></li>
-          </ul>
+        <div class="mobile-accordion-group">
+          <a href="cones.html" class="mobile-accordion-title">
+            <span><i class="fa-solid fa-mountain"></i> Cones</span>
+            <span class="badge-gold">Explore</span>
+          </a>
+        </div>
+        <div class="mobile-accordion-group">
+          <a href="essential-oil.html" class="mobile-accordion-title">
+            <span><i class="fa-solid fa-droplet"></i> Essential Oils</span>
+            <span class="badge-gold">Explore</span>
+          </a>
+        </div>
+        <div class="mobile-accordion-group">
+          <a href="fragrances.html" class="mobile-accordion-title">
+            <span><i class="fa-solid fa-bottle-droplet"></i> Perfume Oils</span>
+            <span class="badge-gold">Explore</span>
+          </a>
+        </div>
+        <div class="mobile-accordion-group">
+          <a href="tapestry.html" class="mobile-accordion-title">
+            <span><i class="fa-solid fa-scroll"></i> Wall Tapestries</span>
+            <span class="badge-gold">Explore</span>
+          </a>
         </div>
       </div>
     </div>
@@ -691,17 +1003,20 @@
     </section>
   </main>
 <footer class="footer">
-    <canvas id="footer-smoke-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+    <canvas id="footer-smoke-canvas"
+      style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="logo-wrapper">
-            <img src="./assets/images/lotus-logo-golden.webp" alt="The Mother's Fragrances Logo" class="logo-img" style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
+            <img src="./assets/images/lotus-logo-golden.webp" alt="The Mother's Fragrances Logo" class="logo-img"
+              style="height: 38px; width: auto; margin-right: var(--space-xs); filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
             <div class="logo-text">The Mother's Fragrances</div>
           </a>
-          <p style="margin-top: var(--space-sm);">Manufacturers of 100% botanical, chemical-free incense sticks, cones, and essential oils. Sourced from nature, rolled by hand.</p>
+          <p style="margin-top: var(--space-sm);">Manufacturers of 100% botanical, chemical-free incense sticks, cones,
+            and essential oils. Sourced from nature, rolled by hand.</p>
         </div>
-        
+
         <div>
           <h4>Explore</h4>
           <div class="footer-links">
@@ -726,9 +1041,11 @@
         <div class="footer-newsletter">
           <h4>Join Our Community</h4>
           <p>Subscribe for updates on our latest products and exclusive offers.</p>
-          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+          <form class="newsletter-form"
+            onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
             <input type="email" placeholder="Your email address..." class="newsletter-input" required>
-            <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+            <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i
+                class="fa-solid fa-arrow-right"></i></button>
           </form>
         </div>
       </div>
@@ -736,8 +1053,10 @@
       <div class="footer-bottom">
         <p>&copy; 2026 The Mother's Fragrances. All rights reserved.</p>
         <div class="footer-socials">
-          <a href="https://www.instagram.com/mothers_fragrances/?hl=en" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.facebook.com/Mothersfragrances/" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/mothers_fragrances/?hl=en" aria-label="Instagram"><i
+              class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/Mothersfragrances/" aria-label="Facebook"><i
+              class="fa-brands fa-facebook-f"></i></a>
         </div>
       </div>
     </div>
